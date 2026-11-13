@@ -35,6 +35,7 @@ class AppColors {
   static const darkTextColor= Color(0xFF92A095);
   static const lightGreenPrimaryColor= Color(0xFFB6C2B7);
   static const textDarkColor= Color(0xFFF3F5F0);
+  static const containerColor = Color(0xFF24352C);
   static const primaryDarkColor= Color(0xFF17221D);
   static const secondaryDarkColor= Color(0xFFA3C9A5);
   static const dotColor= Color(0xFF3B4A40);

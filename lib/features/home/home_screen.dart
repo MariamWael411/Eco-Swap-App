@@ -1,4 +1,3 @@
-import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/features/home/tabs/home/home_tab.dart';
 import 'package:eco_swap_app/features/home/tabs/item/item_tab.dart';
 import 'package:eco_swap_app/features/home/tabs/profile/profile_tab.dart';
@@ -8,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubit/theme_cubit.dart';
 import '../../l10n/app_localizations.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

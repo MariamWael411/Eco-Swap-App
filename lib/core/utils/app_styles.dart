@@ -230,7 +230,11 @@ class AppStyles {
       color: AppColors.greenDarkColor
   );
 
-
+  static TextStyle med14Red = GoogleFonts.manrope(
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+      color: AppColors.redColor
+  );
 
 
 }

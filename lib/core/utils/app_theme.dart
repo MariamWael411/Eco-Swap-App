@@ -16,11 +16,15 @@ class AppTheme {
     ),
     colorScheme: ColorScheme.light(
         primary: AppColors.greenColor,
-      onPrimaryContainer: AppColors.greyColor
+        onPrimaryContainer: AppColors.greyColor,
+        onPrimary: AppColors.lightGreyColor,
+        onSecondary: AppColors.containerTextFieldColor
     ),
 
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21Black,
+        labelSmall: AppStyles.bold14White,
+        titleLarge: AppStyles.bold11LightBlack
 
     ),
   );
@@ -36,10 +40,15 @@ class AppTheme {
     ),
     colorScheme: ColorScheme.dark(
         primary: AppColors.secondaryDarkColor,
-      onPrimaryContainer: AppColors.lightGreenPrimaryColor
+        onPrimaryContainer: AppColors.lightGreenPrimaryColor,
+        onPrimary: AppColors.dotColor,
+        onSecondary: AppColors.containerColor
     ),
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21White,
+        labelSmall: AppStyles.bold14DarkGreen,
+        titleLarge: AppStyles.bold11LightGreen
+
 
 
     ),
