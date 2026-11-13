@@ -15,22 +15,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get intro1_title => 'Give Your Items a New Life';
 
   @override
-  String get intro1_body =>
-      'Share items you no longer need with people nearby who can put them to good use.';
+  String get intro1_body => 'Share items you no longer need with people nearby who can put them to good use.';
 
   @override
   String get intro2_title => 'Find What You Need';
 
   @override
-  String get intro2_body =>
-      'Discover useful items shared by others in your community — completely free.';
+  String get intro2_body => 'Discover useful items shared by others in your community — completely free.';
 
   @override
   String get intro3_title => 'Reuse More, Waste Less';
 
   @override
-  String get intro3_body =>
-      'Every swap keeps an item in use and helps your community reduce unnecessary waste.';
+  String get intro3_body => 'Every swap keeps an item in use and helps your community reduce unnecessary waste.';
 
   @override
   String get next => 'Next';
@@ -72,8 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get create_your_account => 'Create your account';
 
   @override
-  String get join_your_local_sharing_community =>
-      'Join your local sharing community.';
+  String get join_your_local_sharing_community => 'Join your local sharing community.';
 
   @override
   String get full_name => 'Full name';
@@ -106,12 +102,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reset_your_password => 'Reset your password';
 
   @override
-  String get we_will_send_a_secure_reset_link_to_your_inbox =>
-      'We’ll send a secure reset link to your inbox.';
+  String get we_will_send_a_secure_reset_link_to_your_inbox => 'We’ll send a secure reset link to your inbox.';
 
   @override
   String get send_reset_link => 'Send Reset Link';
 
   @override
   String get back_to_login => 'Back to Login';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get item => 'My Items';
+
+  @override
+  String get request => 'Request';
+
+  @override
+  String get profile => 'Profile';
 }

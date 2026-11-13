@@ -15,22 +15,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get intro1_title => 'امنح أغراضك حياة جديدة';
 
   @override
-  String get intro1_body =>
-      'شارك الأغراض التي لم تعد بحاجة إليها مع أشخاص بالقرب منك يمكنهم الاستفادة منها.';
+  String get intro1_body => 'شارك الأغراض التي لم تعد بحاجة إليها مع أشخاص بالقرب منك يمكنهم الاستفادة منها.';
 
   @override
   String get intro2_title => 'اعثر على ما تحتاج إليه';
 
   @override
-  String get intro2_body =>
-      'اكتشف الأغراض المفيدة التي يشاركها الآخرون في مجتمعك — مجانًا تمامًا.';
+  String get intro2_body => 'اكتشف الأغراض المفيدة التي يشاركها الآخرون في مجتمعك — مجانًا تمامًا.';
 
   @override
   String get intro3_title => 'أعد الاستخدام أكثر، وقلل الهدر';
 
   @override
-  String get intro3_body =>
-      'كل عملية تبادل تساعد في إبقاء الأغراض قيد الاستخدام وتساهم في تقليل النفايات غير الضرورية في مجتمعك.';
+  String get intro3_body => 'كل عملية تبادل تساعد في إبقاء الأغراض قيد الاستخدام وتساهم في تقليل النفايات غير الضرورية في مجتمعك.';
 
   @override
   String get next => 'التالي';
@@ -72,8 +69,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get create_your_account => 'أنشئ حسابك';
 
   @override
-  String get join_your_local_sharing_community =>
-      'انضم إلى مجتمع المشاركة المحلي.';
+  String get join_your_local_sharing_community => 'انضم إلى مجتمع المشاركة المحلي.';
 
   @override
   String get full_name => 'الاسم بالكامل';
@@ -106,12 +102,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reset_your_password => 'إعادة تعيين كلمة المرور';
 
   @override
-  String get we_will_send_a_secure_reset_link_to_your_inbox =>
-      'سنرسل رابطًا آمنًا لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني.';
+  String get we_will_send_a_secure_reset_link_to_your_inbox => 'سنرسل رابطًا آمنًا لإعادة تعيين كلمة المرور إلى بريدك الإلكتروني.';
 
   @override
   String get send_reset_link => 'إرسال رابط إعادة التعيين';
 
   @override
   String get back_to_login => 'العودة إلى تسجيل الدخول';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get item => 'عناصري';
+
+  @override
+  String get request => 'الطلبات';
+
+  @override
+  String get profile => 'الملف الشخصي';
 }

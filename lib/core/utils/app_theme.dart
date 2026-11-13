@@ -16,6 +16,7 @@ class AppTheme {
     ),
     colorScheme: ColorScheme.light(
         primary: AppColors.greenColor,
+      onPrimaryContainer: AppColors.greyColor
     ),
 
     textTheme: TextTheme(
@@ -35,6 +36,7 @@ class AppTheme {
     ),
     colorScheme: ColorScheme.dark(
         primary: AppColors.secondaryDarkColor,
+      onPrimaryContainer: AppColors.lightGreenPrimaryColor
     ),
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21White,

@@ -32,5 +32,9 @@
   "reset_your_password": "Reset your password",
   "we_will_send_a_secure_reset_link_to_your_inbox": "We’ll send a secure reset link to your inbox.",
   "send_reset_link": "Send Reset Link",
-  "back_to_login": "Back to Login"
+  "back_to_login": "Back to Login",
+  "home": "Home",
+  "item": "My Items",
+  "request": "Request",
+  "profile": "Profile"
 }
