@@ -110,7 +110,7 @@ abstract class AppLocalizations {
   /// No description provided for @intro1_body.
   ///
   /// In en, this message translates to:
-  /// **'Share items you no longer need with people nearby who can put them to good use.'**
+  /// **'Share items you no longer need with people nearby who can\n put them to good use.'**
   String get intro1_body;
 
   /// No description provided for @intro2_title.
@@ -122,7 +122,7 @@ abstract class AppLocalizations {
   /// No description provided for @intro2_body.
   ///
   /// In en, this message translates to:
-  /// **'Discover useful items shared by others in your community — completely free.'**
+  /// **'Discover useful items shared by others in your community — \ncompletely free.'**
   String get intro2_body;
 
   /// No description provided for @intro3_title.
@@ -134,7 +134,7 @@ abstract class AppLocalizations {
   /// No description provided for @intro3_body.
   ///
   /// In en, this message translates to:
-  /// **'Every swap keeps an item in use and helps your community reduce unnecessary waste.'**
+  /// **'Every swap keeps an item in use and helps your community\n reduce unnecessary waste.'**
   String get intro3_body;
 
   /// No description provided for @next.

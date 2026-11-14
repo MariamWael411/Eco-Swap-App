@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -15,19 +16,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get intro1_title => 'امنح أغراضك حياة جديدة';
 
   @override
-  String get intro1_body => 'شارك الأغراض التي لم تعد بحاجة إليها مع أشخاص بالقرب منك يمكنهم الاستفادة منها.';
+  String get intro1_body =>
+      'شارك الأغراض التي لم تعد بحاجة إليها مع أشخاص بالقرب \nمنك يمكنهم الاستفادة منها.';
 
   @override
   String get intro2_title => 'اعثر على ما تحتاج إليه';
 
   @override
-  String get intro2_body => 'اكتشف الأغراض المفيدة التي يشاركها الآخرون في مجتمعك — مجانًا تمامًا.';
+  String get intro2_body =>
+      'اكتشف الأغراض المفيدة التي يشاركها الآخرون في مجتمعك — \nمجانًا تمامًا.';
 
   @override
   String get intro3_title => 'أعد الاستخدام أكثر، وقلل الهدر';
 
   @override
-  String get intro3_body => 'كل عملية تبادل تساعد في إبقاء الأغراض قيد الاستخدام وتساهم في تقليل النفايات غير الضرورية في مجتمعك.';
+  String get intro3_body =>
+      'كل عملية تبادل تساعد في إبقاء الأغراض قيد الاستخدام وتساهم\n في تقليل النفايات غير الضرورية في مجتمعك.';
 
   @override
   String get next => 'التالي';

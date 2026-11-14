@@ -23,15 +23,19 @@ class AppTheme {
         onPrimary: AppColors.lightGreyColor,
         onSecondary: AppColors.containerTextFieldColor,
         onSecondaryContainer: AppColors.blackColor,
-        inversePrimary: AppColors.bageColor
+        inversePrimary: AppColors.bageColor,
+        inverseSurface: AppColors.whiteColor
     ),
 
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21Black,
         labelSmall: AppStyles.bold14White,
         titleLarge: AppStyles.bold11LightBlack,
-        titleMedium: AppStyles.extra17Black
-
+        titleMedium: AppStyles.extra17Black,
+        titleSmall: AppStyles.bold15Green,
+        bodyMedium: AppStyles.bold11Grey,
+        bodySmall: AppStyles.extraBold8Green,
+        displayLarge: AppStyles.reg25Black
     ),
   );
 
@@ -53,13 +57,19 @@ class AppTheme {
         onPrimary: AppColors.dotColor,
         onSecondary: AppColors.containerColor,
         onSecondaryContainer: AppColors.textDarkColor,
-        inversePrimary: AppColors.containerColor
+        inversePrimary: AppColors.containerColor,
+        inverseSurface: AppColors.primaryDarkColor
     ),
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21White,
         labelSmall: AppStyles.bold14DarkGreen,
         titleLarge: AppStyles.bold11LightGreen,
-        titleMedium: AppStyles.extra17White
+        titleMedium: AppStyles.extra17White,
+        titleSmall: AppStyles.bold15GreenDark,
+        bodyMedium: AppStyles.bold11GreyDark,
+        bodySmall: AppStyles.extraBold8GreenDark,
+        displayLarge: AppStyles.reg25White
+
 
 
 
