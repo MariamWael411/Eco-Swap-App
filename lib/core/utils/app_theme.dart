@@ -24,7 +24,7 @@ class AppTheme {
         onSecondary: AppColors.containerTextFieldColor,
         onSecondaryContainer: AppColors.blackColor,
         inversePrimary: AppColors.bageColor,
-        inverseSurface: AppColors.whiteColor
+      inverseSurface: AppColors.whiteColor,
     ),
 
     textTheme: TextTheme(
@@ -35,7 +35,11 @@ class AppTheme {
         titleSmall: AppStyles.bold15Green,
         bodyMedium: AppStyles.bold11Grey,
         bodySmall: AppStyles.extraBold8Green,
-        displayLarge: AppStyles.reg25Black
+        displayLarge: AppStyles.reg25Black,
+        displayMedium: AppStyles.reg10Grey,
+        displaySmall: AppStyles.bold11Black,
+        headlineLarge: AppStyles.bold11Green,
+        headlineMedium: AppStyles.bold14Black
     ),
   );
 
@@ -68,7 +72,12 @@ class AppTheme {
         titleSmall: AppStyles.bold15GreenDark,
         bodyMedium: AppStyles.bold11GreyDark,
         bodySmall: AppStyles.extraBold8GreenDark,
-        displayLarge: AppStyles.reg25White
+        displayLarge: AppStyles.reg25White,
+        displayMedium: AppStyles.reg10LightGreen,
+        displaySmall: AppStyles.bold11White,
+        headlineLarge: AppStyles.bold11DarkGreen,
+        headlineMedium: AppStyles.bold14White
+
 
 
 

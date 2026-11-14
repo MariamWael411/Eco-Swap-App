@@ -21,11 +21,8 @@ static const String leaveHomeLight ="${_path}leave_home_light.png";
 //logo
 static const String logoDark ="${_path}logo_dark.png";
 static const String logoLight ="${_path}logo_light.png";
+  static const String logo = "${_path}logo.png";
 
-
-
-
-
-
-
+  //google icon
+  static const String google = "${_path}google_icon.png";
 }
