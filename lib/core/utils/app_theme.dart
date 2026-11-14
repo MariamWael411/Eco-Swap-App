@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 class AppTheme {
 
   static final ThemeData lightTheme = ThemeData(
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.whiteColor,
+    ),
     scaffoldBackgroundColor: AppColors.whiteColor,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.whiteColor,
@@ -18,19 +21,25 @@ class AppTheme {
         primary: AppColors.greenColor,
         onPrimaryContainer: AppColors.greyColor,
         onPrimary: AppColors.lightGreyColor,
-        onSecondary: AppColors.containerTextFieldColor
+        onSecondary: AppColors.containerTextFieldColor,
+        onSecondaryContainer: AppColors.blackColor,
+        inversePrimary: AppColors.bageColor
     ),
 
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21Black,
         labelSmall: AppStyles.bold14White,
-        titleLarge: AppStyles.bold11LightBlack
+        titleLarge: AppStyles.bold11LightBlack,
+        titleMedium: AppStyles.extra17Black
 
     ),
   );
 
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.primaryDarkColor,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primaryDarkColor,
+    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.dotColor,
       selectedItemColor: AppColors.darkGreenPrimaryColor,
@@ -42,12 +51,15 @@ class AppTheme {
         primary: AppColors.secondaryDarkColor,
         onPrimaryContainer: AppColors.lightGreenPrimaryColor,
         onPrimary: AppColors.dotColor,
-        onSecondary: AppColors.containerColor
+        onSecondary: AppColors.containerColor,
+        onSecondaryContainer: AppColors.textDarkColor,
+        inversePrimary: AppColors.containerColor
     ),
     textTheme: TextTheme(
         bodyLarge: AppStyles.reg21White,
         labelSmall: AppStyles.bold14DarkGreen,
-        titleLarge: AppStyles.bold11LightGreen
+        titleLarge: AppStyles.bold11LightGreen,
+        titleMedium: AppStyles.extra17White
 
 
 

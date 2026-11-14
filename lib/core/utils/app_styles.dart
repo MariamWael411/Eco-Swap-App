@@ -237,4 +237,16 @@ class AppStyles {
   );
 
 
+  static TextStyle extra17Black = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 17,
+      color: AppColors.blackColor
+  );
+
+  static TextStyle extra17White = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 17,
+      color: AppColors.textDarkColor
+  );
+
 }
