@@ -85,6 +85,8 @@ class LoginScreen extends StatelessWidget {
                           TextButton(
                             onPressed: () {
                               //todo Navigate to forget Pass
+                              Navigator.of(context).pushNamed(
+                                  AppRoute.forgetPass);
                             },
                             child: Text(
                               language.forgot_password,
