@@ -6,6 +6,7 @@ import 'package:eco_swap_app/core/utils/app_theme.dart';
 import 'package:eco_swap_app/cubit/language_cubit.dart';
 import 'package:eco_swap_app/cubit/theme_cubit.dart';
 import 'package:eco_swap_app/features/auth/login/login_screen.dart';
+import 'package:eco_swap_app/features/auth/register/register_screen.dart';
 import 'package:eco_swap_app/features/home/home_screen.dart';
 import 'package:eco_swap_app/features/onBoarding/onBoarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
                 routes: {
                   AppRoute.home: (context) => HomeScreen(),
                   AppRoute.onBoarding: (context) => OnboardingScreen(),
-                  AppRoute.login: (context) => LoginScreen()
+                  AppRoute.login: (context) => LoginScreen(),
+                  AppRoute.register: (context) => RegisterScreen()
 
                 },
               );

@@ -1,5 +1,6 @@
 import 'package:eco_swap_app/core/utils/app_assets.dart';
 import 'package:eco_swap_app/core/utils/app_colors.dart';
+import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/features/auth/widget/custom_divider_widget.dart';
 import 'package:eco_swap_app/features/auth/widget/custom_text_widget.dart';
 import 'package:eco_swap_app/features/auth/widget/top_container.dart';
@@ -138,6 +139,8 @@ class LoginScreen extends StatelessWidget {
                             ),
                             onPressed: () {
                               //todo Navigate to register screen
+                              Navigator.of(context).pushNamed(
+                                  AppRoute.register);
                             },
                             child: Text(
                               language.create_account,
