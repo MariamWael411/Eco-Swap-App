@@ -322,6 +322,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @enter_valid_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a Valid Name'**
+  String get enter_valid_name;
+
+  /// No description provided for @enter_your_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Full Name'**
+  String get enter_your_full_name;
+
+  /// No description provided for @enter_valid_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a Valid Full Name'**
+  String get enter_valid_full_name;
+
+  /// No description provided for @password_capital_letter.
+  ///
+  /// In en, this message translates to:
+  /// **'Password should contain at least one capital letter'**
+  String get password_capital_letter;
+
+  /// No description provided for @password_small_letter.
+  ///
+  /// In en, this message translates to:
+  /// **'Password should contain at least one small letter'**
+  String get password_small_letter;
+
+  /// No description provided for @password_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Password should contain at least one number'**
+  String get password_number;
+
+  /// No description provided for @password_symbol.
+  ///
+  /// In en, this message translates to:
+  /// **'Password should contain at least one symbol'**
+  String get password_symbol;
+
+  /// No description provided for @password_min_length.
+  ///
+  /// In en, this message translates to:
+  /// **'Password should be at least 8 characters'**
+  String get password_min_length;
+
+  /// No description provided for @enter_mobile_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Mobile Number'**
+  String get enter_mobile_number;
+
+  /// No description provided for @invalid_mobile_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter Correct Mobile Number'**
+  String get invalid_mobile_number;
+
+  /// No description provided for @invalid_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Enter Valid Email'**
+  String get invalid_email;
+
+  /// No description provided for @enter_confirm_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter confirm password'**
+  String get enter_confirm_password;
+
+  /// No description provided for @password_not_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password doesn\'t match password'**
+  String get password_not_match;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

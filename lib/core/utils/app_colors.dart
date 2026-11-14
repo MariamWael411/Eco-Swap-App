@@ -26,6 +26,7 @@ class AppColors {
   static const lightYellowColor= Color(0xFFFFF5D9);
   static const lightSecondGreenColor= Color(0xFFC8E3D5);
   static const bageColor = Color(0xFFF5F7F5);
+  static const shadowColor = Color(0xFF6FBF97);
 
   // dark colors
 

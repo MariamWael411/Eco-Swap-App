@@ -125,4 +125,49 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get enter_valid_name => 'من فضلك أدخل اسمًا صحيحًا';
+
+  @override
+  String get enter_your_full_name => 'من فضلك أدخل اسمك بالكامل';
+
+  @override
+  String get enter_valid_full_name => 'من فضلك أدخل اسمًا كاملًا صحيحًا';
+
+  @override
+  String get password_capital_letter =>
+      'يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل';
+
+  @override
+  String get password_small_letter =>
+      'يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل';
+
+  @override
+  String get password_number =>
+      'يجب أن تحتوي كلمة المرور على رقم واحد على الأقل';
+
+  @override
+  String get password_symbol =>
+      'يجب أن تحتوي كلمة المرور على رمز واحد على الأقل';
+
+  @override
+  String get password_min_length =>
+      'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
+
+  @override
+  String get enter_mobile_number => 'من فضلك أدخل رقم الهاتف';
+
+  @override
+  String get invalid_mobile_number => 'من فضلك أدخل رقم هاتف صحيح';
+
+  @override
+  String get invalid_email => 'من فضلك أدخل بريدًا إلكترونيًا صحيحًا';
+
+  @override
+  String get enter_confirm_password => 'من فضلك أدخل تأكيد كلمة المرور';
+
+  @override
+  String get password_not_match =>
+      'كلمة المرور وتأكيد كلمة المرور غير متطابقتين';
 }

@@ -48,7 +48,7 @@ class CustomTextFormFeild extends StatelessWidget {
         prefixIconColor: Theme.of(context).colorScheme.onPrimaryContainer,
         suffixIconColor: Theme.of(context).colorScheme.onPrimaryContainer,
         suffixIcon: sufixIcon,
-        errorStyle: AppStyles.med14Red,
+        errorStyle: AppStyles.med14Red.copyWith(fontSize: 11),
         enabledBorder: _outlineInputBorder(context),
         border: _outlineInputBorder(context),
         focusedBorder: _outlineInputBorder(context),

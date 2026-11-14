@@ -125,4 +125,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get enter_valid_name => 'Enter a Valid Name';
+
+  @override
+  String get enter_your_full_name => 'Enter Your Full Name';
+
+  @override
+  String get enter_valid_full_name => 'Enter a Valid Full Name';
+
+  @override
+  String get password_capital_letter =>
+      'Password should contain at least one capital letter';
+
+  @override
+  String get password_small_letter =>
+      'Password should contain at least one small letter';
+
+  @override
+  String get password_number => 'Password should contain at least one number';
+
+  @override
+  String get password_symbol => 'Password should contain at least one symbol';
+
+  @override
+  String get password_min_length => 'Password should be at least 8 characters';
+
+  @override
+  String get enter_mobile_number => 'Enter Your Mobile Number';
+
+  @override
+  String get invalid_mobile_number => 'Please Enter Correct Mobile Number';
+
+  @override
+  String get invalid_email => 'Please Enter Valid Email';
+
+  @override
+  String get enter_confirm_password => 'Please enter confirm password';
+
+  @override
+  String get password_not_match => 'Confirm password doesn\'t match password';
 }

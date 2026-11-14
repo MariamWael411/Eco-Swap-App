@@ -4,7 +4,7 @@
   "intro1_body": "Share items you no longer need with people nearby who can\n put them to good use.",
   "intro2_title": "Find What You Need",
   "intro2_body": "Discover useful items shared by others in your community — \ncompletely free.",
-  "intro3_title" : "Reuse More, Waste Less",
+  "intro3_title": "Reuse More, Waste Less",
   "intro3_body": "Every swap keeps an item in use and helps your community\n reduce unnecessary waste.",
   "next": "Next",
   "get_started": "Get Started",
@@ -36,5 +36,18 @@
   "home": "Home",
   "item": "My Items",
   "request": "Request",
-  "profile": "Profile"
+  "profile": "Profile",
+  "enter_valid_name": "Enter a Valid Name",
+  "enter_your_full_name": "Enter Your Full Name",
+  "enter_valid_full_name": "Enter a Valid Full Name",
+  "password_capital_letter": "Password should contain at least one capital letter",
+  "password_small_letter": "Password should contain at least one small letter",
+  "password_number": "Password should contain at least one number",
+  "password_symbol": "Password should contain at least one symbol",
+  "password_min_length": "Password should be at least 8 characters",
+  "enter_mobile_number": "Enter Your Mobile Number",
+  "invalid_mobile_number": "Please Enter Correct Mobile Number",
+  "invalid_email": "Please Enter Valid Email",
+  "enter_confirm_password": "Please enter confirm password",
+  "password_not_match": "Confirm password doesn't match password"
 }

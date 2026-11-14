@@ -70,6 +70,14 @@ class AppStyles {
   );
 
 
+  static TextStyle bold14Black = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+      color: AppColors.blackColor
+  );
+
+
+
 
   static TextStyle reg27White =GoogleFonts.manrope(
       fontWeight: FontWeight.w400,

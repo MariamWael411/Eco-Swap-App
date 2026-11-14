@@ -39,6 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           IconButton(
             onPressed: () {
               //todo Navigate to login
+              Navigator.of(context).pushReplacementNamed(AppRoute.login);
             },
             icon: Text(
               AppLocalizations.of(context)!.skip,
