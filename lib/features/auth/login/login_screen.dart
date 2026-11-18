@@ -25,9 +25,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var passController = TextEditingController();
+  var passController = TextEditingController(text: "123ASdg!@sd%");
 
-  var emailController = TextEditingController();
+  var emailController = TextEditingController(text: "mariam@gmail.com");
 
   bool obsureText = true;
   final _formKry = GlobalKey<FormState>();
@@ -119,6 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onClick: () {
                             //todo Navigate to home Screen
                             if (_formKry.currentState?.validate() == true) {
+                              Navigator.of(context).pushReplacementNamed(
+                                  AppRoute.home);
 
                             }
                           },
