@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/app_config.dart';
-import '../../../l10n/app_localizations.dart';
+import '../../../../core/utils/app_config.dart';
+import '../../../../l10n/app_localizations.dart';
 
 class CustomDividerWidget extends StatelessWidget {
   const CustomDividerWidget({super.key});

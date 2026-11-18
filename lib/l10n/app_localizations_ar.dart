@@ -205,4 +205,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dark_mode => 'الوضع الداكن';
+
+  @override
+  String get success => 'تم بنجاح';
+
+  @override
+  String get register_successfully => 'تم إنشاء الحساب بنجاح';
+
+  @override
+  String get ok => 'حسنًا';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get login_successfully => 'تم تسجيل الدخول بنجاح';
 }

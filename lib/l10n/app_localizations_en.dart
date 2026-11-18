@@ -201,4 +201,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark_mode => 'Dark Mode';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get register_successfully => 'Register Successfully';
+
+  @override
+  String get ok => 'ok';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get login_successfully => 'Login Successfully';
 }

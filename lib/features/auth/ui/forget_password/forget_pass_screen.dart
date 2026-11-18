@@ -1,17 +1,21 @@
 import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/core/utils/app_route.dart';
-import 'package:eco_swap_app/features/auth/widget/custom_header_widget.dart';
-import 'package:eco_swap_app/features/auth/widget/custom_text_widget.dart';
-import 'package:eco_swap_app/features/auth/widget/top_container.dart';
+import 'package:eco_swap_app/core/utils/utils_dialog.dart';
+import 'package:eco_swap_app/features/auth/ui/forget_password/cubit/forget_pass_cubit.dart';
+import 'package:eco_swap_app/features/auth/ui/forget_password/cubit/forget_pass_states.dart';
+import 'package:eco_swap_app/features/auth/ui/widget/custom_header_widget.dart';
+import 'package:eco_swap_app/features/auth/ui/widget/custom_text_widget.dart';
+import 'package:eco_swap_app/features/auth/ui/widget/top_container.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:eco_swap_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/app_config.dart';
-import '../../../core/utils/validation.dart';
-import '../../../cubit/theme_cubit.dart';
+import '../../../../core/di/di.dart';
+import '../../../../core/utils/app_config.dart';
+import '../../../../core/utils/validation.dart';
+import '../../../../cubit/theme_cubit.dart';
 
 class ForgetPassScreen extends StatefulWidget {
   const ForgetPassScreen({super.key});
@@ -23,14 +27,17 @@ class ForgetPassScreen extends StatefulWidget {
 class _ForgetPassScreenState extends State<ForgetPassScreen> {
   var emailController = TextEditingController();
   final _formKry = GlobalKey<FormState>();
+  ForgetPassCubit cubit = getIt();
   @override
   Widget build(BuildContext context) {
     Validation.context = context;
+    UtilsDialog.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: isDark
           ? AppColors.primaryDarkColor
@@ -79,14 +86,46 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                         ),
                         SizedBox(height: height * 0.01),
 
-                        CustomElevatedButton(
-                          onClick: () {
-                            //todo reset pass
-                            if (_formKry.currentState?.validate() == true) {
+                        BlocListener<ForgetPassCubit, ForgetPassStates>(
+                          bloc: cubit,
+                          listener: (context, state) {
+                            if (state.forgetPassStates.isLoading) {
+                              UtilsDialog.showLoading(
+                                context: context,
+                                content: language.loading,
+                              );
+                            } else if (state.forgetPassStates.isError) {
+                              UtilsDialog.hideDialog(context: context);
+                              UtilsDialog.showMessage(
+                                context: context,
+                                content:
+                                state.forgetPassStates.errorMessage ?? "",
+                                title: language.error,
+                                posAction: language.ok,
 
+                              );
+                            } else if (state.forgetPassStates.isSuccess) {
+                              UtilsDialog.hideDialog(context: context);
+                              UtilsDialog.showMessage(
+                                context: context,
+                                content: "Check your email",
+                                title: language.success,
+                                posAction: language.ok,
+                                posActions: () {
+                                  Navigator.of(context).pop();
+                                },
+                              );
                             }
                           },
-                          text: language.send_reset_link,
+                          child: CustomElevatedButton(
+                            onClick: () {
+                              //todo reset pass
+                              if (_formKry.currentState?.validate() == true) {
+                                cubit.forgetPass(emailController.text);
+                              }
+                            },
+                            text: language.send_reset_link,
+                          ),
                         ),
                         InkWell(
                           onTap: () {

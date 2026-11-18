@@ -1,0 +1,25 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "ecoswap-app-b7d10",
+          "appId": "1:1033538857950:android:ecb9c5e3d25e5d2ca18b4f",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ecoswap-app-b7d10",
+          "configurations": {
+            "android": "1:1033538857950:android:ecb9c5e3d25e5d2ca18b4f",
+            "ios": "1:1033538857950:ios:b7e854bf402c41aba18b4f",
+            "macos": "1:1033538857950:ios:b7e854bf402c41aba18b4f",
+            "web": "1:1033538857950:web:24830b52c1de4f83a18b4f",
+            "windows": "1:1033538857950:web:4d462cb99e85ad3fa18b4f"
+          }
+        }
+      }
+    }
+  }
+}

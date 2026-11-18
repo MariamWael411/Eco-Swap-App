@@ -60,6 +60,12 @@
   "preference": "التفضيلات",
   "account": "الحساب",
   "light_mode": "الوضع الفاتح",
-  "dark_mode": "الوضع الداكن"
+  "dark_mode": "الوضع الداكن",
+  "success": "تم بنجاح",
+  "register_successfully": "تم إنشاء الحساب بنجاح",
+  "ok": "حسنًا",
+  "error": "خطأ",
+  "loading": "جاري التحميل...",
+  "login_successfully": "تم تسجيل الدخول بنجاح"
 
 }

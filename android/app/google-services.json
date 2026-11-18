@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033538857950",
+    "project_id": "ecoswap-app-b7d10",
+    "storage_bucket": "ecoswap-app-b7d10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033538857950:android:ecb9c5e3d25e5d2ca18b4f",
+        "android_client_info": {
+          "package_name": "com.example.eco_swap_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsDW-fxA9_Puaq2pE4Qzvtb17Q-Mpgmgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

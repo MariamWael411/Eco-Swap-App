@@ -60,6 +60,12 @@
   "preference": "PREFERENCES",
   "account": "ACCOUNT",
   "light_mode": "Light Mode",
-  "dark_mode": "Dark Mode"
+  "dark_mode": "Dark Mode",
+  "success": "Success",
+  "register_successfully": "Register Successfully",
+  "ok": "ok",
+  "error": "Error",
+  "loading": "Loading...",
+  "login_successfully": "Login Successfully"
 
 }
