@@ -170,4 +170,39 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get password_not_match =>
       'كلمة المرور وتأكيد كلمة المرور غير متطابقتين';
+
+  @override
+  String get edit_profile => 'تعديل الملف الشخصي';
+
+  @override
+  String get log_out => 'تسجيل الخروج';
+
+  @override
+  String get you_are_helping_your_community_wastel_ess =>
+      'أنت تساعد مجتمعك على تقليل إهدار الموارد.';
+
+  @override
+  String get items_shared => 'تمت مشاركة 8 عناصر';
+
+  @override
+  String get sign_out_of_your_ecoSwap_account =>
+      'تسجيل الخروج من حسابك على EcoSwap';
+
+  @override
+  String get appearance => 'المظهر';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get preference => 'التفضيلات';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get light_mode => 'الوضع الفاتح';
+
+  @override
+  String get dark_mode => 'الوضع الداكن';
 }

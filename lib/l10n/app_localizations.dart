@@ -400,6 +400,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm password doesn\'t match password'**
   String get password_not_match;
+
+  /// No description provided for @edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get edit_profile;
+
+  /// No description provided for @log_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get log_out;
+
+  /// No description provided for @you_are_helping_your_community_wastel_ess.
+  ///
+  /// In en, this message translates to:
+  /// **'You’re helping your community waste less.'**
+  String get you_are_helping_your_community_wastel_ess;
+
+  /// No description provided for @items_shared.
+  ///
+  /// In en, this message translates to:
+  /// **'8 items shared'**
+  String get items_shared;
+
+  /// No description provided for @sign_out_of_your_ecoSwap_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out of your EcoSwap account'**
+  String get sign_out_of_your_ecoSwap_account;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @preference.
+  ///
+  /// In en, this message translates to:
+  /// **'PREFERENCES'**
+  String get preference;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'ACCOUNT'**
+  String get account;
+
+  /// No description provided for @light_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get light_mode;
+
+  /// No description provided for @dark_mode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get dark_mode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

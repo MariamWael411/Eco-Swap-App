@@ -41,6 +41,7 @@ dependencies:
   bloc: ^9.2.1
   flutter_bloc: ^9.1.1
   flutter_native_splash: ^2.4.8
+  flutter_svg: ^2.4.0
 
 
 

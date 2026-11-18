@@ -49,5 +49,17 @@
   "invalid_mobile_number": "من فضلك أدخل رقم هاتف صحيح",
   "invalid_email": "من فضلك أدخل بريدًا إلكترونيًا صحيحًا",
   "enter_confirm_password": "من فضلك أدخل تأكيد كلمة المرور",
-  "password_not_match": "كلمة المرور وتأكيد كلمة المرور غير متطابقتين"
+  "password_not_match": "كلمة المرور وتأكيد كلمة المرور غير متطابقتين",
+  "edit_profile": "تعديل الملف الشخصي",
+  "log_out": "تسجيل الخروج",
+  "you_are_helping_your_community_wastel_ess": "أنت تساعد مجتمعك على تقليل إهدار الموارد.",
+  "items_shared": "تمت مشاركة 8 عناصر",
+  "sign_out_of_your_ecoSwap_account": "تسجيل الخروج من حسابك على EcoSwap",
+  "appearance": "المظهر",
+  "language": "اللغة",
+  "preference": "التفضيلات",
+  "account": "الحساب",
+  "light_mode": "الوضع الفاتح",
+  "dark_mode": "الوضع الداكن"
+
 }
