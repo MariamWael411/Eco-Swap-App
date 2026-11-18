@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/app_config.dart';
+import '../../../../../cubit/theme_cubit.dart';
 
 class CustomRowWidget extends StatelessWidget {
   String text1;
@@ -10,6 +13,7 @@ class CustomRowWidget extends StatelessWidget {
   Color? containerColor;
   Color? iconColor;
 
+
   CustomRowWidget({
     super.key,
     required this.widget,
@@ -18,12 +22,14 @@ class CustomRowWidget extends StatelessWidget {
     required this.icon,
     this.containerColor,
     this.iconColor,
+
   });
 
   @override
   Widget build(BuildContext context) {
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
+    final isDark = context.read<ThemeCubit>().isDark();
 
     var theme = Theme.of(context);
 
@@ -36,15 +42,22 @@ class CustomRowWidget extends StatelessWidget {
         spacing: width * 0.04,
         children: [
           Container(
-            width: width * 0.097,
-            height: height * 0.045,
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.021,
+                vertical: height * 0.01
+            ),
             decoration: BoxDecoration(
               color: containerColor ?? theme.colorScheme.onInverseSurface,
               borderRadius: BorderRadius.circular(11),
             ),
-            child: Image.asset(
+            child:
+            SvgPicture.asset(
               icon,
-              color: iconColor ?? theme.colorScheme.primary,
+              key: ValueKey(icon),
+              colorFilter: ColorFilter.mode(
+                iconColor ?? theme.colorScheme.primary,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           Column(

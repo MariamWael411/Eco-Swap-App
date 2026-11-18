@@ -107,8 +107,8 @@ class _ProfileTabState extends State<ProfileTab> {
                       }),
                       text1: language.appearance,
                       text2: isDark ? language.dark_mode : language.light_mode,
-                      icon: isDark ? AppAssets.themeDarkIcon : AppAssets
-                          .themeLightIcon),
+                    icon: !isDark ? AppAssets.themeLightIcon : AppAssets
+                        .themeDarkIcon,),
 
 
                 ],
