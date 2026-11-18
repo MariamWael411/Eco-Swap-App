@@ -27,6 +27,12 @@ class AppColors {
   static const lightSecondGreenColor= Color(0xFFC8E3D5);
   static const bageColor = Color(0xFFF5F7F5);
   static const shadowColor = Color(0xFF6FBF97);
+  static const linearColor = Color(0xFFB5DFCA);
+  static const linear2Color = Color(0xFF70BA98);
+  static const textColor = Color(0xFF124D36);
+  static const darkGreyColor = Color(0xFFCDD4D0);
+  static const greenLightColor = Color(0xFF227A58);
+  static const lightColor = Color(0xFFCDE9DA);
 
   // dark colors
 
@@ -47,5 +53,6 @@ class AppColors {
   static const binkDarkColor= Color(0xFFD8AAAA);
   static const pendingColor= Color(0xFF443D27);
   static const pendingTextColor= Color(0xFFDBC88F);
-
+  static const darkGreen2Color = Color(0xFF2D4436);
+  static const linearGreen2Color = Color(0xFF365844);
 }

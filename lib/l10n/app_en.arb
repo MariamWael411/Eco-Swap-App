@@ -49,5 +49,17 @@
   "invalid_mobile_number": "Please Enter Correct Mobile Number",
   "invalid_email": "Please Enter Valid Email",
   "enter_confirm_password": "Please enter confirm password",
-  "password_not_match": "Confirm password doesn't match password"
+  "password_not_match": "Confirm password doesn't match password",
+  "edit_profile": "Edit profile",
+  "log_out": "Log out",
+  "you_are_helping_your_community_wastel_ess": "You’re helping your community waste less.",
+  "items_shared": "8 items shared",
+  "sign_out_of_your_ecoSwap_account": "Sign out of your EcoSwap account",
+  "appearance": "Appearance",
+  "language": "Language",
+  "preference": "PREFERENCES",
+  "account": "ACCOUNT",
+  "light_mode": "Light Mode",
+  "dark_mode": "Dark Mode"
+
 }

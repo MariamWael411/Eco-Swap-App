@@ -166,4 +166,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get password_not_match => 'Confirm password doesn\'t match password';
+
+  @override
+  String get edit_profile => 'Edit profile';
+
+  @override
+  String get log_out => 'Log out';
+
+  @override
+  String get you_are_helping_your_community_wastel_ess =>
+      'You’re helping your community waste less.';
+
+  @override
+  String get items_shared => '8 items shared';
+
+  @override
+  String get sign_out_of_your_ecoSwap_account =>
+      'Sign out of your EcoSwap account';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get preference => 'PREFERENCES';
+
+  @override
+  String get account => 'ACCOUNT';
+
+  @override
+  String get light_mode => 'Light Mode';
+
+  @override
+  String get dark_mode => 'Dark Mode';
 }

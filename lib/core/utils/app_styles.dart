@@ -93,6 +93,19 @@ class AppStyles {
   );
 
 
+  static TextStyle reg9Green = GoogleFonts.manrope(
+      fontWeight: FontWeight.w400,
+      fontSize: 9,
+      color: AppColors.greenColor
+  );
+
+  static TextStyle reg9DarkGreen = GoogleFonts.manrope(
+      fontWeight: FontWeight.w400,
+      fontSize: 9,
+      color: AppColors.darkGreenPrimaryColor
+  );
+
+
 
   static TextStyle reg21Black =GoogleFonts.manrope(
       fontWeight: FontWeight.w400,
@@ -256,5 +269,59 @@ class AppStyles {
       fontSize: 17,
       color: AppColors.textDarkColor
   );
+
+
+  static TextStyle extra20Green = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 20,
+      color: AppColors.textColor
+  );
+
+
+  static TextStyle bold18Black = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: AppColors.blackColor
+  );
+  static TextStyle bold18White = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: AppColors.textDarkColor
+  );
+
+  static TextStyle extra8Grey = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.greyColor
+  );
+  static TextStyle extra8White = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.lightGreenPrimaryColor
+  );
+
+  static TextStyle bold12White = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 12,
+      color: AppColors.whiteColor
+  );
+  static TextStyle bold12LightGrey = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 12,
+      color: AppColors.textDarkColor
+  );
+
+  static TextStyle reg8DA = GoogleFonts.manrope(
+      fontWeight: FontWeight.w400,
+      fontSize: 8,
+      color: AppColors.lightColor
+  );
+  static TextStyle reg8B7 = GoogleFonts.manrope(
+      fontWeight: FontWeight.w400,
+      fontSize: 8,
+      color: AppColors.lightGreenPrimaryColor
+  );
+
+
 
 }
