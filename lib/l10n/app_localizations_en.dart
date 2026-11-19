@@ -226,4 +226,68 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get we_sent_a_password_reset_link_to_your =>
       'We sent a password reset link to your inbox. It may take a\n minute to arrive.';
+
+  @override
+  String get see_all => 'See All';
+
+  @override
+  String get items_available_today => '28 Items Available Today';
+
+  @override
+  String get fresh_finds_near_you => 'Fresh Finds Near You';
+
+  @override
+  String get clothing => 'Clothing';
+
+  @override
+  String get books => 'Books';
+
+  @override
+  String get electronics => 'Electronics';
+
+  @override
+  String get search_available_items => 'Search Available Items';
+
+  @override
+  String get give_something_a_second_life_nearby =>
+      'Give Something a \nSecond Life Nearby';
+
+  @override
+  String get good_morning => 'Good Morning,';
+
+  @override
+  String get give_share => 'GIVE • SHARE • REUSE';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get your_items_have_helped => 'Your Items Have Helped';
+
+  @override
+  String get neighbors_so_far => 'Neighbors So Far';
+
+  @override
+  String get small_actions_real_impact => 'Small Actions, Real Impact';
+
+  @override
+  String get unavailable => 'Unavailable';
+
+  @override
+  String get requests => 'Requests';
+
+  @override
+  String get no_requests_yet => 'No Requests Yet';
+
+  @override
+  String get available => 'Available';
+
+  @override
+  String get listings => 'Listings';
+
+  @override
+  String get your_shared_items => 'Your Shared Items';
+
+  @override
+  String get available2 => 'available';
 }

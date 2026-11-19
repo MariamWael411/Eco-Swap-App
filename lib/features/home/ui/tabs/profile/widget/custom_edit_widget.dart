@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/app_assets.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_config.dart';
-import '../../../../../cubit/theme_cubit.dart';
-import '../../../../../l10n/app_localizations.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/app_colors.dart';
+import '../../../../../../core/utils/app_config.dart';
+import '../../../../../../cubit/theme_cubit.dart';
+import '../../../../../../l10n/app_localizations.dart';
 
 class CustomEditWidget extends StatelessWidget {
   CustomEditWidget({super.key, required this.onTap});

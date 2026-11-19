@@ -68,6 +68,27 @@
   "loading": "Loading...",
   "login_successfully": "Login Successfully",
   "check_your_email": "Check your email",
-  "we_sent_a_password_reset_link_to_your": "We sent a password reset link to your inbox. It may take a\n minute to arrive."
+  "we_sent_a_password_reset_link_to_your": "We sent a password reset link to your inbox. It may take a\n minute to arrive.",
+  "see_all": "See All",
+  "items_available_today": "28 Items Available Today",
+  "fresh_finds_near_you": "Fresh Finds Near You",
+  "clothing": "Clothing",
+  "books": "Books",
+  "electronics": "Electronics",
+  "search_available_items": "Search Available Items",
+  "give_something_a_second_life_nearby": "Give Something a \nSecond Life Nearby",
+  "good_morning": "Good Morning,",
+  "give_share": "GIVE • SHARE • REUSE",
+  "all": "All",
+  "your_items_have_helped": "Your Items Have Helped",
+  "neighbors_so_far": "Neighbors So Far",
+  "small_actions_real_impact": "Small Actions, Real Impact",
+  "unavailable": "Unavailable",
+  "requests": "Requests",
+  "no_requests_yet": "No Requests Yet",
+  "available": "Available",
+  "listings": "Listings",
+  "your_shared_items": "Your Shared Items",
+  "available2": "available"
 
 }

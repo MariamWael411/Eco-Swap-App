@@ -514,6 +514,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We sent a password reset link to your inbox. It may take a\n minute to arrive.'**
   String get we_sent_a_password_reset_link_to_your;
+
+  /// No description provided for @see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get see_all;
+
+  /// No description provided for @items_available_today.
+  ///
+  /// In en, this message translates to:
+  /// **'28 Items Available Today'**
+  String get items_available_today;
+
+  /// No description provided for @fresh_finds_near_you.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh Finds Near You'**
+  String get fresh_finds_near_you;
+
+  /// No description provided for @clothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Clothing'**
+  String get clothing;
+
+  /// No description provided for @books.
+  ///
+  /// In en, this message translates to:
+  /// **'Books'**
+  String get books;
+
+  /// No description provided for @electronics.
+  ///
+  /// In en, this message translates to:
+  /// **'Electronics'**
+  String get electronics;
+
+  /// No description provided for @search_available_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Available Items'**
+  String get search_available_items;
+
+  /// No description provided for @give_something_a_second_life_nearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Give Something a \nSecond Life Nearby'**
+  String get give_something_a_second_life_nearby;
+
+  /// No description provided for @good_morning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning,'**
+  String get good_morning;
+
+  /// No description provided for @give_share.
+  ///
+  /// In en, this message translates to:
+  /// **'GIVE • SHARE • REUSE'**
+  String get give_share;
+
+  /// No description provided for @all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// No description provided for @your_items_have_helped.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Items Have Helped'**
+  String get your_items_have_helped;
+
+  /// No description provided for @neighbors_so_far.
+  ///
+  /// In en, this message translates to:
+  /// **'Neighbors So Far'**
+  String get neighbors_so_far;
+
+  /// No description provided for @small_actions_real_impact.
+  ///
+  /// In en, this message translates to:
+  /// **'Small Actions, Real Impact'**
+  String get small_actions_real_impact;
+
+  /// No description provided for @unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get unavailable;
+
+  /// No description provided for @requests.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests'**
+  String get requests;
+
+  /// No description provided for @no_requests_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No Requests Yet'**
+  String get no_requests_yet;
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @listings.
+  ///
+  /// In en, this message translates to:
+  /// **'Listings'**
+  String get listings;
+
+  /// No description provided for @your_shared_items.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Shared Items'**
+  String get your_shared_items;
+
+  /// No description provided for @available2.
+  ///
+  /// In en, this message translates to:
+  /// **'available'**
+  String get available2;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

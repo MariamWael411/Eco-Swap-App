@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/utils/app_config.dart';
-import '../../../../../cubit/theme_cubit.dart';
+import '../../../../../../core/utils/app_config.dart';
+import '../../../../../../cubit/theme_cubit.dart';
 
 class CustomRowWidget extends StatelessWidget {
   String text1;

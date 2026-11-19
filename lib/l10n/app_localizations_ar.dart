@@ -230,4 +230,68 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get we_sent_a_password_reset_link_to_your =>
       'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى صندوق الوارد الخاص بك. قد يستغرق \nوصوله دقيقة واحدة.';
+
+  @override
+  String get see_all => 'عرض الكل';
+
+  @override
+  String get items_available_today => '28 منتجًا متاحًا اليوم';
+
+  @override
+  String get fresh_finds_near_you => 'اكتشف منتجات جديدة بالقرب منك';
+
+  @override
+  String get clothing => 'ملابس';
+
+  @override
+  String get books => 'كتب';
+
+  @override
+  String get electronics => 'إلكترونيات';
+
+  @override
+  String get search_available_items => 'ابحث عن المنتجات المتاحة';
+
+  @override
+  String get give_something_a_second_life_nearby =>
+      'امنح أغراضك فرصة\n جديدة بالقرب منك';
+
+  @override
+  String get good_morning => 'صباح الخير,';
+
+  @override
+  String get give_share => 'امنح • شارك • أعد الاستخدام';
+
+  @override
+  String get all => 'الكل';
+
+  @override
+  String get your_items_have_helped => 'أغراضك ساعدت';
+
+  @override
+  String get neighbors_so_far => 'من الجيران حتى الآن';
+
+  @override
+  String get small_actions_real_impact => 'خطوات بسيطة، تأثير حقيقي';
+
+  @override
+  String get unavailable => 'غير متاح';
+
+  @override
+  String get requests => 'الطلبات';
+
+  @override
+  String get no_requests_yet => 'لا توجد طلبات حتى الآن';
+
+  @override
+  String get available => 'متاح';
+
+  @override
+  String get listings => 'العناصر المعروضة';
+
+  @override
+  String get your_shared_items => 'الأغراض التي شاركتها';
+
+  @override
+  String get available2 => 'متاح';
 }
