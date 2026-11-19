@@ -3,6 +3,7 @@ import 'package:eco_swap_app/core/utils/validation.dart';
 import 'package:eco_swap_app/features/add_item/ui/widgets/custom_condition_widget.dart';
 import 'package:eco_swap_app/features/add_item/ui/widgets/custom_pick_image_widget.dart';
 import 'package:eco_swap_app/features/auth/ui/widget/custom_text_widget.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_app_bar.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:flutter/material.dart';
@@ -36,37 +37,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        shape: Border(
-          bottom: BorderSide(
-            width: 1,
-            color: theme.colorScheme.onPrimaryContainer,
-          ),
-        ),
-        centerTitle: true,
-        title: Text(
-          language.add_an_item,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        leading: IconButton(
-          onPressed: () {
-            //todo add Item
-            Navigator.of(context).pop();
-          },
-          style: IconButton.styleFrom(
-            backgroundColor: theme.colorScheme.inversePrimary,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-              side: BorderSide(width: 1, color: theme.colorScheme.onSecondary),
-            ),
-          ),
-          icon: Icon(
-            Icons.arrow_back_ios_new,
-            size: 20,
-            color: theme.colorScheme.onSecondaryContainer,
-          ),
-        ),
-      ),
+      appBar: customAppBar(theme, language, context, language.add_an_item),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: width * 0.04,

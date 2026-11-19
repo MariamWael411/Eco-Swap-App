@@ -375,4 +375,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get please_enter_this_field => 'Please enter this field';
+
+  @override
+  String get contact_details_help =>
+      'Your contact details help item owners recognize your requests.';
+
+  @override
+  String get save_changes => 'Save changes';
 }

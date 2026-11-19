@@ -20,6 +20,14 @@ class CustomGridViewItem extends StatelessWidget {
     var language = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            spreadRadius: 1,
+            offset: const Offset(0, 3),
+          ),
+        ],
         color: theme.colorScheme.onPrimaryFixedVariant,
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: theme.colorScheme.onPrimary),

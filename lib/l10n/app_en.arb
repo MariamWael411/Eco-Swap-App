@@ -117,5 +117,7 @@
   "add_details_for_nearby": "Add a few details so someone nearby can find it.",
   "give_it_a_second_life": "Give it a second life",
   "add_an_item": "Add an item",
-  "please_enter_this_field": "Please enter this field"
+  "please_enter_this_field": "Please enter this field",
+  "contact_details_help": "Your contact details help item owners recognize your requests.",
+  "save_changes": "Save changes"
 }

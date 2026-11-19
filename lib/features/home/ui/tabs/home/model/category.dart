@@ -3,22 +3,22 @@ import 'package:eco_swap_app/l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 
 class Category {
-  String name;
-  String icon;
+  String? name;
+  String? icon;
 
-  static late BuildContext _context;
+  late BuildContext _context;
 
-  static BuildContext get context => _context;
+  BuildContext get context => _context;
 
-  static set context(BuildContext value) {
+  set context(BuildContext value) {
     _context = value;
   }
 
-  static var language = AppLocalizations.of(context)!;
+  late var language = AppLocalizations.of(context)!;
 
-  Category({required this.icon, required this.name});
+  Category({this.icon, this.name});
 
-  static List<Category> catogeries() {
+  List<Category> catogeries() {
     return [
       Category(icon: AppAssets.leave, name: language.all),
       Category(icon: AppAssets.phone, name: language.electronics),

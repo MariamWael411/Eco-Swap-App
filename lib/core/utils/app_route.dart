@@ -5,4 +5,5 @@ class AppRoute {
   static const home ="home_screen";
   static const onBoarding ="onBoarding_screen";
   static const addItem = "add_item_screen";
+  static const editProfile = "edit_profile_screen";
 }

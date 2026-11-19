@@ -58,6 +58,7 @@ class _ProfileTabState extends State<ProfileTab> {
             SizedBox(height: height * 0.01,),
             CustomEditWidget(onTap: () {
               // todo Navigate to edit profile
+              Navigator.of(context).pushNamed(AppRoute.editProfile);
             }),
             row(language, theme, language.preference),
             SizedBox(height: height * 0.01,),
