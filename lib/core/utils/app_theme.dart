@@ -28,7 +28,8 @@ class AppTheme {
         onInverseSurface: AppColors.lightGreenColor,
         onPrimaryFixed: AppColors.lightRedColor,
         onSecondaryFixedVariant: AppColors.redColor,
-        onPrimaryFixedVariant: AppColors.whiteColor
+        onPrimaryFixedVariant: AppColors.whiteColor,
+        onTertiary: AppColors.lightBrownColor
     ),
 
     textTheme: TextTheme(
@@ -74,7 +75,8 @@ class AppTheme {
         onInverseSurface: AppColors.darkGreen2Color,
         onPrimaryFixed: AppColors.darkRedColor,
         onSecondaryFixedVariant: AppColors.binkColor,
-        onPrimaryFixedVariant: AppColors.containerColor
+        onPrimaryFixedVariant: AppColors.containerColor,
+        onTertiary: AppColors.brownDarkColor
 
 
 

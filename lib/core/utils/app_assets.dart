@@ -46,4 +46,8 @@ static const String logoLight ="${_path}logo_light.png";
   static const String person = "${_path}person.svg";
   static const String list = "${_path}list.svg";
   static const String home = "${_path}home.svg";
+
+  //item tab icon
+  static const String editSvg = "${_path}edit.svg";
+  static const String delete = "${_path}delete.svg";
 }

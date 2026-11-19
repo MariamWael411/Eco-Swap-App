@@ -294,4 +294,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get available2 => 'متاح';
+
+  @override
+  String get edit => 'تعديل';
 }

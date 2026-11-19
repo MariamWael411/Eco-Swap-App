@@ -365,7 +365,16 @@ class AppStyles {
       color: AppColors.darkGreenPrimaryColor
   );
 
-
+  static TextStyle extra8Red = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.brownColor
+  );
+  static TextStyle extra8Bink = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.binkDarkColor
+  );
 
 
 
