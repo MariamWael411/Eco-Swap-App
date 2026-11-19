@@ -293,4 +293,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get edit => 'Edit';
+
+  @override
+  String get cancelled => 'Cancelled';
+
+  @override
+  String get cancel_request => 'Cancel request';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get pending => 'Pending';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get decline => 'Decline';
+
+  @override
+  String get requested => 'Requested';
+
+  @override
+  String get sent => 'Sent';
+
+  @override
+  String get received => 'Received';
+
+  @override
+  String get item_request => 'ITEM REQUEST';
 }

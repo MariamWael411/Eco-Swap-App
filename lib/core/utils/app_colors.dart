@@ -55,4 +55,5 @@ class AppColors {
   static const pendingTextColor= Color(0xFFDBC88F);
   static const darkGreen2Color = Color(0xFF2D4436);
   static const linearGreen2Color = Color(0xFF365844);
+  static const green2Color = Color(0xFF31463A);
 }

@@ -297,4 +297,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get edit => 'تعديل';
+
+  @override
+  String get cancelled => 'تم الإلغاء';
+
+  @override
+  String get cancel_request => 'إلغاء الطلب';
+
+  @override
+  String get accepted => 'تم القبول';
+
+  @override
+  String get pending => 'قيد الانتظار';
+
+  @override
+  String get accept => 'قبول';
+
+  @override
+  String get decline => 'رفض';
+
+  @override
+  String get requested => 'تم طلبه';
+
+  @override
+  String get sent => 'المرسلة';
+
+  @override
+  String get received => 'المستلمة';
+
+  @override
+  String get item_request => 'طلب غرض';
 }

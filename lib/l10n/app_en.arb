@@ -90,6 +90,16 @@
   "listings": "Listings",
   "your_shared_items": "Your Shared Items",
   "available2": "available",
-  "edit": "Edit"
+  "edit": "Edit",
+  "cancelled": "Cancelled",
+  "cancel_request": "Cancel request",
+  "accepted": "Accepted",
+  "pending": "Pending",
+  "accept": "Accept",
+  "decline": "Decline",
+  "requested": "Requested",
+  "sent": "Sent",
+  "received": "Received",
+  "item_request": "ITEM REQUEST"
 
 }
