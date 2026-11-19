@@ -16,10 +16,12 @@ class CustomTextFormFeild extends StatelessWidget {
   OnValidator? onValidator;
   TextInputType? textInputType;
   bool obscureText;
+  int? maxLength;
 
   CustomTextFormFeild({
     super.key,
     required this.hintText,
+    this.maxLength,
     this.prefixIcon,
     this.sufixIcon,
     this.maxLines = 1,
@@ -33,6 +35,7 @@ class CustomTextFormFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: maxLength,
       keyboardType: textInputType,
       obscureText: obscureText,
       obscuringCharacter: '*',
@@ -42,6 +45,7 @@ class CustomTextFormFeild extends StatelessWidget {
       style: Theme.of(context).textTheme.titleLarge,
       maxLines: maxLines,
       decoration: InputDecoration(
+        counterStyle: Theme.of(context).textTheme.bodySmall,
         hintStyle: Theme.of(context).textTheme.titleLarge,
         hintText: hintText,
         prefixIcon: prefixIcon,

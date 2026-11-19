@@ -54,6 +54,14 @@ class Validation {
     return null;
   }
 
+  static String? validateInput(String? text) {
+    if (text == null || text.trim().isEmpty) {
+      return language.please_enter_this_field;
+    }
+
+    return null;
+  }
+
   static String? validateMobileNum(String? text) {
     if (text == null || text.trim().isEmpty) {
       return language.enter_your_phone;

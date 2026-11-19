@@ -1,4 +1,5 @@
 import 'package:eco_swap_app/core/utils/app_assets.dart';
+import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/home_tab.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/item/item_tab.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/profile_tab.dart';
@@ -56,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             visible: selectedIndex == 1,
             child: IconButton(onPressed: () {
               //todo add Item
+              Navigator.of(context).pushNamed(AppRoute.addItem);
             },
                 style: IconButton.styleFrom(
                     backgroundColor: Theme

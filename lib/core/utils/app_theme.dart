@@ -30,7 +30,9 @@ class AppTheme {
         onSecondaryFixedVariant: AppColors.redColor,
         onPrimaryFixedVariant: AppColors.whiteColor,
         onTertiary: AppColors.lightBrownColor,
-        onSurfaceVariant: AppColors.lightYellowColor
+        onSurfaceVariant: AppColors.lightYellowColor,
+        onSurface: AppColors.borderGreenColor,
+        onSecondaryFixed: AppColors.greenColor
     ),
 
     textTheme: TextTheme(
@@ -78,7 +80,9 @@ class AppTheme {
         onSecondaryFixedVariant: AppColors.binkColor,
         onPrimaryFixedVariant: AppColors.containerColor,
         onTertiary: AppColors.brownDarkColor,
-        onSurfaceVariant: AppColors.pendingColor
+        onSurfaceVariant: AppColors.pendingColor,
+        onSurface: AppColors.darkGreenPrimaryColor,
+        onSecondaryFixed: AppColors.lightGreenPrimaryColor
 
 
 

@@ -327,4 +327,56 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get item_request => 'طلب غرض';
+
+  @override
+  String get publish_item => 'نشر غرض';
+
+  @override
+  String get well_used => 'مستعمل بحالة جيدة';
+
+  @override
+  String get good => 'جيد';
+
+  @override
+  String get like_new => 'كالجديد';
+
+  @override
+  String get condition => 'الحالة';
+
+  @override
+  String get select_a_category => 'اختر فئة';
+
+  @override
+  String get category => 'الفئة';
+
+  @override
+  String get condition_size_included => 'الحالة، الحجم، الأشياء المرفقة...';
+
+  @override
+  String get description => 'الوصف';
+
+  @override
+  String get wooden_side_table_example => 'مثال: طاولة جانبية خشبية';
+
+  @override
+  String get item_title => 'اسم الغرض';
+
+  @override
+  String get natural_light_photo => 'استخدم إضاءة طبيعية وأظهر الغرض بالكامل';
+
+  @override
+  String get add_one_clear_photo => 'أضف صورة واحدة واضحة';
+
+  @override
+  String get add_details_for_nearby =>
+      'أضف بعض التفاصيل لمساعدة الأشخاص القريبين منك في العثور على الغرض.';
+
+  @override
+  String get give_it_a_second_life => 'امنحه حياة جديدة';
+
+  @override
+  String get add_an_item => 'أضف غرضًا';
+
+  @override
+  String get please_enter_this_field => 'من فضلك أدخل هذه الخانة';
 }
