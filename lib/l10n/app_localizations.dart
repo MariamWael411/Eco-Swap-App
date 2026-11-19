@@ -808,6 +808,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter this field'**
   String get please_enter_this_field;
+
+  /// No description provided for @contact_details_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact details help item owners recognize your requests.'**
+  String get contact_details_help;
+
+  /// No description provided for @save_changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get save_changes;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

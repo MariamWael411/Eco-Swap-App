@@ -379,4 +379,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get please_enter_this_field => 'من فضلك أدخل هذه الخانة';
+
+  @override
+  String get contact_details_help =>
+      'تساعد بيانات التواصل الخاصة بك أصحاب الأغراض على التعرف على طلباتك.';
+
+  @override
+  String get save_changes => 'حفظ التغييرات';
 }

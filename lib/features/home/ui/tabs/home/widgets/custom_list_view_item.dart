@@ -16,7 +16,8 @@ class CustomListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Category.context = context;
+    Category category = Category();
+    category.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
@@ -46,7 +47,7 @@ class CustomListViewItem extends StatelessWidget {
         spacing: width * 0.02,
         children: [
           SvgPicture.asset(
-            Category.catogeries()[index].icon,
+            category.catogeries()[index].icon!,
             colorFilter: ColorFilter.mode(
               isActive
                   ? theme.colorScheme.inverseSurface
@@ -55,7 +56,7 @@ class CustomListViewItem extends StatelessWidget {
             ),
           ),
           Text(
-            Category.catogeries()[index].name,
+            category.catogeries()[index].name!,
             style: isActive
                 ? theme.textTheme.labelSmall?.copyWith(fontSize: 11)
                 : theme.textTheme.bodyMedium,
