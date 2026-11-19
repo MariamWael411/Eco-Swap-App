@@ -1,3 +1,4 @@
+import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_grid_view_item.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_home_container_widget.dart';
@@ -93,7 +94,12 @@ class _HomeTabState extends State<HomeTab> {
                   mainAxisSpacing: height * 0.02,
                 ),
                 itemBuilder: (context, index) {
-                  return CustomGridViewItem();
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                            AppRoute.productDetails);
+                      },
+                      child: CustomGridViewItem());
                 },
               ),
             ),

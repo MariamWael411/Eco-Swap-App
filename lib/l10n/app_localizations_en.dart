@@ -382,4 +382,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save_changes => 'Save changes';
+
+  @override
+  String get request_this_item => 'Request this item';
+
+  @override
+  String get request_it_only_if_pickup =>
+      'Request it only if you can pick it up in';
+
+  @override
+  String get better_together => 'Better together';
+
+  @override
+  String get offered_by => 'Offered by';
+
+  @override
+  String get about_this_item => 'About this item';
+
+  @override
+  String get contact_information_shared_with_approval =>
+      'Contact information is shared only with the owner\'s approval.';
 }

@@ -7,6 +7,7 @@ import 'package:eco_swap_app/features/add_item/ui/add_item_screen.dart';
 import 'package:eco_swap_app/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:eco_swap_app/features/home/ui/home_screen.dart';
 import 'package:eco_swap_app/features/onBoarding/onBoarding_screen.dart';
+import 'package:eco_swap_app/features/product_details/ui/product_details_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +60,8 @@ class MyApp extends StatelessWidget {
                   AppRoute.register: (context) => RegisterScreen(),
                   AppRoute.forgetPass: (context) => ForgetPassScreen(),
                   AppRoute.addItem: (context) => AddItemScreen(),
-                  AppRoute.editProfile: (context) => EditProfileScreen()
+                  AppRoute.editProfile: (context) => EditProfileScreen(),
+                  AppRoute.productDetails: (context) => ProductDetailsScreen()
 
                 },
               );

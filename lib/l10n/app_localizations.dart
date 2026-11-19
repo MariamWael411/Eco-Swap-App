@@ -820,6 +820,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save changes'**
   String get save_changes;
+
+  /// No description provided for @request_this_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Request this item'**
+  String get request_this_item;
+
+  /// No description provided for @request_it_only_if_pickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Request it only if you can pick it up in'**
+  String get request_it_only_if_pickup;
+
+  /// No description provided for @better_together.
+  ///
+  /// In en, this message translates to:
+  /// **'Better together'**
+  String get better_together;
+
+  /// No description provided for @offered_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Offered by'**
+  String get offered_by;
+
+  /// No description provided for @about_this_item.
+  ///
+  /// In en, this message translates to:
+  /// **'About this item'**
+  String get about_this_item;
+
+  /// No description provided for @contact_information_shared_with_approval.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact information is shared only with the owner\'s approval.'**
+  String get contact_information_shared_with_approval;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
