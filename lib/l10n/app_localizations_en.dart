@@ -323,4 +323,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get item_request => 'ITEM REQUEST';
+
+  @override
+  String get publish_item => 'Publish item';
+
+  @override
+  String get well_used => 'Well used';
+
+  @override
+  String get good => 'Good';
+
+  @override
+  String get like_new => 'Like new';
+
+  @override
+  String get condition => 'Condition';
+
+  @override
+  String get select_a_category => 'Select a category';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get condition_size_included => 'Condition, size, what\'s included...';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get wooden_side_table_example => 'e.g. Wooden side table';
+
+  @override
+  String get item_title => 'Item title';
+
+  @override
+  String get natural_light_photo => 'Use natural light and show the full item';
+
+  @override
+  String get add_one_clear_photo => 'Add one clear photo';
+
+  @override
+  String get add_details_for_nearby =>
+      'Add a few details so someone nearby can find it.';
+
+  @override
+  String get give_it_a_second_life => 'Give it a second life';
+
+  @override
+  String get add_an_item => 'Add an item';
+
+  @override
+  String get please_enter_this_field => 'Please enter this field';
 }

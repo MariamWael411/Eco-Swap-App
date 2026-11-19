@@ -50,4 +50,7 @@ static const String logoLight ="${_path}logo_light.png";
   //item tab icon
   static const String editSvg = "${_path}edit.svg";
   static const String delete = "${_path}delete.svg";
+
+  // item add icons
+  static const String camera = "${_path}camera.svg";
 }

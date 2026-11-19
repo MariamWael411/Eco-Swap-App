@@ -706,6 +706,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ITEM REQUEST'**
   String get item_request;
+
+  /// No description provided for @publish_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish item'**
+  String get publish_item;
+
+  /// No description provided for @well_used.
+  ///
+  /// In en, this message translates to:
+  /// **'Well used'**
+  String get well_used;
+
+  /// No description provided for @good.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get good;
+
+  /// No description provided for @like_new.
+  ///
+  /// In en, this message translates to:
+  /// **'Like new'**
+  String get like_new;
+
+  /// No description provided for @condition.
+  ///
+  /// In en, this message translates to:
+  /// **'Condition'**
+  String get condition;
+
+  /// No description provided for @select_a_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a category'**
+  String get select_a_category;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @condition_size_included.
+  ///
+  /// In en, this message translates to:
+  /// **'Condition, size, what\'s included...'**
+  String get condition_size_included;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @wooden_side_table_example.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Wooden side table'**
+  String get wooden_side_table_example;
+
+  /// No description provided for @item_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Item title'**
+  String get item_title;
+
+  /// No description provided for @natural_light_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Use natural light and show the full item'**
+  String get natural_light_photo;
+
+  /// No description provided for @add_one_clear_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add one clear photo'**
+  String get add_one_clear_photo;
+
+  /// No description provided for @add_details_for_nearby.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a few details so someone nearby can find it.'**
+  String get add_details_for_nearby;
+
+  /// No description provided for @give_it_a_second_life.
+  ///
+  /// In en, this message translates to:
+  /// **'Give it a second life'**
+  String get give_it_a_second_life;
+
+  /// No description provided for @add_an_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an item'**
+  String get add_an_item;
+
+  /// No description provided for @please_enter_this_field.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter this field'**
+  String get please_enter_this_field;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

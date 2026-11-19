@@ -4,4 +4,5 @@ class AppRoute {
   static const forgetPass ="forget_pass_screen";
   static const home ="home_screen";
   static const onBoarding ="onBoarding_screen";
+  static const addItem = "add_item_screen";
 }

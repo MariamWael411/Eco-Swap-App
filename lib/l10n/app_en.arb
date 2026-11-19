@@ -100,6 +100,22 @@
   "requested": "Requested",
   "sent": "Sent",
   "received": "Received",
-  "item_request": "ITEM REQUEST"
-
+  "item_request": "ITEM REQUEST",
+  "publish_item": "Publish item",
+  "well_used": "Well used",
+  "good": "Good",
+  "like_new": "Like new",
+  "condition": "Condition",
+  "select_a_category": "Select a category",
+  "category": "Category",
+  "condition_size_included": "Condition, size, what's included...",
+  "description": "Description",
+  "wooden_side_table_example": "e.g. Wooden side table",
+  "item_title": "Item title",
+  "natural_light_photo": "Use natural light and show the full item",
+  "add_one_clear_photo": "Add one clear photo",
+  "add_details_for_nearby": "Add a few details so someone nearby can find it.",
+  "give_it_a_second_life": "Give it a second life",
+  "add_an_item": "Add an item",
+  "please_enter_this_field": "Please enter this field"
 }
