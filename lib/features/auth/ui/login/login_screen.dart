@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     UtilsDialog.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
     Validation.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
@@ -135,13 +136,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   bloc: loginCubit,
                                   listener: (context, state) {
                                     if (state.loginStates.isLoading) {
-                                      UtilsDialog.showLoading(
+                                      utilsDialog.showLoading(
                                         context: context,
                                         content: language.loading,
                                       );
                                     } else if (state.loginStates.isError) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content:
                                         state.loginStates.errorMessage ?? "",
@@ -150,8 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                       );
                                     } else if (state.loginStates.isSuccess) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content: language.login_successfully,
                                         title: language.success,
@@ -185,14 +186,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   bloc: loginWithGoogleCubit,
                                   listener: (context, state) {
                                     if (state.loginWithGoogleStates.isLoading) {
-                                      UtilsDialog.showLoading(
+                                      utilsDialog.showLoading(
                                         context: context,
                                         content: language.loading,
                                       );
                                     } else
                                     if (state.loginWithGoogleStates.isError) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content:
                                         state.loginWithGoogleStates
@@ -203,8 +204,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       );
                                     } else
                                     if (state.loginWithGoogleStates.isSuccess) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content: language.login_successfully,
                                         title: language.success,

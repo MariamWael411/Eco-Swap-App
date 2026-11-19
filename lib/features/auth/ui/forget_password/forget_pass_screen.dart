@@ -31,6 +31,7 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
   @override
   Widget build(BuildContext context) {
     Validation.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
     UtilsDialog.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
@@ -86,7 +87,7 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                                   bloc: cubit,
                                   builder: (BuildContext context, state) {
                                     if (state.forgetPassStates.isSuccess) {
-                                      UtilsDialog.hideDialog(context: context);
+                                      utilsDialog.hideDialog(context: context);
 
                                       return Column(
                                         spacing: height * 0.023,
@@ -208,13 +209,13 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
                                   },
                                   listener: (BuildContext context, state) {
                                     if (state.forgetPassStates.isLoading) {
-                                      UtilsDialog.showLoading(
+                                      utilsDialog.showLoading(
                                         context: context,
                                         content: language.loading,
                                       );
                                     } else if (state.forgetPassStates.isError) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content:
                                         state.forgetPassStates.errorMessage ??

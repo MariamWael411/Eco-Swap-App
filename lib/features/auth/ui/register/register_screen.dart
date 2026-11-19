@@ -46,6 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     UtilsDialog.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
     Validation.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
@@ -182,13 +183,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   bloc: cubit,
                                   listener: (context, state) {
                                     if (state.registerStates.isLoading) {
-                                      UtilsDialog.showLoading(
+                                      utilsDialog.showLoading(
                                         context: context,
                                         content: language.loading,
                                       );
                                     } else if (state.registerStates.isError) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content:
                                         state.registerStates.errorMessage ?? "",
@@ -197,8 +198,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                       );
                                     } else if (state.registerStates.isSuccess) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content: language.register_successfully,
                                         title: language.success,
@@ -234,14 +235,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   bloc: loginCubit,
                                   listener: (context, state) {
                                     if (state.loginWithGoogleStates.isLoading) {
-                                      UtilsDialog.showLoading(
+                                      utilsDialog.showLoading(
                                         context: context,
                                         content: language.loading,
                                       );
                                     } else
                                     if (state.loginWithGoogleStates.isError) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content:
                                         state.loginWithGoogleStates
@@ -252,8 +253,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       );
                                     } else
                                     if (state.loginWithGoogleStates.isSuccess) {
-                                      UtilsDialog.hideDialog(context: context);
-                                      UtilsDialog.showMessage(
+                                      utilsDialog.hideDialog(context: context);
+                                      utilsDialog.showMessage(
                                         context: context,
                                         content: language.register_successfully,
                                         title: language.success,

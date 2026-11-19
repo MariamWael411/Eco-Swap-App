@@ -15,9 +15,10 @@ class UtilsDialog {
     _context = value;
   }
 
-  static var isDark = _context.read<ThemeCubit>().isDark();
+  final isDark = _context.watch<ThemeCubit>().isDark();
 
-  static void showLoading({
+
+  void showLoading({
     required BuildContext context,
     required String content,
   }) {
@@ -51,11 +52,11 @@ class UtilsDialog {
     );
   }
 
-  static void hideDialog({required BuildContext context}) {
+  void hideDialog({required BuildContext context}) {
     Navigator.pop(context);
   }
 
-  static void showMessage({
+  void showMessage({
     required BuildContext context,
     required String content,
     required String title,
