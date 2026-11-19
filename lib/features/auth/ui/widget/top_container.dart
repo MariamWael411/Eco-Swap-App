@@ -47,6 +47,7 @@ class TopContainer extends StatelessWidget {
             style: AppStyles.reg11Green,
             textAlign: TextAlign.center,
           ),
+          SizedBox(height: height * 0.01),
         ],
       ),
     );

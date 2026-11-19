@@ -25,7 +25,7 @@ class ForgetPassScreen extends StatefulWidget {
 }
 
 class _ForgetPassScreenState extends State<ForgetPassScreen> {
-  var emailController = TextEditingController();
+  var emailController = TextEditingController(text: "mariam@gmail.com");
   final _formKry = GlobalKey<FormState>();
   ForgetPassCubit cubit = getIt();
   @override
@@ -42,120 +42,204 @@ class _ForgetPassScreenState extends State<ForgetPassScreen> {
       backgroundColor: isDark
           ? AppColors.primaryDarkColor
           : AppColors.greenColor,
-      body: Column(
-        children: [
-          Expanded(flex: 2, child: TopContainer()),
-          Expanded(
-            flex: 5,
-
-            child: Container(
-              decoration: BoxDecoration(
-                color: isDark
-                    ? AppColors.transparentColor
-                    : AppColors.whiteColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(27),
-                  topRight: Radius.circular(27),
-                ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight
               ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.06,
-                    vertical: height * 0.03,
-                  ),
-                  child: Form(
-                    key: _formKry,
-                    child: Column(
-                      spacing: height * 0.013,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomHeaderWidget(text1: language.reset_your_password,
-                            text2: language
-                                .we_will_send_a_secure_reset_link_to_your_inbox),
-                        SizedBox(height: height * 0.01),
-                        CustomTextWidget(text: language.email_address),
-                        CustomTextFormFeild(
-                          controller: emailController,
-                          onValidator: (text) {
-                            return Validation.validateEmail(text);
-                          },
-                          textInputType: TextInputType.emailAddress,
-                          hintText: language.enter_your_email,
-                          prefixIcon: Icon(Icons.email_outlined),
-                        ),
-                        SizedBox(height: height * 0.01),
+              child: IntrinsicHeight(
+                child: Column(
+                  children: [
+                    Expanded(flex: 2, child: TopContainer()),
+                    Expanded(
+                      flex: 5,
 
-                        BlocListener<ForgetPassCubit, ForgetPassStates>(
-                          bloc: cubit,
-                          listener: (context, state) {
-                            if (state.forgetPassStates.isLoading) {
-                              UtilsDialog.showLoading(
-                                context: context,
-                                content: language.loading,
-                              );
-                            } else if (state.forgetPassStates.isError) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content:
-                                state.forgetPassStates.errorMessage ?? "",
-                                title: language.error,
-                                posAction: language.ok,
-
-                              );
-                            } else if (state.forgetPassStates.isSuccess) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content: "Check your email",
-                                title: language.success,
-                                posAction: language.ok,
-                                posActions: () {
-                                  Navigator.of(context).pop();
-                                },
-                              );
-                            }
-                          },
-                          child: CustomElevatedButton(
-                            onClick: () {
-                              //todo reset pass
-                              if (_formKry.currentState?.validate() == true) {
-                                cubit.forgetPass(emailController.text);
-                              }
-                            },
-                            text: language.send_reset_link,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isDark
+                              ? AppColors.transparentColor
+                              : AppColors.whiteColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(27),
+                            topRight: Radius.circular(27),
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            //todo navigate to login
-                            Navigator.of(context).pushNamed(AppRoute.login);
-                          },
-                          child: Row(
-                            spacing: width * 0.01,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.arrow_back_ios_new,
-                                color: theme.colorScheme.primary,
-                                size: 20,
-                              ),
-                              Text(
-                                language.back_to_login,
-                                style: theme.textTheme.headlineLarge,
-                              ),
-                            ],
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.06,
+                            vertical: height * 0.03,
+                          ),
+                          child: Form(
+                            key: _formKry,
+                            child: Column(
+                              spacing: height * 0.013,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                CustomHeaderWidget(
+                                    text1: language.reset_your_password,
+                                    text2: language
+                                        .we_will_send_a_secure_reset_link_to_your_inbox),
+                                SizedBox(height: height * 0.01),
+                                BlocConsumer<ForgetPassCubit, ForgetPassStates>(
+                                  bloc: cubit,
+                                  builder: (BuildContext context, state) {
+                                    if (state.forgetPassStates.isSuccess) {
+                                      UtilsDialog.hideDialog(context: context);
+
+                                      return Column(
+                                        spacing: height * 0.023,
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: width * 0.04,
+                                                vertical: height * 0.02
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: theme.colorScheme
+                                                  .onInverseSurface,
+                                              borderRadius: BorderRadius
+                                                  .circular(11),
+                                            ),
+                                            child: Icon(Icons.check_rounded,
+                                              color: theme.colorScheme
+                                                  .primary,),
+                                          ),
+                                          Text(language.check_your_email,
+                                            style: theme.textTheme.headlineSmall
+                                                ?.copyWith(fontSize: 16),),
+                                          Text(language
+                                              .we_sent_a_password_reset_link_to_your,
+                                            style: theme.textTheme
+                                                .displayMedium,
+                                            textAlign: TextAlign.center,),
+                                          CustomElevatedButton(
+                                            onClick: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            backgroundColor: isDark
+                                                ? AppColors.primaryDarkColor
+                                                : AppColors.whiteColor,
+                                            borderColor: theme.colorScheme
+                                                .onPrimary,
+                                            item: Row(
+                                              spacing: width * 0.02,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(Icons.arrow_back_ios,
+                                                  color: isDark
+                                                      ? AppColors.textDarkColor
+                                                      : AppColors.blackColor,),
+                                                Text(
+                                                  language.back_to_login,
+                                                  style: theme.textTheme
+                                                      .headlineMedium,
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    }
+                                    else {
+                                      return Column(
+                                        spacing: height * 0.015,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .stretch,
+                                        children: [
+                                          CustomTextWidget(
+                                              text: language.email_address),
+                                          CustomTextFormFeild(
+                                            controller: emailController,
+                                            onValidator: (text) {
+                                              return Validation.validateEmail(
+                                                  text);
+                                            },
+                                            textInputType: TextInputType
+                                                .emailAddress,
+                                            hintText: language.enter_your_email,
+                                            prefixIcon: Icon(
+                                                Icons.email_outlined),
+                                          ),
+                                          SizedBox(height: height * 0.01),
+
+                                          CustomElevatedButton(
+                                            onClick: () {
+                                              //todo reset pass
+                                              if (_formKry.currentState
+                                                  ?.validate() == true) {
+                                                cubit.forgetPass(
+                                                    emailController.text);
+                                              }
+                                            },
+                                            text: language.send_reset_link,
+                                          ),
+
+                                          InkWell(
+                                            onTap: () {
+                                              //todo navigate to login
+                                              Navigator.of(context).pushNamed(
+                                                  AppRoute.login);
+                                            },
+                                            child: Row(
+                                              spacing: width * 0.01,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              children: [
+                                                Icon(
+                                                  Icons.arrow_back_ios_new,
+                                                  color: theme.colorScheme
+                                                      .primary,
+                                                  size: 20,
+                                                ),
+                                                Text(
+                                                  language.back_to_login,
+                                                  style: theme.textTheme
+                                                      .headlineLarge,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    }
+                                  },
+                                  listener: (BuildContext context, state) {
+                                    if (state.forgetPassStates.isLoading) {
+                                      UtilsDialog.showLoading(
+                                        context: context,
+                                        content: language.loading,
+                                      );
+                                    } else if (state.forgetPassStates.isError) {
+                                      UtilsDialog.hideDialog(context: context);
+                                      UtilsDialog.showMessage(
+                                        context: context,
+                                        content:
+                                        state.forgetPassStates.errorMessage ??
+                                            "",
+                                        title: language.error,
+                                        posAction: language.ok,
+
+                                      );
+                                    }
+                                  },
+
+                                ),
+
+                              ],
+                            ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

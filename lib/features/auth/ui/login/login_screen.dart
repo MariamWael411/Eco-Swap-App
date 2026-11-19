@@ -53,202 +53,220 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: isDark
           ? AppColors.primaryDarkColor
           : AppColors.greenColor,
-      body: Column(
-        children: [
-          Expanded(flex: 2, child: TopContainer()),
-          Expanded(
-            flex: 5,
-
-            child: Container(
-              decoration: BoxDecoration(
-                color: isDark
-                    ? AppColors.transparentColor
-                    : AppColors.whiteColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(27),
-                  topRight: Radius.circular(27),
-                ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
               ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: width * 0.06,
-                    vertical: height * 0.03,
-                  ),
-                  child: Form(
-                    key: _formKry,
-                    child: Column(
+              child: IntrinsicHeight(
+                child: Column(
+                  children: [
+                    Expanded(flex: 2, child: TopContainer()),
+                    Expanded(
+                      flex: 5,
 
-                      spacing: height * 0.013,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        CustomHeaderWidget(text1: language.welcome_back,
-                            text2: language.sign_in_to_continue_sharing),
-                        SizedBox(height: height * 0.01),
-                        CustomTextWidget(text: language.email_address),
-                        CustomTextFormFeild(
-                          controller: emailController,
-                          onValidator: (text) {
-                            return Validation.validateEmail(text);
-                          },
-                          textInputType: TextInputType.emailAddress,
-                          hintText: language.enter_your_email,
-                          prefixIcon: Icon(Icons.email_outlined),
-                        ),
-                        SizedBox(height: height * 0.01),
-                        CustomTextWidget(text: language.password),
-                        CustomTextFormFeild(
-                          obscureText: obsureText,
-                          controller: passController,
-                          onValidator: (text) {
-                            return Validation.validatePassword(text);
-                          },
-                          hintText: language.enter_your_password,
-                          prefixIcon: Icon(Icons.lock_outline),
-                          sufixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                obsureText = !obsureText;
-                              });
-
-                              print(obsureText);
-
-                            },
-                            icon: Icon(obsureText
-                                ? Icons.visibility_off_outlined
-                                : Icons.remove_red_eye_outlined),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isDark
+                              ? AppColors.transparentColor
+                              : AppColors.whiteColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(27),
+                            topRight: Radius.circular(27),
                           ),
                         ),
-                        CustomForgetPassWidget(onClick: () {
-                          //todo Navigate to forget Pass
-                          Navigator.of(context).pushNamed(
-                              AppRoute.forgetPass);
-                        }),
-                        BlocListener<LoginCubit, LoginStates>(
-                          bloc: loginCubit,
-                          listener: (context, state) {
-                            if (state.loginStates.isLoading) {
-                              UtilsDialog.showLoading(
-                                context: context,
-                                content: language.loading,
-                              );
-                            } else if (state.loginStates.isError) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content:
-                                state.loginStates.errorMessage ?? "",
-                                title: language.error,
-                                posAction: language.ok,
-
-                              );
-                            } else if (state.loginStates.isSuccess) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content: language.login_successfully,
-                                title: language.success,
-                                posAction: language.ok,
-                                posActions: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppRoute.home,
-                                  );
-                                },
-                              );
-                            }
-                          },
-                          child: CustomElevatedButton(
-                            onClick: () {
-                              //todo Navigate to home Screen
-                              if (_formKry.currentState?.validate() == true) {
-                                loginCubit.login(
-                                    emailController.text, passController.text);
-                              }
-                            },
-                            text: language.sign_in,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.06,
+                            vertical: height * 0.03,
                           ),
-                        ),
-                        CustomDividerWidget(),
-                        SizedBox(height: height * 0.002),
-                        BlocListener<LoginWithGoogleCubit,
-                            LoginWithGoogleStates>(
-                          bloc: loginWithGoogleCubit,
-                          listener: (context, state) {
-                            if (state.loginWithGoogleStates.isLoading) {
-                              UtilsDialog.showLoading(
-                                context: context,
-                                content: language.loading,
-                              );
-                            } else if (state.loginWithGoogleStates.isError) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content:
-                                state.loginWithGoogleStates.errorMessage ?? "",
-                                title: language.error,
-                                posAction: language.ok,
+                          child: Form(
+                            key: _formKry,
+                            child: Column(
 
-                              );
-                            } else if (state.loginWithGoogleStates.isSuccess) {
-                              UtilsDialog.hideDialog(context: context);
-                              UtilsDialog.showMessage(
-                                context: context,
-                                content: language.login_successfully,
-                                title: language.success,
-                                posAction: language.ok,
-                                posActions: () {
-                                  Navigator.pushReplacementNamed(
-                                    context,
-                                    AppRoute.home,
-                                  );
-                                },
-                              );
-                            }
-                          },
-                          child: CustomElevatedButton(
-                            onClick: () {
-                              loginWithGoogleCubit.loginWithGoogle();
-                            },
-                            backgroundColor: isDark
-                                ? AppColors.primaryDarkColor
-                                : AppColors.whiteColor,
-                            borderColor: theme.colorScheme.onPrimary,
-                            item: Row(
-                              spacing: width * 0.02,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              spacing: height * 0.013,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                Image.asset(
-                                  AppAssets.google,
-                                  height: height * 0.03,
-                                  width: width * 0.057,
-                                  color: isDark
-                                      ? AppColors.textDarkColor
-                                      : AppColors.blackColor,
+                                CustomHeaderWidget(text1: language.welcome_back,
+                                    text2: language
+                                        .sign_in_to_continue_sharing),
+                                SizedBox(height: height * 0.01),
+                                CustomTextWidget(text: language.email_address),
+                                CustomTextFormFeild(
+                                  controller: emailController,
+                                  onValidator: (text) {
+                                    return Validation.validateEmail(text);
+                                  },
+                                  textInputType: TextInputType.emailAddress,
+                                  hintText: language.enter_your_email,
+                                  prefixIcon: Icon(Icons.email_outlined),
                                 ),
-                                Text(
-                                  language.continue_with_google,
-                                  style: theme.textTheme.headlineMedium,
+                                SizedBox(height: height * 0.01),
+                                CustomTextWidget(text: language.password),
+                                CustomTextFormFeild(
+                                  obscureText: obsureText,
+                                  controller: passController,
+                                  onValidator: (text) {
+                                    return Validation.validatePassword(text);
+                                  },
+                                  hintText: language.enter_your_password,
+                                  prefixIcon: Icon(Icons.lock_outline),
+                                  sufixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        obsureText = !obsureText;
+                                      });
+
+                                      print(obsureText);
+                                    },
+                                    icon: Icon(obsureText
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.remove_red_eye_outlined),
+                                  ),
                                 ),
+                                CustomForgetPassWidget(onClick: () {
+                                  //todo Navigate to forget Pass
+                                  Navigator.of(context).pushNamed(
+                                      AppRoute.forgetPass);
+                                }),
+                                BlocListener<LoginCubit, LoginStates>(
+                                  bloc: loginCubit,
+                                  listener: (context, state) {
+                                    if (state.loginStates.isLoading) {
+                                      UtilsDialog.showLoading(
+                                        context: context,
+                                        content: language.loading,
+                                      );
+                                    } else if (state.loginStates.isError) {
+                                      UtilsDialog.hideDialog(context: context);
+                                      UtilsDialog.showMessage(
+                                        context: context,
+                                        content:
+                                        state.loginStates.errorMessage ?? "",
+                                        title: language.error,
+                                        posAction: language.ok,
+
+                                      );
+                                    } else if (state.loginStates.isSuccess) {
+                                      UtilsDialog.hideDialog(context: context);
+                                      UtilsDialog.showMessage(
+                                        context: context,
+                                        content: language.login_successfully,
+                                        title: language.success,
+                                        posAction: language.ok,
+                                        posActions: () {
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            AppRoute.home,
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: CustomElevatedButton(
+                                    onClick: () {
+                                      //todo Navigate to home Screen
+                                      if (_formKry.currentState?.validate() ==
+                                          true) {
+                                        loginCubit.login(
+                                            emailController.text,
+                                            passController.text);
+                                      }
+                                    },
+                                    text: language.sign_in,
+                                  ),
+                                ),
+                                CustomDividerWidget(),
+                                SizedBox(height: height * 0.002),
+                                BlocListener<LoginWithGoogleCubit,
+                                    LoginWithGoogleStates>(
+                                  bloc: loginWithGoogleCubit,
+                                  listener: (context, state) {
+                                    if (state.loginWithGoogleStates.isLoading) {
+                                      UtilsDialog.showLoading(
+                                        context: context,
+                                        content: language.loading,
+                                      );
+                                    } else
+                                    if (state.loginWithGoogleStates.isError) {
+                                      UtilsDialog.hideDialog(context: context);
+                                      UtilsDialog.showMessage(
+                                        context: context,
+                                        content:
+                                        state.loginWithGoogleStates
+                                            .errorMessage ?? "",
+                                        title: language.error,
+                                        posAction: language.ok,
+
+                                      );
+                                    } else
+                                    if (state.loginWithGoogleStates.isSuccess) {
+                                      UtilsDialog.hideDialog(context: context);
+                                      UtilsDialog.showMessage(
+                                        context: context,
+                                        content: language.login_successfully,
+                                        title: language.success,
+                                        posAction: language.ok,
+                                        posActions: () {
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            AppRoute.home,
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: CustomElevatedButton(
+                                    onClick: () {
+                                      loginWithGoogleCubit.loginWithGoogle();
+                                    },
+                                    backgroundColor: isDark
+                                        ? AppColors.primaryDarkColor
+                                        : AppColors.whiteColor,
+                                    borderColor: theme.colorScheme.onPrimary,
+                                    item: Row(
+                                      spacing: width * 0.02,
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .center,
+                                      children: [
+                                        Image.asset(
+                                          AppAssets.google,
+                                          height: height * 0.03,
+                                          width: width * 0.057,
+                                          color: isDark
+                                              ? AppColors.textDarkColor
+                                              : AppColors.blackColor,
+                                        ),
+                                        Text(
+                                          language.continue_with_google,
+                                          style: theme.textTheme.headlineMedium,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                CustomEndSectionWidget(
+                                    text1: language.new_to_ecoSwap,
+                                    text2: language.create_account,
+                                    onClick: () {
+                                      //todo Navigate to register screen
+                                      Navigator.of(context).pushNamed(
+                                          AppRoute.register);
+                                    }),
                               ],
                             ),
                           ),
                         ),
-                        CustomEndSectionWidget(text1: language.new_to_ecoSwap,
-                            text2: language.create_account,
-                            onClick: () {
-                              //todo Navigate to register screen
-                              Navigator.of(context).pushNamed(
-                                  AppRoute.register);
-                            }),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

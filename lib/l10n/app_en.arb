@@ -66,6 +66,8 @@
   "ok": "ok",
   "error": "Error",
   "loading": "Loading...",
-  "login_successfully": "Login Successfully"
+  "login_successfully": "Login Successfully",
+  "check_your_email": "Check your email",
+  "we_sent_a_password_reset_link_to_your": "We sent a password reset link to your inbox. It may take a\n minute to arrive."
 
 }

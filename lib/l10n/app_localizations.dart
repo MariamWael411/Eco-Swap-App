@@ -502,6 +502,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login Successfully'**
   String get login_successfully;
+
+  /// No description provided for @check_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get check_your_email;
+
+  /// No description provided for @we_sent_a_password_reset_link_to_your.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a password reset link to your inbox. It may take a\n minute to arrive.'**
+  String get we_sent_a_password_reset_link_to_your;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

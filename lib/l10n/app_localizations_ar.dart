@@ -223,4 +223,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login_successfully => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get check_your_email => 'تحقق من بريدك الإلكتروني';
+
+  @override
+  String get we_sent_a_password_reset_link_to_your =>
+      'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى صندوق الوارد الخاص بك. قد يستغرق \nوصوله دقيقة واحدة.';
 }

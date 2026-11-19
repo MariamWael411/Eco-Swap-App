@@ -219,4 +219,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login_successfully => 'Login Successfully';
+
+  @override
+  String get check_your_email => 'Check your email';
+
+  @override
+  String get we_sent_a_password_reset_link_to_your =>
+      'We sent a password reset link to your inbox. It may take a\n minute to arrive.';
 }
