@@ -376,6 +376,17 @@ class AppStyles {
       color: AppColors.binkDarkColor
   );
 
+  static TextStyle extra8Yellow = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.yellowColor
+  );
+  static TextStyle extra8DarkYellow = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.pendingTextColor
+  );
+
 
 
 }

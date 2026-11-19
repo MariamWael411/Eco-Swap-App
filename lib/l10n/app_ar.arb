@@ -90,6 +90,16 @@
   "listings": "العناصر المعروضة",
   "your_shared_items": "الأغراض التي شاركتها",
   "available2": "متاح",
-  "edit": "تعديل"
+  "edit": "تعديل",
+  "cancelled": "تم الإلغاء",
+  "cancel_request": "إلغاء الطلب",
+  "accepted": "تم القبول",
+  "pending": "قيد الانتظار",
+  "accept": "قبول",
+  "decline": "رفض",
+  "requested": "تم طلبه",
+  "sent": "المرسلة",
+  "received": "المستلمة",
+  "item_request": "طلب غرض"
 
 }
