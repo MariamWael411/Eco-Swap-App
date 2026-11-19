@@ -27,7 +27,8 @@ class AppTheme {
       inverseSurface: AppColors.whiteColor,
         onInverseSurface: AppColors.lightGreenColor,
         onPrimaryFixed: AppColors.lightRedColor,
-        onSecondaryFixedVariant: AppColors.redColor
+        onSecondaryFixedVariant: AppColors.redColor,
+        onPrimaryFixedVariant: AppColors.whiteColor
     ),
 
     textTheme: TextTheme(
@@ -45,7 +46,8 @@ class AppTheme {
         headlineMedium: AppStyles.bold14Black,
         headlineSmall: AppStyles.bold18Black,
         labelLarge: AppStyles.extra8Grey,
-        labelMedium: AppStyles.reg9Green
+      labelMedium: AppStyles.reg9Green,
+
     ),
   );
 
@@ -71,7 +73,8 @@ class AppTheme {
         inverseSurface: AppColors.primaryDarkColor,
         onInverseSurface: AppColors.darkGreen2Color,
         onPrimaryFixed: AppColors.darkRedColor,
-        onSecondaryFixedVariant: AppColors.binkColor
+        onSecondaryFixedVariant: AppColors.binkColor,
+        onPrimaryFixedVariant: AppColors.containerColor
 
 
 

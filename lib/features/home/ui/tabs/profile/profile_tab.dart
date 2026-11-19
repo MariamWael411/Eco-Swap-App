@@ -1,19 +1,19 @@
 import 'package:eco_swap_app/core/utils/app_assets.dart';
 import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/cubit/language_cubit.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_edit_widget.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_language_widget.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_linear_container_widget.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_name_widget.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_row_widget.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/widget/custom_switch_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_edit_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_language_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_linear_container_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_name_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_row_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/utils/app_config.dart';
-import '../../../../core/utils/app_route.dart';
-import '../../../../cubit/theme_cubit.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../../core/utils/app_config.dart';
+import '../../../../../core/utils/app_route.dart';
+import '../../../../../cubit/theme_cubit.dart';
+import '../../../../../l10n/app_localizations.dart';
 
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});

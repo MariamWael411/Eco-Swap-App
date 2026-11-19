@@ -23,7 +23,7 @@ static const String logoDark ="${_path}logo_dark.png";
 static const String logoLight ="${_path}logo_light.png";
   static const String logo = "${_path}logo.png";
 
-  //google icon
+//google icon
   static const String google = "${_path}google_icon.png";
 
   //edit icon
@@ -37,4 +37,13 @@ static const String logoLight ="${_path}logo_light.png";
 
   static const String leaveDark = "${_path}leave_container_dark.svg";
   static const String leaveLight = "${_path}leave_container_light.svg";
+
+  // home tab icons
+  static const String leaveContainer = "${_path}container_leave.svg";
+  static const String leave = "${_path}leave.svg";
+  static const String leaveLogo = "${_path}leave_logo.svg";
+  static const String phone = "${_path}phone.svg";
+  static const String person = "${_path}person.svg";
+  static const String list = "${_path}list.svg";
+  static const String home = "${_path}home.svg";
 }

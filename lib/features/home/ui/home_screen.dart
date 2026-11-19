@@ -1,14 +1,14 @@
 import 'package:eco_swap_app/core/utils/app_assets.dart';
-import 'package:eco_swap_app/features/home/tabs/home/home_tab.dart';
-import 'package:eco_swap_app/features/home/tabs/item/item_tab.dart';
-import 'package:eco_swap_app/features/home/tabs/profile/profile_tab.dart';
-import 'package:eco_swap_app/features/home/tabs/request/request_tab.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/home/home_tab.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/item/item_tab.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/profile_tab.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/request_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/utils/app_config.dart';
-import '../../cubit/theme_cubit.dart';
-import '../../l10n/app_localizations.dart';
+import '../../../core/utils/app_config.dart';
+import '../../../cubit/theme_cubit.dart';
+import '../../../l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -1,0 +1,107 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eco_swap_app/core/utils/app_colors.dart';
+import 'package:eco_swap_app/core/utils/app_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../../core/utils/app_config.dart';
+import '../../../../../../cubit/theme_cubit.dart';
+import '../../../../../../l10n/app_localizations.dart';
+
+class CustomGridViewItem extends StatelessWidget {
+  const CustomGridViewItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var width = AppConfig.width(context);
+    var height = AppConfig.height(context);
+    final isDark = context.read<ThemeCubit>().isDark();
+    var theme = Theme.of(context);
+    var language = AppLocalizations.of(context)!;
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onPrimaryFixedVariant,
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: theme.colorScheme.onPrimary),
+      ),
+      child: Column(
+        children: [
+          Stack(
+            alignment: AlignmentGeometry.bottomLeft,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadiusGeometry.only(
+                  topRight: Radius.circular(17),
+                  topLeft: Radius.circular(17),
+                ),
+                child: CachedNetworkImage(
+                  fit: BoxFit.fill,
+                  height: height * 0.13,
+                  width: double.infinity,
+                  imageUrl:
+                      "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
+                  placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.greenColor,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+              Container(
+                width: width * 0.15,
+                margin: EdgeInsets.only(
+                  left: width * 0.02,
+                  bottom: height * 0.01,
+                ),
+                padding: EdgeInsets.symmetric(vertical: height * 0.01),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Text("Like new", style: AppStyles.extra8Green),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.02,
+              vertical: height * 0.01,
+            ),
+            child: Column(
+              spacing: height * 0.01,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Wireless Headphones",
+                  style: theme.textTheme.displaySmall,
+                ),
+                Text("Electronics", style: theme.textTheme.displayMedium),
+                Row(
+                  spacing: width * 0.01,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      width: 5,
+                      height: 5,
+                    ),
+                    Text(
+                      "1.2 km away",
+                      style: isDark
+                          ? AppStyles.semi8DarkGreen
+                          : AppStyles.semi8Green,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

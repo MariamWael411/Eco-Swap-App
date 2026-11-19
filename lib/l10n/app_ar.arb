@@ -68,6 +68,27 @@
   "loading": "جاري التحميل...",
   "login_successfully": "تم تسجيل الدخول بنجاح",
   "check_your_email": "تحقق من بريدك الإلكتروني",
-  "we_sent_a_password_reset_link_to_your": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى صندوق الوارد الخاص بك. قد يستغرق \nوصوله دقيقة واحدة."
+  "we_sent_a_password_reset_link_to_your": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى صندوق الوارد الخاص بك. قد يستغرق \nوصوله دقيقة واحدة.",
+  "see_all": "عرض الكل",
+  "items_available_today": "28 منتجًا متاحًا اليوم",
+  "fresh_finds_near_you": "اكتشف منتجات جديدة بالقرب منك",
+  "clothing": "ملابس",
+  "books": "كتب",
+  "electronics": "إلكترونيات",
+  "search_available_items": "ابحث عن المنتجات المتاحة",
+  "give_something_a_second_life_nearby": "امنح أغراضك فرصة\n جديدة بالقرب منك",
+  "good_morning": "صباح الخير,",
+  "give_share": "امنح • شارك • أعد الاستخدام",
+  "all": "الكل",
+  "your_items_have_helped": "أغراضك ساعدت",
+  "neighbors_so_far": "من الجيران حتى الآن",
+  "small_actions_real_impact": "خطوات بسيطة، تأثير حقيقي",
+  "unavailable": "غير متاح",
+  "requests": "الطلبات",
+  "no_requests_yet": "لا توجد طلبات حتى الآن",
+  "available": "متاح",
+  "listings": "العناصر المعروضة",
+  "your_shared_items": "الأغراض التي شاركتها",
+  "available2": "متاح"
 
 }

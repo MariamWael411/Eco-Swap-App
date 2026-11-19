@@ -323,5 +323,50 @@ class AppStyles {
   );
 
 
+  static TextStyle bold22Green = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 22,
+      color: AppColors.greenColor
+  );
+
+  static TextStyle bold22DarkGreen = GoogleFonts.manrope(
+      fontWeight: FontWeight.bold,
+      fontSize: 22,
+      color: AppColors.darkGreenPrimaryColor
+  );
+
+
+  static TextStyle extra9MintGreen = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 9,
+      color: AppColors.thirdGreenColor
+  );
+  static TextStyle extra9MintDarkGreen = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 9,
+      color: AppColors.thirdDarkColor
+  );
+
+  static TextStyle extra8Green = GoogleFonts.manrope(
+      fontWeight: FontWeight.w800,
+      fontSize: 8,
+      color: AppColors.greenDarkColor
+  );
+
+
+  static TextStyle semi8Green = GoogleFonts.manrope(
+      fontWeight: FontWeight.w500,
+      fontSize: 8,
+      color: AppColors.greenColor
+  );
+  static TextStyle semi8DarkGreen = GoogleFonts.manrope(
+      fontWeight: FontWeight.w500,
+      fontSize: 8,
+      color: AppColors.darkGreenPrimaryColor
+  );
+
+
+
+
 
 }

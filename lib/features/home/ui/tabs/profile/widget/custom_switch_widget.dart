@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../cubit/theme_cubit.dart';
+import '../../../../../../core/utils/app_colors.dart';
+import '../../../../../../cubit/theme_cubit.dart';
 
 typedef ChangeTheme = void Function(bool)?;
 
