@@ -466,6 +466,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark Mode'**
   String get dark_mode;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @register_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Register Successfully'**
+  String get register_successfully;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'ok'**
+  String get ok;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @login_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successfully'**
+  String get login_successfully;
+
+  /// No description provided for @check_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get check_your_email;
+
+  /// No description provided for @we_sent_a_password_reset_link_to_your.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a password reset link to your inbox. It may take a\n minute to arrive.'**
+  String get we_sent_a_password_reset_link_to_your;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
