@@ -386,4 +386,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get save_changes => 'حفظ التغييرات';
+
+  @override
+  String get request_this_item => 'اطلب هذا الغرض';
+
+  @override
+  String get request_it_only_if_pickup =>
+      'لا تطلبه إلا إذا كنت تستطيع استلامه في';
+
+  @override
+  String get better_together => 'معًا نكون أفضل';
+
+  @override
+  String get offered_by => 'مُقدَّم من';
+
+  @override
+  String get about_this_item => 'عن هذا الغرض';
+
+  @override
+  String get contact_information_shared_with_approval =>
+      'لا تتم مشاركة معلومات التواصل إلا بموافقة صاحب الغرض.';
 }

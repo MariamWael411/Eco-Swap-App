@@ -119,5 +119,11 @@
   "add_an_item": "Add an item",
   "please_enter_this_field": "Please enter this field",
   "contact_details_help": "Your contact details help item owners recognize your requests.",
-  "save_changes": "Save changes"
+  "save_changes": "Save changes",
+  "request_this_item": "Request this item",
+  "request_it_only_if_pickup": "Request it only if you can pick it up in",
+  "better_together": "Better together",
+  "offered_by": "Offered by",
+  "about_this_item": "About this item",
+  "contact_information_shared_with_approval": "Contact information is shared only with the owner's approval."
 }

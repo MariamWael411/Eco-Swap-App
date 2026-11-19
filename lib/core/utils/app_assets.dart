@@ -53,4 +53,7 @@ static const String logoLight ="${_path}logo_light.png";
 
   // item add icons
   static const String camera = "${_path}camera.svg";
+
+  //product details icon
+  static const String lock = "${_path}lock.svg";
 }

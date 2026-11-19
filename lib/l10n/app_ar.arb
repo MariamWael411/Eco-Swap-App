@@ -119,6 +119,13 @@
   "add_an_item": "أضف غرضًا",
   "please_enter_this_field": "من فضلك أدخل هذه الخانة",
   "contact_details_help": "تساعد بيانات التواصل الخاصة بك أصحاب الأغراض على التعرف على طلباتك.",
-  "save_changes": "حفظ التغييرات"
+  "save_changes": "حفظ التغييرات",
+  "request_this_item": "اطلب هذا الغرض",
+  "request_it_only_if_pickup": "لا تطلبه إلا إذا كنت تستطيع استلامه في",
+  "better_together": "معًا نكون أفضل",
+  "offered_by": "مُقدَّم من",
+  "about_this_item": "عن هذا الغرض",
+  "contact_information_shared_with_approval": "لا تتم مشاركة معلومات التواصل إلا بموافقة صاحب الغرض."
+
 
 }

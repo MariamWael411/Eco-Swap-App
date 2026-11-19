@@ -5,7 +5,11 @@ import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
 
 class CustomNameWidget extends StatelessWidget {
-  const CustomNameWidget({super.key});
+  CustomNameWidget({super.key, this.heightCon, this.widthCon, this.textStyle});
+
+  double? widthCon;
+  double? heightCon;
+  TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +18,8 @@ class CustomNameWidget extends StatelessWidget {
     return ClipOval(
       child: Container(
         alignment: Alignment.center,
-        width: 0.2 * width,
-        height: height * 0.092,
+        width: widthCon ?? 0.2 * width,
+        height: heightCon ?? height * 0.092,
 
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -24,7 +28,7 @@ class CustomNameWidget extends StatelessWidget {
             end: Alignment.bottomLeft,
           ),
         ),
-        child: Text("MN", style: AppStyles.extra20Green),
+        child: Text("MN", style: textStyle ?? AppStyles.extra20Green),
       ),
     );
   }
