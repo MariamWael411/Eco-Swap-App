@@ -31,7 +31,7 @@ class ItemTab extends StatelessWidget {
           Text("3 ${language.listings} . 2 ${language.available2}",
             style: theme.textTheme.displayMedium,),
           SizedBox(height: height * 0.01),
-          EExpanded(
+          Expanded(
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
