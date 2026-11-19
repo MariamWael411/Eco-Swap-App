@@ -290,4 +290,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get available2 => 'available';
+
+  @override
+  String get edit => 'Edit';
 }

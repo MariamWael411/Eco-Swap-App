@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/app_colors.dart';
@@ -36,9 +37,12 @@ class CustomEditWidget extends StatelessWidget {
           spacing: width * 0.03,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              AppAssets.edit,
-              color: !isDark ? AppColors.blackColor : AppColors.textDarkColor,
+            SvgPicture.asset(
+              AppAssets.editSvg,
+              colorFilter: ColorFilter.mode(
+                !isDark ? AppColors.blackColor : AppColors.textDarkColor,
+                BlendMode.srcIn,
+              ),
             ),
             Text(language.edit_profile, style: theme.textTheme.displaySmall),
           ],
