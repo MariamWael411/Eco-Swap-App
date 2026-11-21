@@ -402,4 +402,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get contact_information_shared_with_approval =>
       'Contact information is shared only with the owner\'s approval.';
+
+  @override
+  String get camera => 'Camera';
+
+  @override
+  String get gallery => 'Gallery';
 }
