@@ -1,6 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/core/utils/app_assets.dart';
+import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/core/utils/app_styles.dart';
+import 'package:eco_swap_app/core/utils/utils_dialog.dart';
+import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
+import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/home/model/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,19 +15,34 @@ import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../add_item/domain/entity/item.dart';
 import '../../../../../common/widgets/custom_elevated_button.dart';
 
 class CustomItemWidget extends StatelessWidget {
-  const CustomItemWidget({super.key});
+  Item item;
+
+  CustomItemWidget({super.key, required this.item});
+
+  var cubit = getIt<ItemCubit>();
 
   @override
   Widget build(BuildContext context) {
+    Category category = Category();
+    UtilsDialog.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
+
+    category.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
-    String text = language.available;
+    List<String> conditions = [
+      language.like_new,
+      language.good,
+      language.well_used,
+    ];
+    String text = item.status;
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: height * 0.02,
@@ -50,8 +71,7 @@ class CustomItemWidget extends StatelessWidget {
               fit: BoxFit.fill,
               height: height * 0.16,
               width: width * 0.3,
-              imageUrl:
-                  "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
+              imageUrl: item.imageUrl,
               placeholder: (context, url) => Center(
                 child: CircularProgressIndicator(color: AppColors.greenColor),
               ),
@@ -97,13 +117,10 @@ class CustomItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: height * 0.01,
                   children: [
-                    Text(
-                      "Wireless Headphones",
-                      style: theme.textTheme.displaySmall,
+                    Text(item.title, style: theme.textTheme.displaySmall,
                     ),
-                    Text(
-                      "Electronics · Like new",
-                      style: theme.textTheme.displayMedium,
+                    Text(${category.catogeries()[item.categoryIndex + 1].name} · ${conditions[item.conditionIndex]}",
+                      sstyle: theme.textTheme.displayMedium,
                     ),
                   ],
                 ),
@@ -113,7 +130,10 @@ class CustomItemWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: CustomElevatedButton(
-                        onClick: () {},
+                        onClick: () {
+                          Navigator.of(context).pushNamed(
+                              AppRoute.editItem, arguments: item);
+                        },
                         backgroundColor: isDark
                             ? AppColors.containerColor
                             : AppColors.whiteColor,
@@ -139,27 +159,58 @@ class CustomItemWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.024,
-                        vertical: height * 0.007,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: isDark
-                              ? AppColors.dotColor
-                              : AppColors.transparentColor,
-                        ),
-                        color: isDark
-                            ? AppColors.transparentColor
-                            : AppColors.bageColor,
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: SvgPicture.asset(
-                        AppAssets.delete,
-                        colorFilter: ColorFilter.mode(
-                          theme.colorScheme.onSecondaryFixedVariant,
-                          BlendMode.srcIn,
+                    BlocListener<ItemCubit, ItemStates>(
+                      bloc: cubit,
+                      listener: (context, state) {
+                        if (state.itemStates.isError) {
+                          utilsDialog.hideDialog(context: context);
+                          utilsDialog.showMessage(
+                            context: context,
+                            content: state.itemStates.errorMessage ?? "",
+                            title: language.error,
+                            posAction: language.ok,
+                          );
+                        } else if (state.itemStates.isSuccess) {
+                          utilsDialog.hideDialog(context: context);
+                          utilsDialog.showMessage(
+                            context: context,
+                            content: "item deleted successfully",
+                            title: language.success,
+                            posAction: language.ok,
+                            posActions: () {
+                              Navigator.of(context).pop();
+                            },
+                          );
+                        }
+                      },
+                      child: InkWell(
+                        onTap: () {
+                          //todo delete item
+                          cubit.deleteItem(item);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.024,
+                            vertical: height * 0.007,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: isDark
+                                  ? AppColors.dotColor
+                                  : AppColors.transparentColor,
+                            ),
+                            color: isDark
+                                ? AppColors.transparentColor
+                                : AppColors.bageColor,
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: SvgPicture.asset(
+                            AppAssets.delete,
+                            colorFilter: ColorFilter.mode(
+                              theme.colorScheme.onSecondaryFixedVariant,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                         ),
                       ),
                     ),

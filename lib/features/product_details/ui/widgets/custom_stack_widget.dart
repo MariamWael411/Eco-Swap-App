@@ -9,8 +9,10 @@ class CustomStackWidget extends StatelessWidget {
     super.key,
     required this.backClick,
     required this.favClick,
+    required this.imageUrl
   });
 
+  String imageUrl;
   VoidCallback backClick;
   VoidCallback favClick;
 
@@ -27,8 +29,7 @@ class CustomStackWidget extends StatelessWidget {
           fit: BoxFit.fill,
           height: height * 0.4,
           width: double.infinity,
-          imageUrl:
-              "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
+          imageUrl: imageUrl,
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(color: AppColors.greenColor),
           ),

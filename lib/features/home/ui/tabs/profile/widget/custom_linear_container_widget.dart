@@ -17,6 +17,7 @@ class CustomLinearContainerWidget extends StatelessWidget {
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var language = AppLocalizations.of(context)!;
+
     return Container(
       width: double.infinity,
       height: height * 0.13,
@@ -39,10 +40,12 @@ class CustomLinearContainerWidget extends StatelessWidget {
         children: [
           SizedBox(height: height * 0.005),
           SvgPicture.asset(isDark ? AppAssets.leaveDark : AppAssets.leaveLight),
+
           Text(
             language.items_shared,
             style: isDark ? AppStyles.bold12LightGrey : AppStyles.bold12White,
           ),
+
           Text(
             language.you_are_helping_your_community_wastel_ess,
             style: isDark ? AppStyles.reg8B7 : AppStyles.reg8DA,

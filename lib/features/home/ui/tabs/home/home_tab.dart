@@ -1,5 +1,8 @@
+import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
+import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
+import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_grid_view_item.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_home_container_widget.dart';
@@ -21,6 +24,16 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   int currentIndex = 0;
+  var cubit = getIt<ItemCubit>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cubit.getItem();
+    cubit.getUserLocation();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +82,14 @@ class _HomeTabState extends State<HomeTab> {
                         onTap: () {
                           setState(() {
                             currentIndex = index;
+
                           });
+                          if (index == 0) {
+                            cubit.getItem();
+                          } else {
+                            cubit.getFilterItem(index - 1);
+                          }
+
                         },
                         child: CustomListViewItem(
                           index: index,
@@ -87,17 +107,7 @@ class _HomeTabState extends State<HomeTab> {
                   style: theme.textTheme.headlineMedium,
                 ),
 
-                SizedBox(height: height * 0.01),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(language.items_available_today,
-                      style: theme.textTheme.displayMedium,),
-                    Text(
-                        language.see_all, style: theme.textTheme.headlineLarge),
-                  ],
-                ),
               ]),
             ),
           ),
@@ -106,28 +116,71 @@ class _HomeTabState extends State<HomeTab> {
             padding: EdgeInsets.symmetric(
               horizontal: width * 0.04,
             ),
-            sliver: SliverGrid(
-              delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoute.productDetails,
-                      );
-                    },
-                    child: CustomGridViewItem(),
+            sliver: BlocBuilder<ItemCubit, ItemStates>(
+              bloc: cubit,
+              builder: (context, state) {
+                if (state.itemStates.isSuccess) {
+                  var data = state.itemStates.data!;
+                  return SliverMainAxisGroup(
+                    slivers: [
+                      SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("${data.length} items Available to day",
+                              style: theme.textTheme.displayMedium,),
+                            Text(
+                                language.see_all,
+                                style: theme.textTheme.headlineLarge),
+                          ],
+                        ),
+                      ),
+                      SliverToBoxAdapter(
+                          child: SizedBox(height: height * 0.02,)),
+                      (data.isEmpty)
+                          ? SliverToBoxAdapter(
+                        child: SizedBox(height: height * 0.3, child: Center(
+                          child: Text('No Item Found',
+                            style: theme.textTheme.headlineSmall,),)),)
+                          : SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    AppRoute.productDetails,
+                                    arguments: data[index]
+                                );
+                              },
+                              child: CustomGridViewItem(item: data[index],
+                                userPosition: state.currentPosition,),
+                            );
+                          },
+                          childCount: data.length,
+                        ),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 17 / 20,
+                          crossAxisSpacing: width * 0.02,
+                          mainAxisSpacing: height * 0.02,
+                        ),
+                      ),
+                    ],
+
                   );
-                },
-                childCount: 20,
-              ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 17 / 20,
-                crossAxisSpacing: width * 0.02,
-                mainAxisSpacing: height * 0.02,
-              ),
+                } else if (state.itemStates.isLoading) {
+                  return SliverToBoxAdapter(
+                      child: Center(child: CircularProgressIndicator(),));
+                } else {
+                  return SliverToBoxAdapter(child: Center(child: Text(
+                    state.itemStates.errorMessage!,
+                    style: TextStyle(fontSize: 30),),));
+                }
+              },
+
             ),
           ),
+          SliverToBoxAdapter(child: SizedBox(height: height * 0.03,))
         ],
       ),
     );;

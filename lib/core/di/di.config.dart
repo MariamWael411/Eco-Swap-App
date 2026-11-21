@@ -13,6 +13,25 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../features/add_item/data/data_source/remote/item_remote_data_source.dart'
+    as _i878;
+import '../../features/add_item/data/data_source/remote/item_remote_data_source_impl.dart'
+    as _i292;
+import '../../features/add_item/data/repository/item_repository_impl.dart'
+    as _i967;
+import '../../features/add_item/domain/repository/item_repository.dart'
+    as _i1070;
+import '../../features/add_item/domain/use_cases/add_item_use_case.dart'
+    as _i689;
+import '../../features/add_item/domain/use_cases/delete_item_use_case.dart'
+    as _i56;
+import '../../features/add_item/domain/use_cases/edit_item_use_case.dart'
+    as _i243;
+import '../../features/add_item/domain/use_cases/get_filter_item_use_case.dart'
+    as _i726;
+import '../../features/add_item/domain/use_cases/get_item_use_case.dart'
+    as _i1044;
+import '../../features/add_item/ui/cubit/item_cubit.dart' as _i1039;
 import '../../features/auth/data/data_source/remote/auth_remote_data_source.dart'
     as _i548;
 import '../../features/auth/data/data_source/remote/auth_remote_data_source_impl.dart'
@@ -50,6 +69,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i878.ItemRemoteDataSource>(
+      () => _i292.ItemRemoteDataSourceImpl(),
+    );
     gh.factory<_i548.AuthRemoteDataSource>(
       () => _i923.AuthRemoteDataSourceImpl(),
     );
@@ -59,6 +81,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i961.AuthRepository>(
       () => _i409.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i548.AuthRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i1070.ItemRepository>(
+      () => _i967.ItemRepositoryImpl(
+        itemRemoteDataSource: gh<_i878.ItemRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i544.ForgetPassUseCase>(
@@ -96,6 +123,23 @@ extension GetItInjectableX on _i174.GetIt {
         loginWithGoogleUseCase: gh<_i490.LoginWithGoogleUseCase>(),
       ),
     );
+    gh.lazySingleton<_i689.AddItemUseCase>(
+      () => _i689.AddItemUseCase(itemRepository: gh<_i1070.ItemRepository>()),
+    );
+    gh.lazySingleton<_i56.DeleteItemUseCase>(
+      () => _i56.DeleteItemUseCase(itemRepository: gh<_i1070.ItemRepository>()),
+    );
+    gh.lazySingleton<_i243.EditItemUseCase>(
+      () => _i243.EditItemUseCase(itemRepository: gh<_i1070.ItemRepository>()),
+    );
+    gh.lazySingleton<_i726.GetFilterItemUseCase>(
+      () => _i726.GetFilterItemUseCase(
+        itemRepository: gh<_i1070.ItemRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i1044.GetItemUseCase>(
+      () => _i1044.GetItemUseCase(itemRepository: gh<_i1070.ItemRepository>()),
+    );
     gh.lazySingleton<_i226.EditProfileUseCase>(
       () => _i226.EditProfileUseCase(
         editProfileRepository: gh<_i119.EditProfileRepository>(),
@@ -104,6 +148,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i175.EditProfileCubit>(
       () => _i175.EditProfileCubit(
         editProfileUseCase: gh<_i226.EditProfileUseCase>(),
+      ),
+    );
+    gh.factory<_i1039.ItemCubit>(
+      () => _i1039.ItemCubit(
+        deleteItemUseCase: gh<_i56.DeleteItemUseCase>(),
+        addItemUseCase: gh<_i689.AddItemUseCase>(),
+        editItemUseCase: gh<_i243.EditItemUseCase>(),
+        getItemUseCase: gh<_i1044.GetItemUseCase>(),
+        getFilterItemUseCase: gh<_i726.GetFilterItemUseCase>(),
       ),
     );
     return this;
