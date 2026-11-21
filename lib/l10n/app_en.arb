@@ -125,5 +125,7 @@
   "better_together": "Better together",
   "offered_by": "Offered by",
   "about_this_item": "About this item",
-  "contact_information_shared_with_approval": "Contact information is shared only with the owner's approval."
+  "contact_information_shared_with_approval": "Contact information is shared only with the owner's approval.",
+  "camera": "Camera",
+  "gallery": "Gallery"
 }

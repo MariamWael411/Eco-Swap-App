@@ -406,4 +406,10 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get contact_information_shared_with_approval =>
       'لا تتم مشاركة معلومات التواصل إلا بموافقة صاحب الغرض.';
+
+  @override
+  String get camera => 'الكاميرا';
+
+  @override
+  String get gallery => 'معرض الصور';
 }

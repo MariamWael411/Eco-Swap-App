@@ -856,6 +856,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact information is shared only with the owner\'s approval.'**
   String get contact_information_shared_with_approval;
+
+  /// No description provided for @camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get camera;
+
+  /// No description provided for @gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get gallery;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eco_swap_app/core/utils/validation.dart';
 import 'package:eco_swap_app/features/add_item/ui/widgets/custom_condition_widget.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/app_config.dart';
+import '../../../core/utils/image_servcies.dart';
 import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../home/ui/tabs/home/widgets/custom_list_view_item.dart';
@@ -27,6 +30,8 @@ class _AddItemScreenState extends State<AddItemScreen> {
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
   final _formKry = GlobalKey<FormState>();
+  final _imageService = ImageService();
+  File? selectedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   style: theme.textTheme.displayMedium?.copyWith(fontSize: 11),
                 ),
                 SizedBox(height: height * 0.01),
-                DottedBorder(
+                (selectedImage == null) ? DottedBorder(
                   options: RoundedRectDottedBorderOptions(
                     strokeWidth: 1.5,
                     dashPattern: [5, 2],
@@ -67,12 +72,18 @@ class _AddItemScreenState extends State<AddItemScreen> {
                     radius: Radius.circular(19),
                   ),
                   child: GestureDetector(
-                    onTap: () {
-                      //todo image picker
+                    onTap: () async {
+                      final file = await _imageService.pickImage(context);
+                      if (file != null) setState(() => selectedImage = file);
                     },
                     child: CustomPickImageWidget(),
                   ),
-                ),
+                ) :
+                ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(20),
+                    child: Image.file(selectedImage!, width: double.infinity,
+                      height: height * 0.25,
+                      fit: BoxFit.fill,)),
                 SizedBox(height: height * 0.01),
                 CustomTextWidget(text: language.item_title),
                 CustomTextFormFeild(
