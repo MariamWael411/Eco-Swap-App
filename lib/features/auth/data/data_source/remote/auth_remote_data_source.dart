@@ -1,16 +1,19 @@
-import 'package:eco_swap_app/features/auth/data/model/my_user_dto.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../../../network/model/my_user_dto.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<MyUserDto> login(String email, String password);
+  Future<MyUserDto> login(String email, String password, BuildContext context);
 
   Future<MyUserDto> register(
     String email,
     String password,
     String fullName,
     String phoneNumber,
+      BuildContext context
   );
 
   Future<void> forgetPass(String email);
 
-  Future<MyUserDto> loginWithGoogle();
+  Future<MyUserDto> loginWithGoogle(BuildContext context);
 }

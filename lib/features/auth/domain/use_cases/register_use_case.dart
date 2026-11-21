@@ -1,5 +1,6 @@
 import 'package:eco_swap_app/features/auth/domain/entities/my_user.dart';
 import 'package:eco_swap_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -13,7 +14,9 @@ class RegisterUseCase {
     String password,
     String fullName,
     String phoneNumber,
+      BuildContext context
   ) {
-    return _authRepository.register(email, password, fullName, phoneNumber);
+    return _authRepository.register(
+        email, password, fullName, phoneNumber, context);
   }
 }

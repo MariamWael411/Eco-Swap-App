@@ -1,6 +1,7 @@
 import 'package:eco_swap_app/core/utils/app_assets.dart';
 import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/cubit/language_cubit.dart';
+import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_edit_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_language_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_linear_container_widget.dart';
@@ -31,6 +32,18 @@ class _ProfileTabState extends State<ProfileTab> {
     final isDark = context.read<ThemeCubit>().isDark();
     var languageCubit = context.read<LanguageCubit>();
     var themeCubit = context.read<ThemeCubit>();
+    var user = context
+        .watch<MyUserCubit>()
+        .state;
+    String userName = user.fullName
+        .split(' ')
+        .map((word) {
+      if (word.isEmpty) return word;
+
+      return word[0].toUpperCase() +
+          word.substring(1).toLowerCase();
+    })
+        .join(' ');
 
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
@@ -42,17 +55,19 @@ class _ProfileTabState extends State<ProfileTab> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: height * 0.022,),
-            CustomNameWidget(),
-            Text("Mariam Nassar", style: theme.textTheme.headlineSmall,),
+            CustomNameWidget(name: userName,),
+            Text(userName, style: theme.textTheme.headlineSmall,),
             Text(
-              "mariam.nassar@gmail.com", style: theme.textTheme.displayMedium,),
+              user.email, style: theme.textTheme.displayMedium,),
             Row(
               spacing: width * 0.02,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.phone_outlined,
                   color: theme.colorScheme.onPrimaryContainer, size: 16,),
-                Text("+20 100 234 5678", style: theme.textTheme.displayMedium,)
+                Text(
+                  user.mobilNumber.isEmpty ? "00000000000" : user.mobilNumber,
+                  style: theme.textTheme.displayMedium,)
               ],
             ),
             SizedBox(height: height * 0.01,),

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:eco_swap_app/features/auth/domain/use_cases/register_use_case.dart';
 import 'package:eco_swap_app/features/auth/ui/register/cubit/register_states.dart';
 import 'package:eco_swap_app/features/utils/resource.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -16,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
     String password,
     String fullName,
     String phoneNumber,
+      BuildContext context
   ) async {
     emit(RegisterStates(registerStates: Resource.loading()));
 
@@ -25,6 +27,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
         password,
         fullName,
         phoneNumber,
+          context
       );
       emit(RegisterStates(registerStates: Resource.success(data: user)));
     } catch (e) {

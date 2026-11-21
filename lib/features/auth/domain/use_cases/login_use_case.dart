@@ -1,5 +1,6 @@
 import 'package:eco_swap_app/features/auth/domain/entities/my_user.dart';
 import 'package:eco_swap_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -8,7 +9,7 @@ class LoginUseCase {
 
   LoginUseCase({required this._authRepository});
 
-  Future<MyUser> call(String email, String password) {
-    return _authRepository.login(email, password);
+  Future<MyUser> call(String email, String password, BuildContext context) {
+    return _authRepository.login(email, password, context);
   }
 }

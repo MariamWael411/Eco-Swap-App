@@ -9,7 +9,9 @@ import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
 
 class CustomHomeTopSectionWidget extends StatelessWidget {
-  const CustomHomeTopSectionWidget({super.key});
+  String name;
+
+  CustomHomeTopSectionWidget({super.key, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -18,36 +20,47 @@ class CustomHomeTopSectionWidget extends StatelessWidget {
     final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
+    String nameCap = name
+        .split(' ')
+        .map((word) {
+          if (word.isEmpty) return word;
+
+          return word[0].toUpperCase() + word.substring(1).toLowerCase();
+        })
+        .join(' ');
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          spacing: height * 0.01,
-          children: [
-            Text(
-              "${language.good_morning} Mariam",
-              style: isDark ? AppStyles.sem11LightGreen : AppStyles.sem11Grey,
-            ),
-            Row(
-              spacing: width * 0.01,
-              children: [
-                SvgPicture.asset(
-                  AppAssets.leaveLogo,
-                  colorFilter: ColorFilter.mode(
-                    theme.colorScheme.primary,
-                    BlendMode.srcIn,
+        Expanded(
+          child: Column(
+            spacing: height * 0.01,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "${language.good_morning} $nameCap",
+                style: isDark ? AppStyles.sem11LightGreen : AppStyles.sem11Grey,
+              ),
+              Row(
+                spacing: width * 0.01,
+                children: [
+                  SvgPicture.asset(
+                    AppAssets.leaveLogo,
+                    colorFilter: ColorFilter.mode(
+                      theme.colorScheme.primary,
+                      BlendMode.srcIn,
+                    ),
                   ),
-                ),
-                Text(
-                  "EcoSwap",
-                  style: isDark
-                      ? AppStyles.bold22DarkGreen
-                      : AppStyles.bold22Green,
-                ),
-              ],
-            ),
-          ],
+                  Text(
+                    "EcoSwap",
+                    style: isDark
+                        ? AppStyles.bold22DarkGreen
+                        : AppStyles.bold22Green,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         Container(
           padding: EdgeInsets.symmetric(

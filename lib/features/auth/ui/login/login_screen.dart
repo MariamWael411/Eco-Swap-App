@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           true) {
                                         loginCubit.login(
                                             emailController.text,
-                                            passController.text);
+                                            passController.text, context);
                                       }
                                     },
                                     text: language.sign_in,
@@ -221,7 +221,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   },
                                   child: CustomElevatedButton(
                                     onClick: () {
-                                      loginWithGoogleCubit.loginWithGoogle();
+                                      loginWithGoogleCubit.loginWithGoogle(
+                                          context);
                                     },
                                     backgroundColor: isDark
                                         ? AppColors.primaryDarkColor

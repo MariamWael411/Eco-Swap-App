@@ -1,4 +1,5 @@
 import 'package:eco_swap_app/core/utils/app_route.dart';
+import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_grid_view_item.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_home_container_widget.dart';
@@ -26,86 +27,109 @@ class _HomeTabState extends State<HomeTab> {
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
+    var user = context
+        .watch<MyUserCubit>()
+        .state;
 
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
 
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: width * 0.04,
-          vertical: height * 0.024,
-        ),
-        child: Column(
-          spacing: height * 0.01,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CustomHomeTopSectionWidget(),
-            SizedBox(height: height * 0.023),
-            CustomHomeContainerWidget(),
-            SizedBox(height: height * 0.01),
-            CustomTextFormFeild(
-              hintText: language.search_available_items,
-              prefixIcon: Icon(Icons.search),
+      child: CustomScrollView(
+        slivers: [
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.04,
+              vertical: height * 0.024,
             ),
-            SizedBox(height: height * 0.01),
-            SizedBox(
-              height: height * 0.041,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      currentIndex = index;
-                      setState(() {});
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                CustomHomeTopSectionWidget(
+                  name: user.fullName,
+                ),
+                SizedBox(height: height * 0.03),
+                CustomHomeContainerWidget(),
+                SizedBox(height: height * 0.02),
+
+                CustomTextFormFeild(
+                  hintText: language.search_available_items,
+                  prefixIcon: Icon(Icons.search),
+                ),
+
+                SizedBox(height: height * 0.02),
+
+                SizedBox(
+                  height: height * 0.041,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                        child: CustomListViewItem(
+                          index: index,
+                          isActive: currentIndex == index,
+                        ),
+                      );
                     },
-                    child: CustomListViewItem(
-                      index: index,
-                      isActive: currentIndex == index,
-                    ),
+                  ),
+                ),
+
+                SizedBox(height: height * 0.02),
+
+                Text(
+                  language.fresh_finds_near_you,
+                  style: theme.textTheme.headlineMedium,
+                ),
+
+                SizedBox(height: height * 0.01),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(language.items_available_today,
+                      style: theme.textTheme.displayMedium,),
+                    Text(
+                        language.see_all, style: theme.textTheme.headlineLarge),
+                  ],
+                ),
+              ]),
+            ),
+          ),
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width * 0.04,
+            ),
+            sliver: SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed(
+                        AppRoute.productDetails,
+                      );
+                    },
+                    child: CustomGridViewItem(),
                   );
                 },
-                itemCount: 5,
+                childCount: 20,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 17 / 20,
+                crossAxisSpacing: width * 0.02,
+                mainAxisSpacing: height * 0.02,
               ),
             ),
-            SizedBox(height: height * 0.006),
-            Text(
-              language.fresh_finds_near_you,
-              style: theme.textTheme.headlineMedium,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  language.items_available_today,
-                  style: theme.textTheme.displayMedium,
-                ),
-                Text(language.see_all, style: theme.textTheme.headlineLarge),
-              ],
-            ),
-            SizedBox(height: height * 0.01),
-            Expanded(
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 17 / 20,
-                  crossAxisSpacing: width * 0.02,
-                  mainAxisSpacing: height * 0.02,
-                ),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                            AppRoute.productDetails);
-                      },
-                      child: CustomGridViewItem());
-                },
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    );;
   }
 }
