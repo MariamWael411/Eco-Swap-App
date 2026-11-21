@@ -1,8 +1,14 @@
+import 'package:eco_swap_app/core/utils/firebase_utils.dart';
 import 'package:eco_swap_app/features/auth/data/data_source/remote/auth_remote_data_source.dart';
-import 'package:eco_swap_app/features/auth/data/model/my_user_dto.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../../cubit/my_user_cubit.dart';
+import '../../../../network/model/my_user_dto.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -12,7 +18,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<MyUserDto> login(String email, String password) async {
+  Future<MyUserDto> login(String email, String password,
+      BuildContext context) async {
     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
@@ -23,11 +30,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       fullName: credential.user!.displayName ?? "",
       mobilNumber: credential.user!.phoneNumber ?? "",
     );
-    return myUserDto;
+
+    final user = await FirebaseUtils
+        .getUserFromFireStore(credential.user!.uid)
+        .first;
+
+    // 3. Check if user data exists
+    if (user == null) {
+      throw Exception("User data not found");
+    }
+
+    // 4. Update MyUserCubit
+    context.read<MyUserCubit>().changeUser(user);
+
+    // 5. Return updated user data
+    return user;
+
   }
 
   @override
-  Future<MyUserDto> loginWithGoogle() async {
+  Future<MyUserDto> loginWithGoogle(BuildContext context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn.instance;
     // Initialize first
     await googleSignIn.initialize(
@@ -54,6 +76,18 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       fullName: userCredential.user!.displayName ?? "",
       mobilNumber: userCredential.user!.phoneNumber ?? "",
     );
+    if (myUserDto.id == googleUser.id) {
+      final userSubscription = FirebaseUtils
+          .getUserFromFireStore(googleUser.id)
+          .listen((user) {
+        if (user != null) {
+          context.read<MyUserCubit>().changeUser(user);
+        }
+      });
+    } else {
+      FirebaseUtils.addUserInFireStore(myUserDto);
+      context.read<MyUserCubit>().changeUser(myUserDto);
+    }
     return myUserDto;
   }
 
@@ -63,6 +97,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String password,
     String fullName,
     String phoneNumber,
+      BuildContext context
   ) async {
     final credential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
@@ -73,6 +108,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       mobilNumber: phoneNumber,
       id: credential.user!.uid,
     );
+    FirebaseUtils.addUserInFireStore(myUserDto);
+    context.read<MyUserCubit>().changeUser(myUserDto);
+
+
+
     return myUserDto;
   }
 }

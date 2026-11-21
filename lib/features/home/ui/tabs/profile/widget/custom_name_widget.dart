@@ -5,7 +5,10 @@ import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
 
 class CustomNameWidget extends StatelessWidget {
-  CustomNameWidget({super.key, this.heightCon, this.widthCon, this.textStyle});
+  String name;
+
+  CustomNameWidget(
+      {super.key, this.heightCon, this.widthCon, this.textStyle, required this.name});
 
   double? widthCon;
   double? heightCon;
@@ -13,6 +16,13 @@ class CustomNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String letters =
+    name
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((word) => word.isNotEmpty)
+        .map((word) => word[0].toUpperCase())
+        .join();
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     return ClipOval(
@@ -28,7 +38,7 @@ class CustomNameWidget extends StatelessWidget {
             end: Alignment.bottomLeft,
           ),
         ),
-        child: Text("MN", style: textStyle ?? AppStyles.extra20Green),
+        child: Text(letters, style: textStyle ?? AppStyles.extra20Green),
       ),
     );
   }

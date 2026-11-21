@@ -222,7 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             emailController.text,
                                             passController.text,
                                             nameController.text,
-                                            phoneController.text);
+                                            phoneController.text, context);
                                       }
                                     },
                                     text: language.create_account,
@@ -270,7 +270,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   },
                                   child: CustomElevatedButton(
                                     onClick: () {
-                                      loginCubit.loginWithGoogle();
+                                      loginCubit.loginWithGoogle(context);
                                     },
                                     backgroundColor: isDark
                                         ? AppColors.primaryDarkColor

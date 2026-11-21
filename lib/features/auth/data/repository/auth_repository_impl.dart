@@ -2,6 +2,7 @@ import 'package:eco_swap_app/features/auth/data/data_source/remote/auth_remote_d
 import 'package:eco_swap_app/features/auth/data/mapper/to_user.dart';
 import 'package:eco_swap_app/features/auth/domain/entities/my_user.dart';
 import 'package:eco_swap_app/features/auth/domain/repository/auth_repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthRepository)
@@ -20,9 +21,10 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<MyUser> login(String email, String password) async {
+  Future<MyUser> login(String email, String password,
+      BuildContext context) async {
     try {
-      final user = await _authRemoteDataSource.login(email, password);
+      final user = await _authRemoteDataSource.login(email, password, context);
       return user.toMyUser();
     } catch (e) {
       rethrow;
@@ -30,9 +32,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<MyUser> loginWithGoogle() async {
+  Future<MyUser> loginWithGoogle(BuildContext context) async {
     try {
-      final user = await _authRemoteDataSource.loginWithGoogle();
+      final user = await _authRemoteDataSource.loginWithGoogle(context);
       return user.toMyUser();
     } catch (e) {
       rethrow;
@@ -45,6 +47,7 @@ class AuthRepositoryImpl implements AuthRepository {
     String password,
     String fullName,
     String phoneNumber,
+      BuildContext context
   ) async {
     try {
       final userDto = await _authRemoteDataSource.register(
@@ -52,6 +55,7 @@ class AuthRepositoryImpl implements AuthRepository {
         password,
         fullName,
         phoneNumber,
+          context
       );
       return userDto.toMyUser();
     } catch (e) {

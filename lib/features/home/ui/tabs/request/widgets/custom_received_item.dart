@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_name_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
+import '../../../../../../cubit/my_user_cubit.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../common/widgets/custom_elevated_button.dart';
@@ -20,6 +22,15 @@ class CustomReceivedItem extends StatelessWidget {
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
     String text = language.pending;
+    var user = context.watch<MyUserCubit>().state;
+    String userName = user.fullName
+        .split(' ')
+        .map((word) {
+          if (word.isEmpty) return word;
+
+          return word[0].toUpperCase() + word.substring(1).toLowerCase();
+        })
+        .join(' ');
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.03,
@@ -49,31 +60,18 @@ class CustomReceivedItem extends StatelessWidget {
           Row(
             spacing: width * 0.03,
             children: [
-              ClipOval(
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 0.091 * width,
-                  height: height * 0.04,
-
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [AppColors.linearColor, AppColors.linear2Color],
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                    ),
-                  ),
-                  child: Text(
-                    "MN",
-                    style: AppStyles.extra20Green.copyWith(fontSize: 9),
-                  ),
-                ),
+              CustomNameWidget(
+                textStyle: AppStyles.extra20Green.copyWith(fontSize: 12),
+                name: userName,
+                widthCon: 0.091 * width,
+                heightCon: height * 0.04,
               ),
               Expanded(
                 child: Column(
                   spacing: height * 0.01,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text("Omar Khaled", style: theme.textTheme.displaySmall),
+                    Text(userName, style: theme.textTheme.displaySmall),
                     Text(
                       "Requested 18 min ago",
                       style: theme.textTheme.displayMedium,

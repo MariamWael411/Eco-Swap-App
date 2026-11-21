@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_config.dart';
 import '../../../../core/utils/app_styles.dart';
+import '../../../../cubit/my_user_cubit.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../home/ui/tabs/profile/widget/custom_name_widget.dart';
 
@@ -18,6 +20,15 @@ class CustomOwnerDetailsWidget extends StatelessWidget {
 
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
+    var user = context.watch<MyUserCubit>().state;
+    String userName = user.fullName
+        .split(' ')
+        .map((word) {
+          if (word.isEmpty) return word;
+
+          return word[0].toUpperCase() + word.substring(1).toLowerCase();
+        })
+        .join(' ');
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: width * 0.03,
@@ -35,6 +46,7 @@ class CustomOwnerDetailsWidget extends StatelessWidget {
             textStyle: AppStyles.extra20Green.copyWith(fontSize: 12),
             widthCon: width * 0.12,
             heightCon: height * 0.054,
+            name: userName,
           ),
           Expanded(
             child: Column(
