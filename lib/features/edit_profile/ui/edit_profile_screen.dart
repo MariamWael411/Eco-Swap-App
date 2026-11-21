@@ -62,7 +62,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             spacing: height * 0.01,
             children: [
               CustomNameWidget(name: userName),
-              FForm(
+              Form(
                 key: _formKey,
                 child: BlocListener<EditProfileCubit, EditProfileStates>(
                   bloc: cubit,
