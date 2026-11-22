@@ -4,7 +4,14 @@ import '../../../../core/utils/app_config.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class CustomCatogeryWidget extends StatelessWidget {
-  const CustomCatogeryWidget({super.key});
+  CustomCatogeryWidget({
+    super.key,
+    required this.status,
+    required this.category,
+  });
+
+  String category;
+  String status;
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +20,7 @@ class CustomCatogeryWidget extends StatelessWidget {
     var height = AppConfig.height(context);
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -26,12 +34,12 @@ class CustomCatogeryWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(7),
           ),
           child: Text(
-            "Electronics",
+            category,
             style: theme.textTheme.bodySmall?.copyWith(fontSize: 10),
           ),
         ),
         Text(
-          language.available,
+          status,
           style: theme.textTheme.bodySmall?.copyWith(fontSize: 12),
         ),
       ],

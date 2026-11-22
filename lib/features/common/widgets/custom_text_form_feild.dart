@@ -8,7 +8,7 @@ typedef OnValidator = String? Function(String?);
 class CustomTextFormFeild extends StatelessWidget {
   String hintText;
 
-  Icon? prefixIcon;
+  Widget? prefixIcon;
   Widget? sufixIcon;
   int maxLines;
   OnChanged? onChanged;

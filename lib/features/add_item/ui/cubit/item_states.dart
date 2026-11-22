@@ -1,0 +1,14 @@
+import 'package:eco_swap_app/features/add_item/domain/entity/item.dart';
+import 'package:eco_swap_app/features/utils/resource.dart';
+import 'package:geolocator/geolocator.dart';
+
+class ItemStates {
+  final Resource<List<Item>> itemStates;
+  final Position? currentPosition;
+
+  ItemStates({required this.itemStates, this.currentPosition});
+
+  ItemStates.initial()
+    : itemStates = Resource.initial(),
+      currentPosition = null;
+}

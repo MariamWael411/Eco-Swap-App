@@ -1,23 +1,51 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eco_swap_app/core/services/location_service.dart';
 import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/core/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
+import '../../../../../add_item/domain/entity/item.dart';
+import '../model/category.dart';
 
 class CustomGridViewItem extends StatelessWidget {
-  const CustomGridViewItem({super.key});
+  CustomGridViewItem(
+      {super.key, required this.item, required this.userPosition});
+
+  Item item;
+  final Position? userPosition;
+
 
   @override
   Widget build(BuildContext context) {
+    LocationService locationService = LocationService();
+    double? distance;
+
+    if (userPosition != null) {
+      distance = locationService.calculateDistance(
+        userLatitude: userPosition!.latitude,
+        userLongitude: userPosition!.longitude,
+        itemLatitude: item.latitude,
+        itemLongitude: item.longitude,
+      );
+    }
+
+    Category category = Category();
+    category.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
+    List<String> conditions = [
+      language.like_new,
+      language.good,
+      language.well_used,
+    ];
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -46,8 +74,7 @@ class CustomGridViewItem extends StatelessWidget {
                   fit: BoxFit.fill,
                   height: height * 0.13,
                   width: double.infinity,
-                  imageUrl:
-                      "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
+                  imageUrl: item.imageUrl,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(
                       color: AppColors.greenColor,
@@ -68,7 +95,8 @@ class CustomGridViewItem extends StatelessWidget {
                   color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(7),
                 ),
-                child: Text("Like new", style: AppStyles.extra8Green),
+                child: Text(conditions[item.conditionIndex],
+                    style: AppStyles.extra8Green),
               ),
             ],
           ),
@@ -81,11 +109,11 @@ class CustomGridViewItem extends StatelessWidget {
               spacing: height * 0.01,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  "Wireless Headphones",
+                Text(item.title,
                   style: theme.textTheme.displaySmall,
                 ),
-                Text("Electronics", style: theme.textTheme.displayMedium),
+                Text(category.catogeries()[item.categoryIndex + 1].name ?? "",
+                    style: theme.textTheme.displayMedium),
                 Row(
                   spacing: width * 0.01,
                   children: [
@@ -98,7 +126,9 @@ class CustomGridViewItem extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      "1.2 km away",
+                      distance != null
+                          ? '${distance.toStringAsFixed(1)} km away'
+                          : 'Location unavailable',
                       style: isDark
                           ? AppStyles.semi8DarkGreen
                           : AppStyles.semi8Green,

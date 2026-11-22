@@ -5,6 +5,7 @@ import 'package:eco_swap_app/cubit/language_cubit.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/cubit/theme_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/add_item_screen.dart';
+import 'package:eco_swap_app/features/edit_item/ui/edit_item_screen.dart';
 import 'package:eco_swap_app/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:eco_swap_app/features/home/ui/home_screen.dart';
 import 'package:eco_swap_app/features/onBoarding/onBoarding_screen.dart';
@@ -29,7 +30,8 @@ void main() async {
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: ((context) => LanguageCubit())),
     BlocProvider(create: ((context) => ThemeCubit())),
-    BlocProvider(create: (context) => MyUserCubit(),)
+    BlocProvider(create: (context) => MyUserCubit(),),
+
 
   ],
   child: MyApp()));
@@ -63,7 +65,8 @@ class MyApp extends StatelessWidget {
                   AppRoute.forgetPass: (context) => ForgetPassScreen(),
                   AppRoute.addItem: (context) => AddItemScreen(),
                   AppRoute.editProfile: (context) => EditProfileScreen(),
-                  AppRoute.productDetails: (context) => ProductDetailsScreen()
+                  AppRoute.productDetails: (context) => ProductDetailsScreen(),
+                  AppRoute.editItem: (context) => EditItemScreen()
 
                 },
               );

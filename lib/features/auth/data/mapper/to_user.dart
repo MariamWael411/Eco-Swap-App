@@ -9,6 +9,8 @@ extension ToUser on MyUserDto {
       email: email,
       fullName: fullName,
       mobilNumber: mobilNumber,
+        userName: userName,
+        numberOfSharedItem: numberOfSharedItem
     );
   }
 }

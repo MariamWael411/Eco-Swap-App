@@ -6,11 +6,13 @@ import '../../../../l10n/app_localizations.dart';
 class CustomConditionWidget extends StatelessWidget {
   bool isActive;
   int index;
+  List<String> conditions;
 
   CustomConditionWidget({
     super.key,
     required this.isActive,
     required this.index,
+    required this.conditions
   });
 
   @override
@@ -19,11 +21,7 @@ class CustomConditionWidget extends StatelessWidget {
     var height = AppConfig.height(context);
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
-    List<String> conditions = [
-      language.like_new,
-      language.good,
-      language.well_used,
-    ];
+
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
       curve: Curves.easeIn,
