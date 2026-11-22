@@ -15,6 +15,7 @@ import 'package:eco_swap_app/features/auth/ui/widget/custom_text_widget.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_app_bar.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
+import 'package:eco_swap_app/features/network/model/app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -227,13 +228,13 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       final longitude = position.longitude;
 
                       Item item = Item(
+                        statusIndex: 0,
                         categoryIndex: currentIndex,
                         conditionIndex: conditionIndex,
                         description: descriptionController.text,
                         title: titleController.text,
                         latitude: latitude,
                         longitude: longitude,
-                        status: "Available",
                         date: DateTime.now(),
                         userId: user.id,
                         imageUrl: imageUrl,

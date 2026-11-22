@@ -226,6 +226,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                       final longitude = position.longitude;
 
                       Item item = Item(
+                        statusIndex: args.statusIndex,
                         itemId: args.itemId!,
                         categoryIndex: currentIndex,
                         conditionIndex: conditionIndex,
@@ -233,7 +234,6 @@ class _EditItemScreenState extends State<EditItemScreen> {
                         title: titleController.text,
                         latitude: latitude,
                         longitude: longitude,
-                        status: "Available",
                         userId: user.id,
                         date: DateTime.now(),
                         imageUrl: imageUrl,

@@ -7,6 +7,7 @@ import 'package:eco_swap_app/core/utils/utils_dialog.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/model/category.dart';
+import 'package:eco_swap_app/features/network/model/app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -42,7 +43,7 @@ class CustomItemWidget extends StatelessWidget {
       language.good,
       language.well_used,
     ];
-    String text = item.status;
+    String text = AppModel.itemStatus(context)[item.statusIndex];
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: height * 0.02,

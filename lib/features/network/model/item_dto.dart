@@ -8,20 +8,20 @@ class ItemDto {
   String description;
   int categoryIndex;
   int condionIndex;
-  String status;
   double longitude;
   double latitude;
   String imageUrl;
   DateTime date;
+  int statusIndex;
 
   ItemDto({
+    required this.statusIndex,
     required this.categoryIndex,
     required this.condionIndex,
     required this.description,
     required this.title,
     required this.latitude,
     required this.longitude,
-    required this.status,
     required this.itemId,
     required this.userId,
     required this.imageUrl,
@@ -36,11 +36,11 @@ class ItemDto {
       'description': description,
       'category': categoryIndex,
       'condition': condionIndex,
-      'status': status,
       'longitude': longitude,
       'latitude': latitude,
       'image': imageUrl,
-      'date': date
+      'date': date,
+      'status_index': statusIndex
     };
   }
 
@@ -52,12 +52,13 @@ class ItemDto {
         description: data['description']?.toString() ?? '',
         categoryIndex: _toInt(data['category']),
         condionIndex: _toInt(data['condition']),
-        status: data['status']?.toString() ?? '',
         longitude: _toDouble(data['longitude']),
         latitude: _toDouble(data['latitude']),
         imageUrl: data['image']?.toString() ?? '',
     date: (data['date'] as Timestamp).toDate(),
+      statusIndex: _toInt(data['status_index'])
       );
+
 
   static int _toInt(dynamic v) => int.tryParse(v?.toString() ?? '') ?? 0;
 

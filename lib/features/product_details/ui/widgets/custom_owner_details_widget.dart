@@ -13,7 +13,7 @@ class CustomOwnerDetailsWidget extends StatelessWidget {
   CustomOwnerDetailsWidget(
       {super.key, required this.onTap, required this.userId});
 
-  VoidCallback onTap;
+  Function(String telegramUsername) onTap;
   String userId;
 
   @override
@@ -100,7 +100,7 @@ class CustomOwnerDetailsWidget extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: onTap,
+                onPressed: () => onTap(user.userName),
                 icon: Icon(
                   Icons.arrow_forward_ios_outlined,
                   color: theme.colorScheme.onSecondaryContainer,

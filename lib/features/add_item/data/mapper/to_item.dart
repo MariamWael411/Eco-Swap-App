@@ -10,11 +10,12 @@ extension ToItemDto on Item {
       title: title,
       latitude: latitude,
       longitude: longitude,
-      status: status,
+
       itemId: itemId ?? "",
       userId: userId,
       imageUrl: imageUrl,
-        date: date
+        date: date,
+        statusIndex: statusIndex
     );
   }
 }
@@ -28,11 +29,12 @@ extension ToItem on ItemDto {
       title: title,
       latitude: latitude,
       longitude: longitude,
-      status: status,
-      itemId: itemId,
+
+        itemId: itemId,
       userId: userId,
       imageUrl: imageUrl,
-        date: date
+        date: date,
+        statusIndex: statusIndex
     );
   }
 }

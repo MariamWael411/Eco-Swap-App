@@ -57,6 +57,7 @@ dependencies:
   geolocator: ^14.1.2
   font_awesome_flutter: ^11.0.0
   timeago: ^3.7.1
+  url_launcher: ^6.3.3
 
 
 
