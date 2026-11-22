@@ -63,6 +63,20 @@ import '../../features/edit_profile/domain/repository/edit_profile_repository.da
 import '../../features/edit_profile/domain/use_case/edit_profile_use_case.dart'
     as _i226;
 import '../../features/edit_profile/ui/cubit/edit_profile_cubit.dart' as _i175;
+import '../../features/home/data/data_source/remote/request_remote_data_source.dart'
+    as _i30;
+import '../../features/home/data/data_source/remote/request_remote_data_source_impl.dart'
+    as _i944;
+import '../../features/home/data/repository/request_repository_impl.dart'
+    as _i81;
+import '../../features/home/domain/repository/request_repository.dart' as _i65;
+import '../../features/home/domain/use_case/add_request_use_case.dart' as _i903;
+import '../../features/home/domain/use_case/delete_request_use_case.dart'
+    as _i244;
+import '../../features/home/domain/use_case/get_request_use_case.dart' as _i112;
+import '../../features/home/domain/use_case/update_request_use_case.dart'
+    as _i664;
+import '../../features/home/ui/tabs/request/cubit/request_cubit.dart' as _i227;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -76,6 +90,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i548.AuthRemoteDataSource>(
       () => _i923.AuthRemoteDataSourceImpl(),
+    );
+    gh.factory<_i30.RequestRemoteDataSource>(
+      () => _i944.RequestRemoteDataSourceImpl(),
     );
     gh.factory<_i901.EditProfileRemoteDataSource>(
       () => _i746.EditProfileRemoteDataSourceImpl(),
@@ -107,6 +124,31 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i508.ForgetPassCubit>(
       () => _i508.ForgetPassCubit(
         forgetPassUseCase: gh<_i544.ForgetPassUseCase>(),
+      ),
+    );
+    gh.factory<_i65.RequestRepository>(
+      () => _i81.RequestRepositoryImpl(
+        requestRemoteDataSource: gh<_i30.RequestRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i903.AddRequestUseCase>(
+      () => _i903.AddRequestUseCase(
+        requestRepository: gh<_i65.RequestRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i244.DeleteRequestUseCase>(
+      () => _i244.DeleteRequestUseCase(
+        requestRepository: gh<_i65.RequestRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i112.GetRequestUseCase>(
+      () => _i112.GetRequestUseCase(
+        requestRepository: gh<_i65.RequestRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i664.UpdateRequestUseCase>(
+      () => _i664.UpdateRequestUseCase(
+        requestRepository: gh<_i65.RequestRepository>(),
       ),
     );
     gh.factory<_i119.EditProfileRepository>(
@@ -145,6 +187,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i775.UpdateUserItemUseCase>(
       () => _i775.UpdateUserItemUseCase(
         itemRepository: gh<_i1070.ItemRepository>(),
+      ),
+    );
+    gh.factory<_i227.RequestCubit>(
+      () => _i227.RequestCubit(
+        getRequestUseCase: gh<_i112.GetRequestUseCase>(),
+        addRequestUseCase: gh<_i903.AddRequestUseCase>(),
+        deleteRequestUseCase: gh<_i244.DeleteRequestUseCase>(),
+        updateRequestUseCase: gh<_i664.UpdateRequestUseCase>(),
       ),
     );
     gh.factory<_i1039.ItemCubit>(

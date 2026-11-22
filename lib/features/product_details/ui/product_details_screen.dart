@@ -1,6 +1,12 @@
+import 'package:eco_swap_app/core/di/di.dart';
+import 'package:eco_swap_app/core/utils/utils_dialog.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
+import 'package:eco_swap_app/features/home/domain/entities/request.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/model/category.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_cubit.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_states.dart';
+import 'package:eco_swap_app/features/network/model/app_model.dart';
 import 'package:eco_swap_app/features/product_details/ui/widgets/custom_catogery_widget.dart';
 import 'package:eco_swap_app/features/product_details/ui/widgets/custom_owner_details_widget.dart';
 import 'package:eco_swap_app/features/product_details/ui/widgets/custom_product_container.dart';
@@ -9,18 +15,36 @@ import 'package:eco_swap_app/features/product_details/ui/widgets/custom_stack_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/app_config.dart';
 import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../add_item/domain/entity/item.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({super.key});
 
+  @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   late Item args;
+  var cubit = getIt<RequestCubit>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cubit.getRequest();
+  }
+
   @override
   Widget build(BuildContext context) {
+    UtilsDialog.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
+
     Category category = Category();
     category.context = context;
     args = ModalRoute.of(context)?.settings.arguments as Item;
@@ -64,7 +88,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     category:
                         category.catogeries()[args.categoryIndex + 1].name ??
                         "",
-                    status: args.status,
+                    status: AppModel.itemStatus(context)[args.statusIndex],
                   ),
                   SizedBox(height: height * 0.01),
                   Text(args.title, style: theme.textTheme.bodyLarge),
@@ -86,8 +110,57 @@ class ProductDetailsScreen extends StatelessWidget {
                   ),
                   CustomOwnerDetailsWidget(
                     userId: args.userId,
-                    onTap: () {
-                      //todo show owner details
+                    onTap: (telegramUsername) async {
+                      if (user.id == args.userId) return;
+
+                      final request = cubit.getAcceptedRequest(
+                        itemId: args.itemId!,
+                        senderId: user.id,
+                        receiverId: args.userId,
+                      );
+
+                      if (request == null) {
+                        utilsDialog.showMessage(
+                          context: context,
+                          title: language.error,
+                          content: "Your request has not been accepted yet.",
+                          posAction: language.ok,
+                          posActions: () {
+                            Navigator.pop(context);
+                          },
+                        );
+                        return;
+                      }
+
+                      if (telegramUsername.isEmpty) {
+                        utilsDialog.showMessage(
+                          context: context,
+                          title: language.error,
+                          content: "Telegram username is not available.",
+                          posAction: language.ok,
+                          posActions: () {
+                            Navigator.pop(context);
+                          },
+                        );
+                        return;
+                      }
+
+                      final username = telegramUsername
+                          .replaceAll('@', '')
+                          .trim();
+
+                      final telegramUrl = Uri.parse('https://t.me/$username');
+
+                      try {
+                        final result = await launchUrl(
+                          telegramUrl,
+                          mode: LaunchMode.externalApplication,
+                        );
+
+                        debugPrint('Launch result: $result');
+                      } catch (e) {
+                        debugPrint('Telegram launch error: $e');
+                      }
                     },
                   ),
                   CustomSecurityWidget(),
@@ -95,13 +168,39 @@ class ProductDetailsScreen extends StatelessWidget {
                   CustomProductContainer(),
                   SizedBox(height: height * 0.01),
 
-                  Visibility(
-                    visible: user.id != args.userId,
-                    child: CustomElevatedButton(
-                      onClick: () {
-                        //todo send request
-                      },
-                      text: language.request_this_item,
+                  BlocListener<RequestCubit, RequestStates>(
+                    bloc: cubit,
+                    listenWhen: (previous, current) =>
+                        current.requestStates.isSuccess &&
+                        current.action == 'add_request',
+                    listener: (context, state) {
+                      utilsDialog.showMessage(
+                        context: context,
+                        content: "request added successfully",
+                        title: language.success,
+                        posAction: language.ok,
+                        posActions: () {
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    },
+
+                    child: Visibility(
+                      visible: user.id != args.userId && args.statusIndex == 0,
+                      child: CustomElevatedButton(
+                        onClick: () {
+                          //todo send request
+                          var request = Request(
+                            statusIndex: 1,
+                            itemId: args.itemId!,
+                            senderId: user.id,
+                            receiverId: args.userId,
+                            createdAt: DateTime.now(),
+                          );
+                          cubit.addRequest(request);
+                        },
+                        text: language.request_this_item,
+                      ),
                     ),
                   ),
                   SizedBox(height: height * 0.015),

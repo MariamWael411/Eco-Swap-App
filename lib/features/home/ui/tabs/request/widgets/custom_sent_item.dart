@@ -1,27 +1,41 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eco_swap_app/core/di/di.dart';
+import 'package:eco_swap_app/features/add_item/domain/entity/item.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_cubit.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_states.dart';
+import 'package:eco_swap_app/features/network/model/app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
+import '../../../../../../core/utils/utils_dialog.dart';
 import '../../../../../../cubit/my_user_cubit.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../common/widgets/custom_elevated_button.dart';
+import '../../../../domain/entities/request.dart';
 import '../../profile/widget/custom_name_widget.dart';
 
 class CustomSentItem extends StatelessWidget {
-  const CustomSentItem({super.key});
+  CustomSentItem({super.key, required this.item, required this.request});
+
+  Item item;
+  Request request;
+  var cubit = getIt<RequestCubit>();
 
   @override
   Widget build(BuildContext context) {
+    UtilsDialog.context = context;
+    UtilsDialog utilsDialog = UtilsDialog();
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
-    String text = language.pending;
+    String text = AppModel.requestStatus(context)[request.statusIndex];
     var user = context.watch<MyUserCubit>().state;
     String userName = user.fullName
         .split(' ')
@@ -73,7 +87,8 @@ class CustomSentItem extends StatelessWidget {
                   children: [
                     Text(userName, style: theme.textTheme.displaySmall),
                     Text(
-                      "Requested 18 min ago",
+                      "Requested ${timeago.format(
+                          request.createdAt)}",
                       style: theme.textTheme.displayMedium,
                     ),
                   ],
@@ -125,8 +140,7 @@ class CustomSentItem extends StatelessWidget {
                     fit: BoxFit.fill,
                     height: height * 0.06,
                     width: width * 0.13,
-                    imageUrl:
-                        "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
+                    imageUrl: item.imageUrl,
                     placeholder: (context, url) => Center(
                       child: CircularProgressIndicator(
                         color: AppColors.greenColor,
@@ -145,7 +159,7 @@ class CustomSentItem extends StatelessWidget {
                         style: theme.textTheme.labelLarge,
                       ),
                       Text(
-                        "Wireless Headphones",
+                        item.title,
                         style: theme.textTheme.displaySmall,
                       ),
                     ],
@@ -155,20 +169,46 @@ class CustomSentItem extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: text == language.pending,
+            visible: request.statusIndex == 1,
             child: Row(
               spacing: width * 0.03,
               children: [
                 Expanded(
-                  child: CustomElevatedButton(
-                    onClick: () {},
-                    backgroundColor: isDark
-                        ? AppColors.containerColor
-                        : AppColors.whiteColor,
-                    borderColor: theme.colorScheme.onPrimary,
-                    item: Text(
-                      language.cancel_request,
-                      style: theme.textTheme.headlineMedium,
+                  child: BlocListener<RequestCubit, RequestStates>(
+                    bloc: cubit,
+                    listenWhen: (previous, current) =>
+                    current.requestStates.isSuccess &&
+                        current.action == 'cancel',
+                    listener: (context, state) {
+                      utilsDialog.showMessage(
+                        context: context,
+                        content: "request canceled successfully",
+                        title: language.success,
+                        posAction: language.ok,
+                        posActions: () {
+
+                        },
+                      );
+                    },
+                    child: CustomElevatedButton(
+                      onClick: () {
+                        //cubit.deleteRequest(request);
+                        var updatedRequest = request.copyWith(
+                            statusIndex: 2
+                        );
+                        cubit.updateRequest(
+                          updatedRequest,
+                          action: 'cancel',
+                        );
+                      },
+                      backgroundColor: isDark
+                          ? AppColors.containerColor
+                          : AppColors.whiteColor,
+                      borderColor: theme.colorScheme.onPrimary,
+                      item: Text(
+                        language.cancel_request,
+                        style: theme.textTheme.headlineMedium,
+                      ),
                     ),
                   ),
                 ),

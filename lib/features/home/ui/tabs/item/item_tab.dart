@@ -62,7 +62,7 @@ class _ItemTabState extends State<ItemTab> {
                     .where((item) => item.userId == user.id)
                     .toList();
                 final available = myItems
-                    .where((item) => item.status == language.available)
+                    .where((item) => item.statusIndex == 0)
                     .length;
                 return myItems.isEmpty
                     ? Expanded(child: Center(child: Text(

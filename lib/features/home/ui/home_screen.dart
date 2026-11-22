@@ -1,3 +1,4 @@
+import 'package:eco_swap_app/core/services/location_service.dart';
 import 'package:eco_swap_app/core/utils/app_assets.dart';
 import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/home_tab.dart';
@@ -19,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  LocationService locationService = LocationService();
   List<Widget> tabs=[
     HomeTab(),
     ItemTab(),
@@ -27,6 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileTab()
   ];
   int selectedIndex=0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    locationService.getCurrentLocation();
+  }
   @override
   Widget build(BuildContext context) {
     var width = AppConfig.width(context);

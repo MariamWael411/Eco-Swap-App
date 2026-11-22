@@ -127,5 +127,6 @@
   "about_this_item": "About this item",
   "contact_information_shared_with_approval": "Contact information is shared only with the owner's approval.",
   "camera": "Camera",
-  "gallery": "Gallery"
+  "gallery": "Gallery",
+  "rejected": "Rejected"
 }
