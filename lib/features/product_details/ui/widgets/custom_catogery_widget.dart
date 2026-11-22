@@ -11,7 +11,9 @@ class CustomCatogeryWidget extends StatelessWidget {
   });
 
   String category;
-  String status@override
+  String status;
+
+  @override
   Widget build(BuildContext context) {
     var width = AppConfig.width(context);
 

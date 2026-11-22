@@ -118,10 +118,10 @@ class CustomItemWidget extends StatelessWidget {
                   spacing: height * 0.01,
                   children: [
                     Text(item.title, style: theme.textTheme.displaySmall,
-                    ),
-                    Text(${category.catogeries()[item.categoryIndex + 1].name} · ${conditions[item.conditionIndex]}",
-                      sstyle: theme.textTheme.displayMedium,
-                    ),
+                    ),ext(
+                      "${category.catogeries()[item.categoryIndex + 1].name} · ${conditions[item.conditionIndex]}",
+                      style: theme.textTheme.displayMedium,
+                    )),
                   ],
                 ),
                 SizedBox(height: height * 0.032),

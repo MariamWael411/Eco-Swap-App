@@ -25,6 +25,7 @@ class HomeTab extends StatefulWidget {
 class _HomeTabState extends State<HomeTab> {
   int currentIndex = 0;
   var cubit = getIt<ItemCubit>();
+  var searchController = TextEditingController();
 
   @override
   void initState() {
@@ -66,6 +67,12 @@ class _HomeTabState extends State<HomeTab> {
                 SizedBox(height: height * 0.02),
 
                 CustomTextFormFeild(
+                  controller: searchController,
+                  onChanged: (value) {
+                    setState(() {
+
+                    });
+                  },
                   hintText: language.search_available_items,
                   prefixIcon: Icon(Icons.search),
                 ),
@@ -120,7 +127,14 @@ class _HomeTabState extends State<HomeTab> {
               bloc: cubit,
               builder: (context, state) {
                 if (state.itemStates.isSuccess) {
+
                   var data = state.itemStates.data!;
+                  var search = data
+                      .where((element) =>
+                  element.title.contains(searchController.text) ||
+                      element.description.contains(searchController.text))
+                      .toList();
+
                   return SliverMainAxisGroup(
                     slivers: [
                       SliverToBoxAdapter(
@@ -142,6 +156,11 @@ class _HomeTabState extends State<HomeTab> {
                         child: SizedBox(height: height * 0.3, child: Center(
                           child: Text('No Item Found',
                             style: theme.textTheme.headlineSmall,),)),)
+                          : (searchController.text.isNotEmpty && search.isEmpty)
+                          ? SliverToBoxAdapter(
+                        child: SizedBox(height: height * 0.3, child: Center(
+                          child: Text('No Result Found',
+                            style: theme.textTheme.headlineSmall,),)),)
                           : SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                               (context, index) {
@@ -149,14 +168,19 @@ class _HomeTabState extends State<HomeTab> {
                               onTap: () {
                                 Navigator.of(context).pushNamed(
                                     AppRoute.productDetails,
-                                    arguments: data[index]
+                                    arguments: search.isEmpty
+                                        ? data[index]
+                                        : search[index]
                                 );
                               },
-                              child: CustomGridViewItem(item: data[index],
+                              child: CustomGridViewItem(item: search.isEmpty
+                                  ? data[index]
+                                  : search[index],
                                 userPosition: state.currentPosition,),
                             );
                           },
-                          childCount: data.length,
+                          childCount: search.isEmpty ? data.length : search
+                              .length,
                         ),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
