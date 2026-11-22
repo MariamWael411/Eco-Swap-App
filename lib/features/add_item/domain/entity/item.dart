@@ -10,6 +10,7 @@ class Item {
   double longitude;
   double latitude;
   String imageUrl;
+  DateTime date;
 
   Item({
     required this.categoryIndex,
@@ -22,5 +23,6 @@ class Item {
     this.itemId,
     required this.userId,
     required this.imageUrl,
+    required this.date
   });
 }

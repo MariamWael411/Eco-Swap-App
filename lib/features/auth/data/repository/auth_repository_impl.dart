@@ -47,6 +47,7 @@ class AuthRepositoryImpl implements AuthRepository {
     String password,
     String fullName,
     String phoneNumber,
+      String userName,
       BuildContext context
   ) async {
     try {
@@ -55,6 +56,7 @@ class AuthRepositoryImpl implements AuthRepository {
         password,
         fullName,
         phoneNumber,
+          userName,
           context
       );
       return userDto.toMyUser();

@@ -1,6 +1,5 @@
 import 'package:eco_swap_app/core/utils/firebase_utils.dart';
 import 'package:eco_swap_app/features/auth/data/data_source/remote/auth_remote_data_source.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,12 +22,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
-    );
-    MyUserDto myUserDto = MyUserDto(
-      id: credential.user!.uid,
-      email: email,
-      fullName: credential.user!.displayName ?? "",
-      mobilNumber: credential.user!.phoneNumber ?? "",
     );
 
     final user = await FirebaseUtils
@@ -71,6 +64,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       credential,
     );
     MyUserDto myUserDto = MyUserDto(
+      userName: "",
       id: userCredential.user!.uid,
       email: userCredential.user!.email ?? "",
       fullName: userCredential.user!.displayName ?? "",
@@ -97,6 +91,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     String password,
     String fullName,
     String phoneNumber,
+      String userName,
       BuildContext context
   ) async {
     final credential = await FirebaseAuth.instance
@@ -107,6 +102,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       fullName: fullName,
       mobilNumber: phoneNumber,
       id: credential.user!.uid,
+        userName: userName,
+        numberOfSharedItem: 0
     );
     FirebaseUtils.addUserInFireStore(myUserDto);
     context.read<MyUserCubit>().changeUser(myUserDto);

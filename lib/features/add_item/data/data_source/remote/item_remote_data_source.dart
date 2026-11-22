@@ -1,4 +1,5 @@
 import '../../../../network/model/item_dto.dart';
+import '../../../../network/model/my_user_dto.dart';
 
 abstract class ItemRemoteDataSource {
   Future<void> addItem(ItemDto item);
@@ -10,4 +11,6 @@ abstract class ItemRemoteDataSource {
   Future<void> updateItem(ItemDto item);
 
   Future<void> deleItem(ItemDto item);
+
+  Future<void> updateItemInUser(MyUserDto user);
 }

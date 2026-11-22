@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ItemDto {
   static String collectionName = 'Items';
   String itemId;
@@ -10,6 +12,7 @@ class ItemDto {
   double longitude;
   double latitude;
   String imageUrl;
+  DateTime date;
 
   ItemDto({
     required this.categoryIndex,
@@ -22,6 +25,7 @@ class ItemDto {
     required this.itemId,
     required this.userId,
     required this.imageUrl,
+    required this.date
   });
 
   Map<String, dynamic> toJson() {
@@ -36,6 +40,7 @@ class ItemDto {
       'longitude': longitude,
       'latitude': latitude,
       'image': imageUrl,
+      'date': date
     };
   }
 
@@ -51,6 +56,7 @@ class ItemDto {
         longitude: _toDouble(data['longitude']),
         latitude: _toDouble(data['latitude']),
         imageUrl: data['image']?.toString() ?? '',
+    date: (data['date'] as Timestamp).toDate(),
       );
 
   static int _toInt(dynamic v) => int.tryParse(v?.toString() ?? '') ?? 0;

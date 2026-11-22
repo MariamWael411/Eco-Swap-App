@@ -1,3 +1,4 @@
+import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,40 +18,48 @@ class CustomLinearContainerWidget extends StatelessWidget {
     var height = AppConfig.height(context);
     final isDark = context.read<ThemeCubit>().isDark();
     var language = AppLocalizations.of(context)!;
-
-    return Container(
-      width: double.infinity,
-      height: height * 0.13,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(17),
-        border: Border.all(
-          color: isDark ? AppColors.dotColor : AppColors.transparentColor,
+    var user = context
+        .watch<MyUserCubit>()
+        .state;
+    return InkWell(
+      onTap: () {
+        print(user.numberOfSharedItem);
+      },
+      child: Container(
+        width: double.infinity,
+        height: height * 0.13,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(17),
+          border: Border.all(
+            color: isDark ? AppColors.dotColor : AppColors.transparentColor,
+          ),
+          gradient: LinearGradient(
+            colors: [
+              isDark ? AppColors.containerColor : AppColors.darkGreenColor,
+              isDark ? AppColors.linearGreen2Color : AppColors.greenLightColor,
+            ],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+          ),
         ),
-        gradient: LinearGradient(
-          colors: [
-            isDark ? AppColors.containerColor : AppColors.darkGreenColor,
-            isDark ? AppColors.linearGreen2Color : AppColors.greenLightColor,
+        child: Column(
+          spacing: height * 0.01,
+          children: [
+            SizedBox(height: height * 0.005),
+            SvgPicture.asset(
+                isDark ? AppAssets.leaveDark : AppAssets.leaveLight),
+
+            Text(
+              "${user.numberOfSharedItem} items shared",
+              style: isDark ? AppStyles.bold12LightGrey : AppStyles.bold12White,
+            ),
+
+            Text(
+              language.you_are_helping_your_community_wastel_ess,
+              style: isDark ? AppStyles.reg8B7 : AppStyles.reg8DA,
+            ),
           ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
         ),
-      ),
-      child: Column(
-        spacing: height * 0.01,
-        children: [
-          SizedBox(height: height * 0.005),
-          SvgPicture.asset(isDark ? AppAssets.leaveDark : AppAssets.leaveLight),
-
-          Text(
-            language.items_shared,
-            style: isDark ? AppStyles.bold12LightGrey : AppStyles.bold12White,
-          ),
-
-          Text(
-            language.you_are_helping_your_community_wastel_ess,
-            style: isDark ? AppStyles.reg8B7 : AppStyles.reg8DA,
-          ),
-        ],
       ),
     );
   }

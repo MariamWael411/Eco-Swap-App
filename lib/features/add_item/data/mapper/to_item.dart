@@ -14,6 +14,7 @@ extension ToItemDto on Item {
       itemId: itemId ?? "",
       userId: userId,
       imageUrl: imageUrl,
+        date: date
     );
   }
 }
@@ -31,6 +32,7 @@ extension ToItem on ItemDto {
       itemId: itemId,
       userId: userId,
       imageUrl: imageUrl,
+        date: date
     );
   }
 }

@@ -9,6 +9,7 @@ abstract class AuthRepository {
     String password,
     String fullName,
     String phoneNumber,
+      String userName,
       BuildContext context
   );
 

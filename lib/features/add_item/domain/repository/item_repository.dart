@@ -1,3 +1,4 @@
+import '../../../auth/domain/entities/my_user.dart';
 import '../entity/item.dart';
 
 abstract class ItemRepository {
@@ -10,4 +11,6 @@ abstract class ItemRepository {
   Future<void> updateItem(Item item);
 
   Future<void> deleItem(Item item);
+
+  Future<void> updateItemInUser(MyUser user);
 }

@@ -72,9 +72,11 @@ class CustomItemWidget extends StatelessWidget {
               height: height * 0.16,
               width: width * 0.3,
               imageUrl: item.imageUrl,
-              placeholder: (context, url) => Center(
-                child: CircularProgressIndicator(color: AppColors.greenColor),
-              ),
+              placeholder: (context, url) =>
+                  Center(
+                    child: CircularProgressIndicator(
+                        color: AppColors.greenColor),
+                  ),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
@@ -101,8 +103,8 @@ class CustomItemWidget extends StatelessWidget {
                         style: text == language.available
                             ? theme.textTheme.bodySmall
                             : (isDark
-                                  ? AppStyles.extra8Bink
-                                  : AppStyles.extra8Red),
+                            ? AppStyles.extra8Bink
+                            : AppStyles.extra8Red),
                       ),
                     ),
                     Text(
@@ -114,16 +116,18 @@ class CustomItemWidget extends StatelessWidget {
                 SizedBox(height: height * 0.01),
 
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  spacing: height * 0.01,
-                  children: [
-                    Text(item.title, style: theme.textTheme.displaySmall,
-                    ),ext(
-                      "${category.catogeries()[item.categoryIndex + 1].name} · ${conditions[item.conditionIndex]}",
-                      style: theme.textTheme.displayMedium,
-                    )),
-                  ],
-                ),
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: height * 0.01,
+                    children: [
+                      Text(item.title, style: theme.textTheme.displaySmall,),
+                      Text("${category.catogeries()[item.categoryIndex + 1]
+                          .name} · ${conditions[item.conditionIndex]}",
+                        style: theme.textTheme.displayMedium,)
+                    ]
+                )
+                ,
+
+
                 SizedBox(height: height * 0.032),
                 Row(
                   spacing: width * 0.03,
@@ -219,8 +223,10 @@ class CustomItemWidget extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
+        ]
+        ,
+      )
+      ,
     );
   }
 }

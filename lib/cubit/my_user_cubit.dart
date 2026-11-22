@@ -4,7 +4,12 @@ import '../features/network/model/my_user_dto.dart';
 
 class MyUserCubit extends Cubit<MyUserDto> {
   MyUserCubit()
-    : super(MyUserDto(id: '', email: '', fullName: '', mobilNumber: ''));
+      : super(MyUserDto(id: '',
+      email: '',
+      fullName: '',
+      mobilNumber: '',
+      userName: '',
+      numberOfSharedItem: 0));
 
   void changeUser(MyUserDto newUser) {
     emit(newUser);

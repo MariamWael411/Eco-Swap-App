@@ -7,6 +7,7 @@ import 'package:eco_swap_app/features/product_details/ui/widgets/custom_security
 import 'package:eco_swap_app/features/product_details/ui/widgets/custom_stack_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../core/utils/app_config.dart';
 import '../../../cubit/theme_cubit.dart';
@@ -22,6 +23,7 @@ class ProductDetailsScreen extends StatelessWidget {
     Category category = Category();
     category.context = context;
     args = ModalRoute.of(context)?.settings.arguments as Item;
+    String time = timeago.format(args.date);
 
     var width = AppConfig.width(context);
 
@@ -65,7 +67,7 @@ class ProductDetailsScreen extends StatelessWidget {
                   SizedBox(height: height * 0.01),
                   Text(args.title, style: theme.textTheme.bodyLarge),
                   Text(
-                    "${conditions[args.conditionIndex]} • Added 2 days ago",
+                    "${conditions[args.conditionIndex]} • Added $time",
                     style: theme.textTheme.displayMedium,
                   ),
                   SizedBox(height: height * 0.01),
@@ -81,6 +83,7 @@ class ProductDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   CustomOwnerDetailsWidget(
+                    userId: args.userId,
                     onTap: () {
                       //todo show owner details
                     },

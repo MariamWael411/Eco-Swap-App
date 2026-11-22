@@ -31,6 +31,8 @@ import '../../features/add_item/domain/use_cases/get_filter_item_use_case.dart'
     as _i726;
 import '../../features/add_item/domain/use_cases/get_item_use_case.dart'
     as _i1044;
+import '../../features/add_item/domain/use_cases/update_user_item_use_case.dart'
+    as _i775;
 import '../../features/add_item/ui/cubit/item_cubit.dart' as _i1039;
 import '../../features/auth/data/data_source/remote/auth_remote_data_source.dart'
     as _i548;
@@ -140,14 +142,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i1044.GetItemUseCase>(
       () => _i1044.GetItemUseCase(itemRepository: gh<_i1070.ItemRepository>()),
     );
-    gh.lazySingleton<_i226.EditProfileUseCase>(
-      () => _i226.EditProfileUseCase(
-        editProfileRepository: gh<_i119.EditProfileRepository>(),
-      ),
-    );
-    gh.factory<_i175.EditProfileCubit>(
-      () => _i175.EditProfileCubit(
-        editProfileUseCase: gh<_i226.EditProfileUseCase>(),
+    gh.lazySingleton<_i775.UpdateUserItemUseCase>(
+      () => _i775.UpdateUserItemUseCase(
+        itemRepository: gh<_i1070.ItemRepository>(),
       ),
     );
     gh.factory<_i1039.ItemCubit>(
@@ -157,6 +154,17 @@ extension GetItInjectableX on _i174.GetIt {
         editItemUseCase: gh<_i243.EditItemUseCase>(),
         getItemUseCase: gh<_i1044.GetItemUseCase>(),
         getFilterItemUseCase: gh<_i726.GetFilterItemUseCase>(),
+        updateUserItemUseCase: gh<_i775.UpdateUserItemUseCase>(),
+      ),
+    );
+    gh.lazySingleton<_i226.EditProfileUseCase>(
+      () => _i226.EditProfileUseCase(
+        editProfileRepository: gh<_i119.EditProfileRepository>(),
+      ),
+    );
+    gh.factory<_i175.EditProfileCubit>(
+      () => _i175.EditProfileCubit(
+        editProfileUseCase: gh<_i226.EditProfileUseCase>(),
       ),
     );
     return this;

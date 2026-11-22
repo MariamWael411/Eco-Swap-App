@@ -235,6 +235,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                         longitude: longitude,
                         status: "Available",
                         userId: user.id,
+                        date: DateTime.now(),
                         imageUrl: imageUrl,
                       );
                       if (_formKry.currentState?.validate() == true) {

@@ -14,9 +14,10 @@ class RegisterUseCase {
     String password,
     String fullName,
     String phoneNumber,
+      String userName,
       BuildContext context
   ) {
     return _authRepository.register(
-        email, password, fullName, phoneNumber, context);
+        email, password, fullName, phoneNumber, userName, context);
   }
 }

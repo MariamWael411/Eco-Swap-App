@@ -17,6 +17,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
     String password,
     String fullName,
     String phoneNumber,
+      String userName,
       BuildContext context
   ) async {
     emit(RegisterStates(registerStates: Resource.loading()));
@@ -27,6 +28,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
         password,
         fullName,
         phoneNumber,
+          userName,
           context
       );
       emit(RegisterStates(registerStates: Resource.success(data: user)));

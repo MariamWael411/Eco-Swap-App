@@ -9,6 +9,7 @@ import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_name_wi
 import 'package:eco_swap_app/features/network/model/my_user_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/app_config.dart';
 import '../../../core/utils/validation.dart';
@@ -28,6 +29,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
+  var teleUserNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   var cubit = getIt<EditProfileCubit>();
 
@@ -141,6 +143,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         prefixIcon: Icon(Icons.phone_outlined),
                       ),
                       SizedBox(height: height * 0.01),
+                      CustomTextWidget(text: "Telegram User Name"),
+                      CustomTextFormFeild(
+                        controller: teleUserNameController,
+                        onValidator: (text) {
+                          return Validation.validateTelegramUsername(text);
+                        },
+                        textInputType: TextInputType.text,
+                        hintText: "enter your user name",
+                        prefixIcon: SizedBox(width: width * 0.01, child: Center(
+                            child: FaIcon(FontAwesomeIcons.telegram,))),
+                      ),
+                      SizedBox(height: height * 0.01),
                       CustomEditProfileContainer(),
                       SizedBox(height: height * 0.01),
                       CustomElevatedButton(
@@ -150,7 +164,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             var updatedUser = MyUserDto(id: user.id,
                                 email: emailController.text,
                                 fullName: nameController.text,
-                                mobilNumber: phoneController.text);
+                                mobilNumber: phoneController.text,
+                                userName: teleUserNameController.text);
                             cubit.editProfile(updatedUser);
                             context.read<MyUserCubit>().changeUser(updatedUser);
                           }

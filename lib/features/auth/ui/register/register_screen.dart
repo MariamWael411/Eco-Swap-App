@@ -18,6 +18,7 @@ import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart
 import 'package:eco_swap_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../core/utils/app_config.dart';
 import '../../../../cubit/theme_cubit.dart';
@@ -35,6 +36,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var phoneController = TextEditingController(text: "01096031628");
   var passController = TextEditingController(text: "123QWE1@#sdff");
   var rePassController = TextEditingController(text: "123QWE1@#sdff");
+  var teleUserNameController = TextEditingController();
+
 
   bool obscureText = true;
   bool obscureReText = true;
@@ -130,6 +133,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   prefixIcon: Icon(Icons.phone_outlined),
                                 ),
                                 SizedBox(height: height * 0.01),
+                                CustomTextWidget(text: "Telegram User Name"),
+                                CustomTextFormFeild(
+                                  controller: teleUserNameController,
+                                  onValidator: (text) {
+                                    return Validation.validateTelegramUsername(
+                                        text);
+                                  },
+                                  textInputType: TextInputType.text,
+                                  hintText: "enter your user name",
+                                  prefixIcon: SizedBox(width: width * 0.01,
+                                      child: Center(child: FaIcon(
+                                        FontAwesomeIcons.telegram,))),
+                                ),
+                                SizedBox(height: height * 0.01),
                                 CustomTextWidget(text: language.password),
                                 CustomTextFormFeild(
                                   controller: passController,
@@ -222,7 +239,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             emailController.text,
                                             passController.text,
                                             nameController.text,
-                                            phoneController.text, context);
+                                            phoneController.text,
+                                            teleUserNameController.text,
+                                            context);
                                       }
                                     },
                                     text: language.create_account,

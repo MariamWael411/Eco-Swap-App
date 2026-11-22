@@ -35,6 +35,13 @@ class FirebaseUtils {
       'name': newUser.fullName,
       'phone': newUser.mobilNumber,
       'email': newUser.email,
+      'user_name': newUser.userName
+    });
+  }
+
+  static Future<void> updateItemInUser(MyUserDto user) {
+    return getCollection().doc(user.id).update({
+      'item_shared': FieldValue.increment(1)
     });
   }
 

@@ -97,4 +97,23 @@ class Validation {
     }
     return null;
   }
+
+  static String? validateTelegramUsername(String? text) {
+    if (text == null || text.trim().isEmpty) {
+      return "Please Your User Name";
+    }
+
+    String username = text.trim();
+    if (username.startsWith('@')) {
+      username = username.substring(1);
+    }
+
+    final telegramRegex = RegExp(r'^[a-zA-Z0-9_]{5,32}$');
+
+    if (!telegramRegex.hasMatch(username)) {
+      return 'Enter a valid Telegram username';
+    }
+
+    return null;
+  }
 }

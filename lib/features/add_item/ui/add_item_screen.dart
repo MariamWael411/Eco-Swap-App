@@ -10,6 +10,7 @@ import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/add_item/ui/widgets/custom_condition_widget.dart';
 import 'package:eco_swap_app/features/add_item/ui/widgets/custom_pick_image_widget.dart';
+import 'package:eco_swap_app/features/auth/data/mapper/to_user.dart';
 import 'package:eco_swap_app/features/auth/ui/widget/custom_text_widget.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_app_bar.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
@@ -17,8 +18,8 @@ import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/utils/app_config.dart';
 import '../../../core/services/image_servcies.dart';
+import '../../../core/utils/app_config.dart';
 import '../../../core/utils/utils_dialog.dart';
 import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
@@ -53,6 +54,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
     var user = context
         .watch<MyUserCubit>()
         .state;
+
     UtilsDialog.context = context;
     UtilsDialog utilsDialog = UtilsDialog();
     Validation.context = context;
@@ -232,11 +234,19 @@ class _AddItemScreenState extends State<AddItemScreen> {
                         latitude: latitude,
                         longitude: longitude,
                         status: "Available",
+                        date: DateTime.now(),
                         userId: user.id,
                         imageUrl: imageUrl,
                       );
                       if (_formKry.currentState?.validate() == true) {
                         cubit.addItem(item);
+                        cubit.editUserItem(user.toMyUser());
+                        final updatedUser = user.copyWith(
+                          numberOfSharedItem: (user.numberOfSharedItem ?? 0) +
+                              1,
+                        );
+                        context.read<MyUserCubit>().changeUser(updatedUser);
+
                       }
                     },
                     text: language.publish_item,
