@@ -941,6 +941,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  motion_toast:
+    dependency: "direct main"
+    description:
+      name: motion_toast
+      sha256: "54fb04397c6856b08005fd9a0ea6d74e1b482025a0cc626fd48d94ee1c5092f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.16.0"
   nested:
     dependency: transitive
     description:
