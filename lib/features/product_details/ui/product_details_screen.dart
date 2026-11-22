@@ -18,6 +18,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/app_config.dart';
+import '../../../core/utils/utils_toast.dart';
 import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../add_item/domain/entity/item.dart';
@@ -123,7 +124,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         utilsDialog.showMessage(
                           context: context,
                           title: language.error,
-                          content: "Your request has not been accepted yet.",
+                          content: language.request_not_accepted_yet,
                           posAction: language.ok,
                           posActions: () {
                             Navigator.pop(context);
@@ -136,7 +137,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         utilsDialog.showMessage(
                           context: context,
                           title: language.error,
-                          content: "Telegram username is not available.",
+                          content: language.telegram_username_not_available,
                           posAction: language.ok,
                           posActions: () {
                             Navigator.pop(context);
@@ -173,16 +174,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     listenWhen: (previous, current) =>
                         current.requestStates.isSuccess &&
                         current.action == 'add_request',
-                    listener: (context, state) {
-                      utilsDialog.showMessage(
-                        context: context,
-                        content: "request added successfully",
-                        title: language.success,
-                        posAction: language.ok,
-                        posActions: () {
-                          Navigator.of(context).pop();
-                        },
-                      );
+                    listener: (context, state) async {
+                      UtilsToast.toastSuccess(
+                          language.success, language.item_added_successfully,
+                          context);
+                      await Future.delayed(const Duration(seconds: 3));
+                      if (!context.mounted) return;
+                      Navigator.of(context).pop();
                     },
 
                     child: Visibility(

@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../core/utils/app_config.dart';
+import '../../../core/utils/utils_toast.dart';
 import '../../../core/utils/validation.dart';
 import '../../../cubit/my_user_cubit.dart';
 import '../../../l10n/app_localizations.dart';
@@ -26,13 +27,32 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
-  var teleUserNameController = TextEditingController();
+  late var nameController;
+
+  late var phoneController;
+
+  late var teleUserNameController;
   final _formKey = GlobalKey<FormState>();
   var cubit = getIt<EditProfileCubit>();
+  late MyUserDto user;
+  bool isInitialized = false;
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!isInitialized) {
+      user = context
+          .watch<MyUserCubit>()
+          .state;
+      nameController = TextEditingController(text: user.fullName);
+      phoneController = TextEditingController(text: user.mobilNumber);
+      teleUserNameController = TextEditingController(text: user.userName);
+
+
+      isInitialized = true;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     UtilsDialog.context = context;
@@ -42,7 +62,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     var height = AppConfig.height(context);
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
-    var user = context.watch<MyUserCubit>().state;
+
     String userName = user.fullName
         .split(' ')
         .map((word) {
@@ -68,37 +88,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 key: _formKey,
                 child: BlocListener<EditProfileCubit, EditProfileStates>(
                   bloc: cubit,
-                  listener: (context, state) {
-                    if (state.editProfileStates.isLoading) {
-                      utilsDialog.showLoading(
-                        context: context,
-                        content: language.loading,
-                      );
-                    } else if (state.editProfileStates.isSuccess) {
-                      utilsDialog.hideDialog(context: context);
-                      utilsDialog.showMessage(
-                        context: context,
-                        content: "updated Successfully",
-                        title: language.success,
-                        posAction: language.ok,
-                        posActions: () {
-                          Navigator.of(context).pop();
-                        },
-
-                      );
-                    }
-                    else if (state.editProfileStates.isError) {
-                      utilsDialog.hideDialog(context: context);
-                      utilsDialog.showMessage(
-                        context: context,
-                        content:
-                        state.editProfileStates.errorMessage ??
-                            "",
-                        title: language.error,
-                        posAction: language.ok,
-
-                      );
-                    }
+                  listenWhen: (previous, current) =>
+                  current.editProfileStates.isSuccess,
+                  listener: (context, state) async {
+                    UtilsToast.toastSuccess(
+                        language.success, language.profile_updated_successfully,
+                        context);
+                    await Future.delayed(const Duration(seconds: 3));
+                    if (!context.mounted) return;
+                    Navigator.of(context).pop();
                   },
                   child: Column(
                     spacing: height * 0.01,
@@ -118,18 +116,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                       SizedBox(height: height * 0.01),
 
-                      CustomTextWidget(text: language.email_address),
 
-                      CustomTextFormFeild(
-                        controller: emailController,
-                        onValidator: (text) {
-                          return Validation.validateEmail(text);
-                        },
-                        textInputType: TextInputType.emailAddress,
-                        hintText: language.enter_your_email,
-                        prefixIcon: Icon(Icons.email_outlined),
-                      ),
-                      SizedBox(height: height * 0.01),
+
 
                       CustomTextWidget(text: language.phone_number),
 
@@ -143,14 +131,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         prefixIcon: Icon(Icons.phone_outlined),
                       ),
                       SizedBox(height: height * 0.01),
-                      CustomTextWidget(text: "Telegram User Name"),
+                      CustomTextWidget(text: language.telegram_user_name),
                       CustomTextFormFeild(
                         controller: teleUserNameController,
                         onValidator: (text) {
                           return Validation.validateTelegramUsername(text);
                         },
                         textInputType: TextInputType.text,
-                        hintText: "enter your user name",
+                        hintText: language.enter_your_user_name,
                         prefixIcon: SizedBox(width: width * 0.01, child: Center(
                             child: FaIcon(FontAwesomeIcons.telegram,))),
                       ),
@@ -162,7 +150,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           //todo update profile
                           if (_formKey.currentState?.validate() == true) {
                             var updatedUser = MyUserDto(id: user.id,
-                                email: emailController.text,
+                                numberOfSharedItem: user.numberOfSharedItem,
+                                email: user.email,
                                 fullName: nameController.text,
                                 mobilNumber: phoneController.text,
                                 userName: teleUserNameController.text);

@@ -3,11 +3,14 @@ import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_error_widget.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_shimmar.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_grid_view_item.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_home_container_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_home_top_section_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_list_view_item.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/home/widgets/custom_loading_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -154,12 +157,12 @@ class _HomeTabState extends State<HomeTab> {
                       (data.isEmpty)
                           ? SliverToBoxAdapter(
                         child: SizedBox(height: height * 0.3, child: Center(
-                          child: Text('No Item Found',
+                          child: Text(language.no_item_found,
                             style: theme.textTheme.headlineSmall,),)),)
                           : (searchController.text.isNotEmpty && search.isEmpty)
                           ? SliverToBoxAdapter(
                         child: SizedBox(height: height * 0.3, child: Center(
-                          child: Text('No Result Found',
+                          child: Text(language.no_result_found,
                             style: theme.textTheme.headlineSmall,),)),)
                           : SliverGrid(
                         delegate: SliverChildBuilderDelegate(
@@ -192,13 +195,33 @@ class _HomeTabState extends State<HomeTab> {
                     ],
 
                   );
-                } else if (state.itemStates.isLoading) {
-                  return SliverToBoxAdapter(
-                      child: Center(child: CircularProgressIndicator(),));
+                }
+                else if (state.itemStates.isLoading) {
+                  return Expanded(
+                    child: SliverGrid.builder(
+                      itemCount: 6,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: height * 0.02,
+                        crossAxisSpacing: width * 0.02,
+                        childAspectRatio: 17 / 20,
+                      ),
+                      itemBuilder: (context, index) =>
+                          CustomShimmar(
+                            child: CustomLoadingContainer(),
+                          ),
+                    ),
+                  );
                 } else {
-                  return SliverToBoxAdapter(child: Center(child: Text(
-                    state.itemStates.errorMessage!,
-                    style: TextStyle(fontSize: 30),),));
+                  return SliverToBoxAdapter(child: Center(
+                    child: CustomErrorWidget(
+                        text: state.itemStates.errorMessage ?? "", onClick: () {
+                      cubit.getItem();
+                      setState(() {
+
+                      });
+                    }),
+                  ));
                 }
               },
 

@@ -6,6 +6,10 @@ class UtilsToast {
     return MotionToast.success(
       title: Text(title),
       description: Text(desc),
+      toastDuration: Duration(seconds: 3),
+      animationCurve: Curves.decelerate,
+      enableAnimation: true,
+      toastAlignment: Alignment.center,
     ).show(context);
   }
 
@@ -13,6 +17,10 @@ class UtilsToast {
     return MotionToast.error(
       title: Text(title),
       description: Text(desc),
+      toastDuration: Duration(seconds: 3),
+      animationCurve: Curves.decelerate,
+      enableAnimation: true,
+      toastAlignment: Alignment.center,
     ).show(context);
   }
 }

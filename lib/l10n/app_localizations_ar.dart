@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -234,7 +235,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get see_all => 'عرض الكل';
 
   @override
-  String get items_available_today => '28 منتجًا متاحًا اليوم';
+  String get items_available_today => ' منتجًا متاحًا اليوم';
 
   @override
   String get fresh_finds_near_you => 'اكتشف منتجات جديدة بالقرب منك';
@@ -414,4 +415,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get rejected => 'مرفوض';
+
+  @override
+  String get item_added_successfully => 'تمت إضافة المنتج بنجاح';
+
+  @override
+  String get item_updated_successfully => 'تم تحديث المنتج بنجاح';
+
+  @override
+  String get item_deleted_successfully => 'تم حذف المنتج بنجاح';
+
+  @override
+  String get edit_item => 'تعديل المنتج';
+
+  @override
+  String get profile_updated_successfully => 'تم تحديث الملف الشخصي بنجاح';
+
+  @override
+  String get enter_your_user_name => 'أدخل اسم المستخدم';
+
+  @override
+  String get telegram_user_name => 'اسم مستخدم تيليجرام';
+
+  @override
+  String get enter_a_valid_telegram_username => 'أدخل اسم مستخدم تيليجرام صحيح';
+
+  @override
+  String get please_enter_your_user_name => 'من فضلك أدخل اسم المستخدم';
+
+  @override
+  String get request_added_successfully => 'تم إرسال الطلب بنجاح';
+
+  @override
+  String get telegram_username_not_available => 'اسم مستخدم تيليجرام غير متاح';
+
+  @override
+  String get request_not_accepted_yet => 'لم تتم الموافقة على طلبك بعد';
+
+  @override
+  String get no_request_received_yet => 'لم تستقبل أي طلبات حتى الآن';
+
+  @override
+  String get no_request_sent_yet => 'لم ترسل أي طلبات حتى الآن';
+
+  @override
+  String get request_rejected_successfully => 'تم رفض الطلب بنجاح';
+
+  @override
+  String get request_accepted_successfully => 'تم قبول الطلب بنجاح';
+
+  @override
+  String get user_not_found => 'المستخدم غير موجود';
+
+  @override
+  String get request_canceled_successfully => 'تم إلغاء الطلب بنجاح';
+
+  @override
+  String get no_result_found => 'لم يتم العثور على نتائج';
+
+  @override
+  String get no_item_found => 'لم يتم العثور على منتجات';
+
+  @override
+  String get try_again => 'حاول مرة أخرى';
+
+  @override
+  String get no_item_added_yet => 'لم تقم بإضافة أي منتجات حتى الآن';
 }

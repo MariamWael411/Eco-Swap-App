@@ -1,8 +1,12 @@
 import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_error_widget.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_shimmar.dart';
 import 'package:eco_swap_app/features/home/domain/entities/request.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/request/widgets/custom_received_sent_shimmar.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/widgets/custom_sent_item.dart';
+import 'package:eco_swap_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +30,8 @@ class _CustomSentWidgetState extends State<CustomSentWidget> {
   }
   @override
   Widget build(BuildContext context) {
+    var language = AppLocalizations.of(context)!;
+    var theme = Theme.of(context);
     return BlocBuilder<ItemCubit, ItemStates>(
       bloc: cubit,
       builder: (context, state) {
@@ -38,10 +44,9 @@ class _CustomSentWidgetState extends State<CustomSentWidget> {
           }).toList();
 
 
-          return sentItems.isEmpty ? Center(child: Text("No Request Added Yet",
-            style: TextStyle(fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.black),),) : ListView.builder(
+          return sentItems.isEmpty ? Center(
+            child: Text(language.no_request_sent_yet,
+              style: theme.textTheme.headlineSmall,),) : ListView.builder(
             itemCount: sentItems.length,
             itemBuilder: (context, index) {
               var item = sentItems[index];
@@ -54,12 +59,20 @@ class _CustomSentWidgetState extends State<CustomSentWidget> {
             },
           );
         } else if (state.itemStates.isError) {
-          return Center(child: Text(state.itemStates.errorMessage ?? "",
-            style: TextStyle(fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black),),);
+          return Center(
+            child: CustomErrorWidget(
+                text: state.itemStates.errorMessage!, onClick: () {
+              setState(() {
+                cubit.getItem();
+              });
+            }),
+          );
         } else {
-          return Center(child: CircularProgressIndicator(),);
+          return Expanded(child: CustomShimmar(
+              child: ListView.builder(
+                  itemCount: 6,
+                  itemBuilder: (context, index) => CustomReceivedSentShimmar()
+              )));
         }
       },
 

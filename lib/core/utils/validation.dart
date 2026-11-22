@@ -100,7 +100,7 @@ class Validation {
 
   static String? validateTelegramUsername(String? text) {
     if (text == null || text.trim().isEmpty) {
-      return "Please Your User Name";
+      return language.please_enter_your_user_name;
     }
 
     String username = text.trim();
@@ -111,7 +111,7 @@ class Validation {
     final telegramRegex = RegExp(r'^[a-zA-Z0-9_]{5,32}$');
 
     if (!telegramRegex.hasMatch(username)) {
-      return 'Enter a valid Telegram username';
+      return language.enter_a_valid_telegram_username;
     }
 
     return null;

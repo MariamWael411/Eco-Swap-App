@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -230,7 +231,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get see_all => 'See All';
 
   @override
-  String get items_available_today => '28 Items Available Today';
+  String get items_available_today => 'Items Available Today';
 
   @override
   String get fresh_finds_near_you => 'Fresh Finds Near You';
@@ -410,4 +411,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rejected => 'Rejected';
+
+  @override
+  String get item_added_successfully => 'Item added successfully';
+
+  @override
+  String get item_updated_successfully => 'Item updated successfully';
+
+  @override
+  String get item_deleted_successfully => 'Item deleted successfully';
+
+  @override
+  String get edit_item => 'Edit Item';
+
+  @override
+  String get profile_updated_successfully => 'Profile updated successfully';
+
+  @override
+  String get enter_your_user_name => 'Enter your username';
+
+  @override
+  String get telegram_user_name => 'Telegram Username';
+
+  @override
+  String get enter_a_valid_telegram_username =>
+      'Enter a valid Telegram username';
+
+  @override
+  String get please_enter_your_user_name => 'Please enter your username';
+
+  @override
+  String get request_added_successfully => 'Request added successfully';
+
+  @override
+  String get telegram_username_not_available =>
+      'Telegram username is not available';
+
+  @override
+  String get request_not_accepted_yet =>
+      'Your request has not been accepted yet';
+
+  @override
+  String get no_request_received_yet => 'No requests received yet';
+
+  @override
+  String get no_request_sent_yet => 'No requests sent yet';
+
+  @override
+  String get request_rejected_successfully => 'Request rejected successfully';
+
+  @override
+  String get request_accepted_successfully => 'Request accepted successfully';
+
+  @override
+  String get user_not_found => 'User not found';
+
+  @override
+  String get request_canceled_successfully => 'Request canceled successfully';
+
+  @override
+  String get no_result_found => 'No results found';
+
+  @override
+  String get no_item_found => 'No items found';
+
+  @override
+  String get try_again => 'Try again';
+
+  @override
+  String get no_item_added_yet => 'No items added yet';
 }

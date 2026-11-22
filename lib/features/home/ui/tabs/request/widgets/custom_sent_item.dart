@@ -12,6 +12,7 @@ import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/utils_dialog.dart';
+import '../../../../../../core/utils/utils_toast.dart';
 import '../../../../../../cubit/my_user_cubit.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -87,7 +88,7 @@ class CustomSentItem extends StatelessWidget {
                   children: [
                     Text(userName, style: theme.textTheme.displaySmall),
                     Text(
-                      "Requested ${timeago.format(
+                      "${language.requested} ${timeago.format(
                           request.createdAt)}",
                       style: theme.textTheme.displayMedium,
                     ),
@@ -180,19 +181,11 @@ class CustomSentItem extends StatelessWidget {
                     current.requestStates.isSuccess &&
                         current.action == 'cancel',
                     listener: (context, state) {
-                      utilsDialog.showMessage(
-                        context: context,
-                        content: "request canceled successfully",
-                        title: language.success,
-                        posAction: language.ok,
-                        posActions: () {
-
-                        },
-                      );
+                      UtilsToast.toastSuccess(language.success,
+                          language.request_canceled_successfully, context);
                     },
                     child: CustomElevatedButton(
                       onClick: () {
-                        //cubit.deleteRequest(request);
                         var updatedRequest = request.copyWith(
                             statusIndex: 2
                         );

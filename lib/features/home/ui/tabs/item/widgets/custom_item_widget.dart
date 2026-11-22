@@ -3,7 +3,6 @@ import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/core/utils/app_assets.dart';
 import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/core/utils/app_styles.dart';
-import 'package:eco_swap_app/core/utils/utils_dialog.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/model/category.dart';
@@ -14,24 +13,27 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
+import '../../../../../../core/utils/utils_toast.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
 import '../../../../../add_item/domain/entity/item.dart';
 import '../../../../../common/widgets/custom_elevated_button.dart';
 
-class CustomItemWidget extends StatelessWidget {
+class CustomItemWidget extends StatefulWidget {
   Item item;
 
   CustomItemWidget({super.key, required this.item});
 
+  @override
+  State<CustomItemWidget> createState() => _CustomItemWidgetState();
+}
+
+class _CustomItemWidgetState extends State<CustomItemWidget> {
   var cubit = getIt<ItemCubit>();
 
   @override
   Widget build(BuildContext context) {
     Category category = Category();
-    UtilsDialog.context = context;
-    UtilsDialog utilsDialog = UtilsDialog();
-
     category.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
@@ -43,7 +45,7 @@ class CustomItemWidget extends StatelessWidget {
       language.good,
       language.well_used,
     ];
-    String text = AppModel.itemStatus(context)[item.statusIndex];
+    String text = AppModel.itemStatus(context)[widget.item.statusIndex];
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: height * 0.02,
@@ -72,7 +74,7 @@ class CustomItemWidget extends StatelessWidget {
               fit: BoxFit.fill,
               height: height * 0.16,
               width: width * 0.3,
-              imageUrl: item.imageUrl,
+              imageUrl: widget.item.imageUrl,
               placeholder: (context, url) =>
                   Center(
                     child: CircularProgressIndicator(
@@ -120,9 +122,11 @@ class CustomItemWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: height * 0.01,
                     children: [
-                      Text(item.title, style: theme.textTheme.displaySmall,),
-                      Text("${category.catogeries()[item.categoryIndex + 1]
-                          .name} · ${conditions[item.conditionIndex]}",
+                      Text(widget.item.title,
+                        style: theme.textTheme.displaySmall,),
+                      Text(
+                        "${category.catogeries()[widget.item.categoryIndex + 1]
+                            .name} · ${conditions[widget.item.conditionIndex]}",
                         style: theme.textTheme.displayMedium,)
                     ]
                 )
@@ -137,7 +141,7 @@ class CustomItemWidget extends StatelessWidget {
                       child: CustomElevatedButton(
                         onClick: () {
                           Navigator.of(context).pushNamed(
-                              AppRoute.editItem, arguments: item);
+                              AppRoute.editItem, arguments: widget.item);
                         },
                         backgroundColor: isDark
                             ? AppColors.containerColor
@@ -166,32 +170,17 @@ class CustomItemWidget extends StatelessWidget {
                     ),
                     BlocListener<ItemCubit, ItemStates>(
                       bloc: cubit,
-                      listener: (context, state) {
-                        if (state.itemStates.isError) {
-                          utilsDialog.hideDialog(context: context);
-                          utilsDialog.showMessage(
-                            context: context,
-                            content: state.itemStates.errorMessage ?? "",
-                            title: language.error,
-                            posAction: language.ok,
-                          );
-                        } else if (state.itemStates.isSuccess) {
-                          utilsDialog.hideDialog(context: context);
-                          utilsDialog.showMessage(
-                            context: context,
-                            content: "item deleted successfully",
-                            title: language.success,
-                            posAction: language.ok,
-                            posActions: () {
-                              Navigator.of(context).pop();
-                            },
-                          );
-                        }
+                      listenWhen: (previous, current) {
+                        return true;
+                      },
+                      listener: (context, state) async {
+                        UtilsToast.toastSuccess(language.success,
+                            language.item_deleted_successfully, context);
                       },
                       child: InkWell(
                         onTap: () {
                           //todo delete item
-                          cubit.deleteItem(item);
+                          cubit.deleteItem(widget.item);
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(

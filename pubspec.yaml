@@ -59,6 +59,8 @@ dependencies:
   timeago: ^3.7.1
   url_launcher: ^6.3.3
   motion_toast: ^2.16.0
+  shimmer: ^4.0.0
+  material_ui: ^1.2.0
 
 
 

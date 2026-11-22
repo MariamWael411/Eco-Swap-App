@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_swap_app/core/utils/firebase_utils.dart';
+import 'package:eco_swap_app/core/utils/utils_toast.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_name_widget.dart';
@@ -69,7 +70,8 @@ class _CustomReceivedItemState extends State<CustomReceivedItem> {
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
-          return Text('User not found');
+          return Center(child: Text(
+            language.user_not_found, style: theme.textTheme.headlineSmall,));
         }
 
         MyUserDto user = snapshot.data;
@@ -78,24 +80,16 @@ class _CustomReceivedItemState extends State<CustomReceivedItem> {
           listener: (BuildContext context, RequestStates state) {
             if (state.requestStates.isSuccess &&
                 state.action == 'accept') {
-              utilsDialog.showMessage(
-                context: context,
-                content: "request accepted successfully",
-                title: language.success,
-                posAction: language.ok,
-                posActions: () {},
-              );
+              UtilsToast.toastSuccess(
+                  language.success, language.request_accepted_successfully,
+                  context);
             }
 
             if (state.requestStates.isSuccess &&
                 state.action == 'reject') {
-              utilsDialog.showMessage(
-                context: context,
-                content: " request rejected successfully",
-                title: language.success,
-                posAction: language.ok,
-                posActions: () {},
-              );
+              UtilsToast.toastSuccess(
+                  language.success, language.request_rejected_successfully,
+                  context);
             }
           },
           child: Container(
@@ -141,7 +135,7 @@ class _CustomReceivedItemState extends State<CustomReceivedItem> {
                           Text(user.fullName, style: theme.textTheme
                               .displaySmall),
                           Text(
-                            "Requested ${timeago.format(
+                            "${language.rejected} ${timeago.format(
                                 widget.request.createdAt)}",
                             style: theme.textTheme.displayMedium,
                           ),

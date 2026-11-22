@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/core/services/cloudinary_service.dart';
 import 'package:eco_swap_app/core/services/location_service.dart';
+import 'package:eco_swap_app/core/utils/utils_toast.dart';
 import 'package:eco_swap_app/core/utils/validation.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
@@ -81,32 +82,18 @@ class _AddItemScreenState extends State<AddItemScreen> {
             key: _formKry,
             child: BlocListener<ItemCubit, ItemStates>(
               bloc: cubit,
-              listener: (context, state) {
-                if (state.itemStates.isLoading) {
-                  utilsDialog.showLoading(
-                    context: context,
-                    content: language.loading,
-                  );
-                } else if (state.itemStates.isError) {
-                  utilsDialog.hideDialog(context: context);
-                  utilsDialog.showMessage(
-                    context: context,
-                    content: state.itemStates.errorMessage ?? "",
-                    title: language.error,
-                    posAction: language.ok,
-                  );
-                } else if (state.itemStates.isSuccess) {
-                  utilsDialog.hideDialog(context: context);
-                  utilsDialog.showMessage(
-                    context: context,
-                    content: "item added successfully",
-                    title: language.success,
-                    posAction: language.ok,
-                    posActions: () {
-                      Navigator.of(context).pop();
-                    },
-                  );
-                }
+              listenWhen: (previous, current) =>
+              current.itemStates.isSuccess &&
+                  current.action == 'add_item',
+              listener: (context, state) async {
+                UtilsToast.toastSuccess(
+                    language.success, language.item_added_successfully,
+                    context);
+                await Future.delayed(const Duration(seconds: 3));
+                if (!context.mounted) return;
+                Navigator.of(context).pop();
+
+
               },
               child: Column(
                 spacing: height * 0.01,

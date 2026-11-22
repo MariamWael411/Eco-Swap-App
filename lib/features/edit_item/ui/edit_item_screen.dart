@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/core/services/cloudinary_service.dart';
@@ -18,8 +19,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/services/image_servcies.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_config.dart';
 import '../../../core/utils/utils_dialog.dart';
+import '../../../core/utils/utils_toast.dart';
 import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../add_item/domain/entity/item.dart';
@@ -34,10 +37,12 @@ class EditItemScreen extends StatefulWidget {
 }
 
 class _EditItemScreenState extends State<EditItemScreen> {
-  int currentIndex = 0;
-  int conditionIndex = 0;
-  var titleController = TextEditingController();
-  var descriptionController = TextEditingController();
+  late int currentIndex;
+
+  late int conditionIndex;
+
+  late var titleController;
+  late var descriptionController;
   final _formKry = GlobalKey<FormState>();
   final _imageService = ImageService();
   File? selectedImage;
@@ -46,10 +51,33 @@ class _EditItemScreenState extends State<EditItemScreen> {
   var cubit = getIt<ItemCubit>();
   var imageUrl = "";
   late Item args;
+  bool isInitialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!isInitialized) {
+      args = ModalRoute
+          .of(context)!
+          .settings
+          .arguments as Item;
+
+      currentIndex = args.categoryIndex;
+      conditionIndex = args.conditionIndex;
+
+      titleController = TextEditingController(text: args.title);
+      descriptionController = TextEditingController(
+        text: args.description,
+      );
+
+      isInitialized = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context)?.settings.arguments as Item;
+
     Category category = Category();
     category.context = context;
     var user = context.watch<MyUserCubit>().state;
@@ -67,7 +95,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
       language.well_used,
     ];
     return Scaffold(
-      appBar: customAppBar(theme, language, context, "Edit Item"),
+      appBar: customAppBar(theme, language, context, language.edit_item),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: width * 0.04,
@@ -77,33 +105,17 @@ class _EditItemScreenState extends State<EditItemScreen> {
           child: Form(
             key: _formKry,
             child: BlocListener<ItemCubit, ItemStates>(
+              listenWhen: (previous, current) =>
+              current.itemStates.isSuccess &&
+                  current.action == 'edit_item',
               bloc: cubit,
-              listener: (context, state) {
-                if (state.itemStates.isLoading) {
-                  utilsDialog.showLoading(
-                    context: context,
-                    content: language.loading,
-                  );
-                } else if (state.itemStates.isError) {
-                  utilsDialog.hideDialog(context: context);
-                  utilsDialog.showMessage(
-                    context: context,
-                    content: state.itemStates.errorMessage ?? "",
-                    title: language.error,
-                    posAction: language.ok,
-                  );
-                } else if (state.itemStates.isSuccess) {
-                  utilsDialog.hideDialog(context: context);
-                  utilsDialog.showMessage(
-                    context: context,
-                    content: "item updated successfully",
-                    title: language.success,
-                    posAction: language.ok,
-                    posActions: () {
-                      Navigator.of(context).pop();
-                    },
-                  );
-                }
+              listener: (context, state) async {
+                UtilsToast.toastSuccess(
+                    language.success, language.item_updated_successfully,
+                    context);
+                await Future.delayed(const Duration(seconds: 3));
+                if (!context.mounted) return;
+                Navigator.of(context).pop();
               },
               child: Column(
                 spacing: height * 0.01,
@@ -122,7 +134,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                     ),
                   ),
                   SizedBox(height: height * 0.01),
-                  (selectedImage == null)
+                  (args.imageUrl.isEmpty)
                       ? DottedBorder(
                           options: RoundedRectDottedBorderOptions(
                             strokeWidth: 1.5,
@@ -144,15 +156,42 @@ class _EditItemScreenState extends State<EditItemScreen> {
                             child: CustomPickImageWidget(),
                           ),
                         )
-                      : ClipRRect(
-                          borderRadius: BorderRadiusGeometry.circular(20),
-                          child: Image.file(
-                            selectedImage!,
-                            width: double.infinity,
-                            height: height * 0.25,
-                            fit: BoxFit.fill,
+                      : (selectedImage != null) ? ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(20),
+                    child: Image.file(
+                      selectedImage!,
+                      width: double.infinity,
+                      height: height * 0.25,
+                      fit: BoxFit.fill,
+                    ),
+                  ) : InkWell(
+                    onTap: () async {
+                      final file = await _imageService.pickImage(
+                        context,
+                      );
+                      if (file != null)
+                        setState(() => selectedImage = file);
+                      imageUrl = await cloudinaryService.uploadImage(
+                        selectedImage!,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(20),
+                      child: CachedNetworkImage(
+                        width: double.infinity,
+                        height: height * 0.25,
+                        fit: BoxFit.fill,
+                        imageUrl: args.imageUrl,
+                        placeholder: (context, url) =>
+                            Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.greenColor,
+                              ),
+                            ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                           ),
-                        ),
+                  ),
                   SizedBox(height: height * 0.01),
                   CustomTextWidget(text: language.item_title),
                   CustomTextFormFeild(
