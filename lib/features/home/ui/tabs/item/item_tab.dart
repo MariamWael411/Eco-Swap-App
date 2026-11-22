@@ -1,5 +1,4 @@
 import 'package:eco_swap_app/core/di/di.dart';
-import 'package:eco_swap_app/core/utils/app_route.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
@@ -79,13 +78,7 @@ class _ItemTabState extends State<ItemTab> {
                       child: ListView.builder(
                         itemCount: myItems.length,
                         itemBuilder: (context, index) {
-                          return InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    AppRoute.productDetails,
-                                    arguments: myItems[index]);
-                              }
-                              , child: CustomItemWidget(item: myItems[index],));
+                          return CustomItemWidget(item: myItems[index],);
                         },
                       ),
                     ),

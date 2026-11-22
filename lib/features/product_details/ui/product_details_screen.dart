@@ -1,3 +1,4 @@
+import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/home/model/category.dart';
 import 'package:eco_swap_app/features/product_details/ui/widgets/custom_catogery_widget.dart';
@@ -24,6 +25,7 @@ class ProductDetailsScreen extends StatelessWidget {
     category.context = context;
     args = ModalRoute.of(context)?.settings.arguments as Item;
     String time = timeago.format(args.date);
+    var user = context.watch<MyUserCubit>().state;
 
     var width = AppConfig.width(context);
 
@@ -93,11 +95,14 @@ class ProductDetailsScreen extends StatelessWidget {
                   CustomProductContainer(),
                   SizedBox(height: height * 0.01),
 
-                  CustomElevatedButton(
-                    onClick: () {
-                      //todo send request
-                    },
-                    text: language.request_this_item,
+                  Visibility(
+                    visible: user.id != args.userId,
+                    child: CustomElevatedButton(
+                      onClick: () {
+                        //todo send request
+                      },
+                      text: language.request_this_item,
+                    ),
                   ),
                   SizedBox(height: height * 0.015),
                 ],
