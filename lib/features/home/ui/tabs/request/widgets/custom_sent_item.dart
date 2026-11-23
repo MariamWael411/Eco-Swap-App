@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/features/add_item/domain/entity/item.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_cahced_network.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_cubit.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_states.dart';
 import 'package:eco_swap_app/features/network/model/app_model.dart';
@@ -12,6 +12,7 @@ import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_config.dart';
 import '../../../../../../core/utils/app_styles.dart';
 import '../../../../../../core/utils/utils_dialog.dart';
+import '../../../../../../core/utils/utils_toast.dart';
 import '../../../../../../cubit/my_user_cubit.dart';
 import '../../../../../../cubit/theme_cubit.dart';
 import '../../../../../../l10n/app_localizations.dart';
@@ -87,7 +88,7 @@ class CustomSentItem extends StatelessWidget {
                   children: [
                     Text(userName, style: theme.textTheme.displaySmall),
                     Text(
-                      "Requested ${timeago.format(
+                      "${language.requested} ${timeago.format(
                           request.createdAt)}",
                       style: theme.textTheme.displayMedium,
                     ),
@@ -136,19 +137,11 @@ class CustomSentItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadiusGeometry.circular(9),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    height: height * 0.06,
-                    width: width * 0.13,
+                  child: CustomCahcedNetwork(
                     imageUrl: item.imageUrl,
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.greenColor,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
+                    imageHieght: height * 0.06,
+                    imageWidth: width * 0.13,
+                  )),
                 Expanded(
                   child: Column(
                     spacing: height * 0.01,
@@ -180,19 +173,11 @@ class CustomSentItem extends StatelessWidget {
                     current.requestStates.isSuccess &&
                         current.action == 'cancel',
                     listener: (context, state) {
-                      utilsDialog.showMessage(
-                        context: context,
-                        content: "request canceled successfully",
-                        title: language.success,
-                        posAction: language.ok,
-                        posActions: () {
-
-                        },
-                      );
+                      UtilsToast.toastSuccess(language.success,
+                          language.request_canceled_successfully, context);
                     },
                     child: CustomElevatedButton(
                       onClick: () {
-                        //cubit.deleteRequest(request);
                         var updatedRequest = request.copyWith(
                             statusIndex: 2
                         );

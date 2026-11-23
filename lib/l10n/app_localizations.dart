@@ -524,7 +524,7 @@ abstract class AppLocalizations {
   /// No description provided for @items_available_today.
   ///
   /// In en, this message translates to:
-  /// **'28 Items Available Today'**
+  /// **'Items Available Today'**
   String get items_available_today;
 
   /// No description provided for @fresh_finds_near_you.
@@ -874,6 +874,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rejected'**
   String get rejected;
+
+  /// No description provided for @item_added_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Item added successfully'**
+  String get item_added_successfully;
+
+  /// No description provided for @item_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Item updated successfully'**
+  String get item_updated_successfully;
+
+  /// No description provided for @item_deleted_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Item deleted successfully'**
+  String get item_deleted_successfully;
+
+  /// No description provided for @edit_item.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Item'**
+  String get edit_item;
+
+  /// No description provided for @profile_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated successfully'**
+  String get profile_updated_successfully;
+
+  /// No description provided for @enter_your_user_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your username'**
+  String get enter_your_user_name;
+
+  /// No description provided for @telegram_user_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Telegram Username'**
+  String get telegram_user_name;
+
+  /// No description provided for @enter_a_valid_telegram_username.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid Telegram username'**
+  String get enter_a_valid_telegram_username;
+
+  /// No description provided for @please_enter_your_user_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your username'**
+  String get please_enter_your_user_name;
+
+  /// No description provided for @request_added_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Request added successfully'**
+  String get request_added_successfully;
+
+  /// No description provided for @telegram_username_not_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Telegram username is not available'**
+  String get telegram_username_not_available;
+
+  /// No description provided for @request_not_accepted_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Your request has not been accepted yet'**
+  String get request_not_accepted_yet;
+
+  /// No description provided for @no_request_received_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests received yet'**
+  String get no_request_received_yet;
+
+  /// No description provided for @no_request_sent_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests sent yet'**
+  String get no_request_sent_yet;
+
+  /// No description provided for @request_rejected_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Request rejected successfully'**
+  String get request_rejected_successfully;
+
+  /// No description provided for @request_accepted_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Request accepted successfully'**
+  String get request_accepted_successfully;
+
+  /// No description provided for @user_not_found.
+  ///
+  /// In en, this message translates to:
+  /// **'User not found'**
+  String get user_not_found;
+
+  /// No description provided for @request_canceled_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Request canceled successfully'**
+  String get request_canceled_successfully;
+
+  /// No description provided for @no_result_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get no_result_found;
+
+  /// No description provided for @no_item_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No items found'**
+  String get no_item_found;
+
+  /// No description provided for @try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get try_again;
+
+  /// No description provided for @no_item_added_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No items added yet'**
+  String get no_item_added_yet;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

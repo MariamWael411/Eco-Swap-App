@@ -9,6 +9,7 @@ import 'package:eco_swap_app/features/add_item/domain/use_cases/get_item_use_cas
 import 'package:eco_swap_app/features/add_item/domain/use_cases/update_user_item_use_case.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/auth/domain/entities/my_user.dart';
+import 'package:eco_swap_app/features/home/domain/entities/request.dart';
 import 'package:eco_swap_app/features/utils/resource.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -40,12 +41,7 @@ class ItemCubit extends Cubit<ItemStates> {
 
   Future<void> addItem(Item item) async {
     try {
-      emit(
-        ItemStates(
-          itemStates: Resource.loading(),
-          currentPosition: state.currentPosition,
-        ),
-      );
+
 
       await _addItemUseCase(item);
 
@@ -53,6 +49,7 @@ class ItemCubit extends Cubit<ItemStates> {
         ItemStates(
           itemStates: Resource.success(data: null),
           currentPosition: state.currentPosition,
+            action: 'add_item'
         ),
       );
     } catch (e) {
@@ -60,6 +57,7 @@ class ItemCubit extends Cubit<ItemStates> {
         ItemStates(
           itemStates: Resource.error(errorMessage: e.toString()),
           currentPosition: state.currentPosition,
+            action: 'add_item'
         ),
       );
     }
@@ -72,11 +70,12 @@ class ItemCubit extends Cubit<ItemStates> {
         currentPosition: state.currentPosition,
       ),
     );
-
+    await Future.delayed(const Duration(milliseconds: 500));
     await _itemsSub?.cancel();
 
     _itemsSub = _getItemUseCase().listen(
       (items) {
+
         emit(
           ItemStates(
             itemStates: Resource.success(data: items),
@@ -104,7 +103,7 @@ class ItemCubit extends Cubit<ItemStates> {
         currentPosition: state.currentPosition,
       ),
     );
-
+    await Future.delayed(const Duration(milliseconds: 500));
     await _itemsSub?.cancel();
 
     _itemsSub = _getFilterItemUseCase(selectedIndex).listen(
@@ -150,28 +149,51 @@ class ItemCubit extends Cubit<ItemStates> {
     try {
       emit(ItemStates(itemStates: Resource.loading()));
       await _editItemUseCase(item);
-      emit(ItemStates(itemStates: Resource.success(data: null)));
+      emit(ItemStates(
+        itemStates: Resource.success(data: null), action: 'edit_item',));
     } catch (e) {
-      emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString())));
+      emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString()),
+        action: 'edit_item',));
     }
   }
-
   Future<void> deleteItem(Item item) async {
     try {
-      emit(ItemStates(itemStates: Resource.loading()));
+      emit(ItemStates(
+        itemStates: Resource.loading(),
+        action: 'delete_item',
+      ));
+
       await _deleteItemUseCase(item);
-      emit(ItemStates(itemStates: Resource.success(data: null)));
+
+      emit(ItemStates(
+        itemStates: Resource.success(data: null),
+        action: 'delete_item',
+      ));
+      debugPrint('Action after success: ${state.action}');
+      debugPrint('Success after success: ${state.itemStates.isSuccess}');
     } catch (e) {
-      emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString())));
+      debugPrint('DELETE ERROR: $e');
+
+      emit(ItemStates(
+        itemStates: Resource.error(errorMessage: e.toString()),
+        action: 'delete_item',
+      ));
     }
   }
 
   Future<void> editUserItem(MyUser user) async {
     try {
       await _updateUserItemUseCase(user);
-      emit(ItemStates(itemStates: Resource.success(data: null)));
+      emit(ItemStates(
+          itemStates: Resource.success(data: null), action: 'edit_user'));
     } catch (e) {
-      emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString())));
+      emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString()),
+          action: 'edit_user'));
     }
+  }
+
+  int getNumberOfRequest(List<Request> requests, String itemId) {
+    var filterRequest = requests.where((element) => element.itemId == itemId,);
+    return filterRequest.length;
   }
 }

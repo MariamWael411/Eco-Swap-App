@@ -2,7 +2,10 @@ import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_error_widget.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_shimmar.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/item/widgets/custom_item_widget.dart';
+import 'package:eco_swap_app/features/home/ui/tabs/item/widgets/custom_shimmar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,7 +57,10 @@ class _ItemTabState extends State<ItemTab> {
             bloc: cubit,
             builder: (context, state) {
               if (state.itemStates.isLoading) {
-                return Center(child: CircularProgressIndicator(),);
+                return Expanded(child: CustomShimmar(child: ListView.builder(
+                  itemCount: 6,
+                  itemBuilder: (context, index) => CustomShimmarItem(),
+                )));
               }
               else if (state.itemStates.isSuccess) {
                 var data = state.itemStates.data!;
@@ -66,7 +72,8 @@ class _ItemTabState extends State<ItemTab> {
                     .length;
                 return myItems.isEmpty
                     ? Expanded(child: Center(child: Text(
-                  "No Item Added Yet", style: theme.textTheme.headlineSmall,),))
+                  language.no_item_added_yet,
+                  style: theme.textTheme.headlineSmall,),))
                     : Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -86,8 +93,14 @@ class _ItemTabState extends State<ItemTab> {
                   ),
                 );
               } else {
-                return Center(child: Text(state.itemStates.errorMessage!,
-                  style: TextStyle(fontSize: 30),),);
+                return Center(
+                  child: CustomErrorWidget(
+                      text: state.itemStates.errorMessage!, onClick: () {
+                    setState(() {
+                      cubit.getItem();
+                    });
+                  }),
+                );
               }
             },
           )

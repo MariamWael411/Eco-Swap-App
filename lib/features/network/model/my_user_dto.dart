@@ -34,9 +34,10 @@ class MyUserDto {
         fullName: data['name'],
         mobilNumber: data['phone'],
       userName: data['user_name'],
-      numberOfSharedItem: data['item_shared']
+      numberOfSharedItem: data['item_shared'] ?? 0
 
       );
+
 
   MyUserDto copyWith({
     String? id,
