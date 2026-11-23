@@ -56,4 +56,6 @@ static const String logoLight ="${_path}logo_light.png";
 
   //product details icon
   static const String lock = "${_path}lock.svg";
+  static const String splash = "${_path}ecoswap-animation-light.json";
+  static const String splashDark = "${_path}ecoswap-animation-dark.json";
 }

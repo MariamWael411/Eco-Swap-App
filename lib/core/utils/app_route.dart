@@ -8,4 +8,5 @@ class AppRoute {
   static const editProfile = "edit_profile_screen";
   static const productDetails = "product_details_screen";
   static const editItem = "edit_item_screen";
+  static const animatedSplash = "animated_splash";
 }

@@ -5,6 +5,7 @@ import 'package:eco_swap_app/cubit/language_cubit.dart';
 import 'package:eco_swap_app/cubit/my_user_cubit.dart';
 import 'package:eco_swap_app/cubit/theme_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/add_item_screen.dart';
+import 'package:eco_swap_app/features/animated_splash/custom__animated_splash_screen.dart';
 import 'package:eco_swap_app/features/edit_item/ui/edit_item_screen.dart';
 import 'package:eco_swap_app/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:eco_swap_app/features/home/ui/home_screen.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 localizationsDelegates: AppLocalizations.localizationsDelegates,
                 supportedLocales: AppLocalizations.supportedLocales,
-                initialRoute: AppRoute.onBoarding,
+                initialRoute: AppRoute.animatedSplash,
                 routes: {
                   AppRoute.home: (context) => HomeScreen(),
                   AppRoute.onBoarding: (context) => OnboardingScreen(),
@@ -66,7 +67,9 @@ class MyApp extends StatelessWidget {
                   AppRoute.addItem: (context) => AddItemScreen(),
                   AppRoute.editProfile: (context) => EditProfileScreen(),
                   AppRoute.productDetails: (context) => ProductDetailsScreen(),
-                  AppRoute.editItem: (context) => EditItemScreen()
+                  AppRoute.editItem: (context) => EditItemScreen(),
+                  AppRoute.animatedSplash: (context) =>
+                      CustomAnimatedSplashScreen()
 
                 },
               );
