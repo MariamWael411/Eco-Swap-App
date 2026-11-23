@@ -21,9 +21,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/services/image_servcies.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_config.dart';
-import '../../../core/utils/utils_dialog.dart';
 import '../../../core/utils/utils_toast.dart';
-import '../../../cubit/theme_cubit.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../add_item/domain/entity/item.dart';
 import '../../home/ui/tabs/home/model/category.dart';
@@ -81,12 +79,9 @@ class _EditItemScreenState extends State<EditItemScreen> {
     Category category = Category();
     category.context = context;
     var user = context.watch<MyUserCubit>().state;
-    UtilsDialog.context = context;
-    UtilsDialog utilsDialog = UtilsDialog();
     Validation.context = context;
     var width = AppConfig.width(context);
     var height = AppConfig.height(context);
-    final isDark = context.read<ThemeCubit>().isDark();
     var theme = Theme.of(context);
     var language = AppLocalizations.of(context)!;
     List<String> conditions = [
@@ -113,9 +108,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 UtilsToast.toastSuccess(
                     language.success, language.item_updated_successfully,
                     context);
-                await Future.delayed(const Duration(seconds: 3));
-                if (!context.mounted) return;
-                Navigator.of(context).pop();
+
               },
               child: Column(
                 spacing: height * 0.01,
@@ -258,30 +251,32 @@ class _EditItemScreenState extends State<EditItemScreen> {
                   CustomElevatedButton(
                     onClick: () async {
                       //todo edit item to firebase
-                      final position = await locationService
-                          .getCurrentLocation();
 
-                      final latitude = position.latitude;
-                      final longitude = position.longitude;
-
-                      Item item = Item(
-                        statusIndex: args.statusIndex,
-                        itemId: args.itemId!,
-                        categoryIndex: currentIndex,
-                        conditionIndex: conditionIndex,
-                        description: descriptionController.text,
-                        title: titleController.text,
-                        latitude: latitude,
-                        longitude: longitude,
-                        userId: user.id,
-                        date: DateTime.now(),
-                        imageUrl: imageUrl,
-                      );
                       if (_formKry.currentState?.validate() == true) {
-                        cubit.editItem(item);
+                        final position = await locationService
+                            .getCurrentLocation();
+
+                        final latitude = position.latitude;
+                        final longitude = position.longitude;
+
+                        Item item = Item(
+                          statusIndex: args.statusIndex,
+                          itemId: args.itemId!,
+                          categoryIndex: currentIndex,
+                          conditionIndex: conditionIndex,
+                          description: descriptionController.text,
+                          title: titleController.text,
+                          latitude: latitude,
+                          longitude: longitude,
+                          userId: user.id,
+                          date: DateTime.now(),
+                          imageUrl: imageUrl,
+                        );
+                        await cubit.editItem(item);
+                        Navigator.of(context).pop();
                       }
                     },
-                    text: "Edit Item",
+                    text: language.edit_item,
                   ),
                   SizedBox(height: height * 0.01),
                 ],

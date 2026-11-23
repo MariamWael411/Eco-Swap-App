@@ -9,6 +9,7 @@ import 'package:eco_swap_app/features/add_item/domain/use_cases/get_item_use_cas
 import 'package:eco_swap_app/features/add_item/domain/use_cases/update_user_item_use_case.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
 import 'package:eco_swap_app/features/auth/domain/entities/my_user.dart';
+import 'package:eco_swap_app/features/home/domain/entities/request.dart';
 import 'package:eco_swap_app/features/utils/resource.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -189,5 +190,10 @@ class ItemCubit extends Cubit<ItemStates> {
       emit(ItemStates(itemStates: Resource.error(errorMessage: e.toString()),
           action: 'edit_user'));
     }
+  }
+
+  int getNumberOfRequest(List<Request> requests, String itemId) {
+    var filterRequest = requests.where((element) => element.itemId == itemId,);
+    return filterRequest.length;
   }
 }

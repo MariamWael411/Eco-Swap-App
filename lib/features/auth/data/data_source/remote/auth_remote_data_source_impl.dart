@@ -42,48 +42,55 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
+
   Future<MyUserDto> loginWithGoogle(BuildContext context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn.instance;
-    // Initialize first
+
     await googleSignIn.initialize(
       serverClientId:
-          '1033538857950-us1loq6i51vf0dght6f30mbti9ud0uj9.apps.googleusercontent.com',
+      '1033538857950-us1loq6i51vf0dght6f30mbti9ud0uj9.apps.googleusercontent.com',
     );
 
-    // Trigger the authentication flow
-    final GoogleSignInAccount googleUser = await googleSignIn.authenticate();
+    final GoogleSignInAccount googleUser =
+    await googleSignIn.authenticate();
 
-    // Obtain the auth details
-    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth =
+        googleUser.authentication;
 
-    // Create a new credential
     final credential = GoogleAuthProvider.credential(
       idToken: googleAuth.idToken,
     );
-    final userCredential = await FirebaseAuth.instance.signInWithCredential(
-      credential,
-    );
-    MyUserDto myUserDto = MyUserDto(
-      userName: "",
-      id: userCredential.user!.uid,
-      email: userCredential.user!.email ?? "",
-      fullName: userCredential.user!.displayName ?? "",
-      mobilNumber: userCredential.user!.phoneNumber ?? "",
-    );
-    if (myUserDto.id == googleUser.id) {
-      final userSubscription = FirebaseUtils
-          .getUserFromFireStore(googleUser.id)
-          .listen((user) {
-        if (user != null) {
-          context.read<MyUserCubit>().changeUser(user);
-        }
-      });
-    } else {
-      FirebaseUtils.addUserInFireStore(myUserDto);
-      context.read<MyUserCubit>().changeUser(myUserDto);
+
+    final userCredential =
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    final firebaseUser = userCredential.user!;
+
+    final existingUser = await FirebaseUtils
+        .getUserFromFireStore(firebaseUser.uid)
+        .first;
+
+    if (existingUser != null) {
+      context.read<MyUserCubit>().changeUser(existingUser);
+      return existingUser;
     }
+
+    final myUserDto = MyUserDto(
+      userName: "",
+      id: firebaseUser.uid,
+      email: firebaseUser.email ?? "",
+      fullName: firebaseUser.displayName ?? "",
+      mobilNumber: firebaseUser.phoneNumber ?? "",
+      numberOfSharedItem: 0,
+    );
+
+    await FirebaseUtils.addUserInFireStore(myUserDto);
+
+    context.read<MyUserCubit>().changeUser(myUserDto);
+
     return myUserDto;
   }
+
 
   @override
   Future<MyUserDto> register(

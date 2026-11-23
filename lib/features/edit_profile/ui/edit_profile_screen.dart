@@ -150,7 +150,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           //todo update profile
                           if (_formKey.currentState?.validate() == true) {
                             var updatedUser = MyUserDto(id: user.id,
-                                numberOfSharedItem: user.numberOfSharedItem,
+                                numberOfSharedItem: user.numberOfSharedItem ??
+                                    0,
                                 email: user.email,
                                 fullName: nameController.text,
                                 mobilNumber: phoneController.text,

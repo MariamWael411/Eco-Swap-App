@@ -16,7 +16,6 @@ import 'package:eco_swap_app/features/auth/ui/widget/custom_text_widget.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_app_bar.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_elevated_button.dart';
 import 'package:eco_swap_app/features/common/widgets/custom_text_form_feild.dart';
-import 'package:eco_swap_app/features/network/model/app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -89,10 +88,6 @@ class _AddItemScreenState extends State<AddItemScreen> {
                 UtilsToast.toastSuccess(
                     language.success, language.item_added_successfully,
                     context);
-                await Future.delayed(const Duration(seconds: 3));
-                if (!context.mounted) return;
-                Navigator.of(context).pop();
-
 
               },
               child: Column(
@@ -208,32 +203,34 @@ class _AddItemScreenState extends State<AddItemScreen> {
                   CustomElevatedButton(
                     onClick: () async {
                       //todo add item to firebase
-                      final position = await locationService
-                          .getCurrentLocation();
 
-                      final latitude = position.latitude;
-                      final longitude = position.longitude;
-
-                      Item item = Item(
-                        statusIndex: 0,
-                        categoryIndex: currentIndex,
-                        conditionIndex: conditionIndex,
-                        description: descriptionController.text,
-                        title: titleController.text,
-                        latitude: latitude,
-                        longitude: longitude,
-                        date: DateTime.now(),
-                        userId: user.id,
-                        imageUrl: imageUrl,
-                      );
                       if (_formKry.currentState?.validate() == true) {
-                        cubit.addItem(item);
-                        cubit.editUserItem(user.toMyUser());
+                        final position = await locationService
+                            .getCurrentLocation();
+
+                        final latitude = position.latitude;
+                        final longitude = position.longitude;
+
+                        Item item = Item(
+                          statusIndex: 0,
+                          categoryIndex: currentIndex,
+                          conditionIndex: conditionIndex,
+                          description: descriptionController.text,
+                          title: titleController.text,
+                          latitude: latitude,
+                          longitude: longitude,
+                          date: DateTime.now(),
+                          userId: user.id,
+                          imageUrl: imageUrl,
+                        );
+                        await cubit.addItem(item);
+                        await cubit.editUserItem(user.toMyUser());
                         final updatedUser = user.copyWith(
                           numberOfSharedItem: (user.numberOfSharedItem ?? 0) +
                               1,
                         );
                         context.read<MyUserCubit>().changeUser(updatedUser);
+                        Navigator.of(context).pop();
 
                       }
                     },

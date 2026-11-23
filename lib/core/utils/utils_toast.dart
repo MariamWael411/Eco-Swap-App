@@ -9,7 +9,7 @@ class UtilsToast {
       toastDuration: Duration(seconds: 3),
       animationCurve: Curves.decelerate,
       enableAnimation: true,
-      toastAlignment: Alignment.center,
+      toastAlignment: Alignment.topCenter,
     ).show(context);
   }
 
@@ -20,7 +20,7 @@ class UtilsToast {
       toastDuration: Duration(seconds: 3),
       animationCurve: Curves.decelerate,
       enableAnimation: true,
-      toastAlignment: Alignment.center,
+      toastAlignment: Alignment.topCenter,
     ).show(context);
   }
 }

@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_swap_app/core/utils/firebase_utils.dart';
 import 'package:eco_swap_app/core/utils/utils_toast.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_cubit.dart';
 import 'package:eco_swap_app/features/add_item/ui/cubit/item_states.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_cahced_network.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_loading_circular_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/profile/widget/custom_name_widget.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_states.dart';
 import 'package:eco_swap_app/features/network/model/app_model.dart';
@@ -66,7 +67,7 @@ class _CustomReceivedItemState extends State<CustomReceivedItem> {
           .first,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return CustomLoadingCircularWidget();
         }
 
         if (snapshot.hasError || !snapshot.hasData) {
@@ -184,20 +185,10 @@ class _CustomReceivedItemState extends State<CustomReceivedItem> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadiusGeometry.circular(9),
-                        child: CachedNetworkImage(
-                          fit: BoxFit.fill,
-                          height: height * 0.06,
-                          width: width * 0.13,
-                          imageUrl: widget.item.imageUrl,
-                          placeholder: (context, url) =>
-                              Center(
-                                child: CircularProgressIndicator(
-                                  color: AppColors.greenColor,
-                                ),
-                              ),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        ),
+                        child: CustomCahcedNetwork(
+                            imageUrl: widget.item.imageUrl,
+                            imageHieght: height * 0.06,
+                            imageWidth: width * 0.13),
                       ),
                       Expanded(
                         child: Column(

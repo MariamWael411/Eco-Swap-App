@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_swap_app/core/services/location_service.dart';
 import 'package:eco_swap_app/core/utils/app_colors.dart';
 import 'package:eco_swap_app/core/utils/app_styles.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_cahced_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -70,18 +70,10 @@ class CustomGridViewItem extends StatelessWidget {
                   topRight: Radius.circular(17),
                   topLeft: Radius.circular(17),
                 ),
-                child: CachedNetworkImage(
-                  fit: BoxFit.fill,
-                  height: height * 0.13,
-                  width: double.infinity,
-                  imageUrl: item.imageUrl,
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.greenColor,
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
+                child: CustomCahcedNetwork(
+                    imageUrl: item.imageUrl,
+                    imageHieght: height * 0.13,
+                    imageWidth: double.infinity),
               ),
               Container(
                 width: width * 0.15,

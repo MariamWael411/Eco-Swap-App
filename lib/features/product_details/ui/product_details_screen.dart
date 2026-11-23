@@ -178,15 +178,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       UtilsToast.toastSuccess(
                           language.success, language.item_added_successfully,
                           context);
-                      await Future.delayed(const Duration(seconds: 3));
-                      if (!context.mounted) return;
-                      Navigator.of(context).pop();
+
                     },
 
                     child: Visibility(
                       visible: user.id != args.userId && args.statusIndex == 0,
                       child: CustomElevatedButton(
-                        onClick: () {
+                        onClick: () async {
                           //todo send request
                           var request = Request(
                             statusIndex: 1,
@@ -195,7 +193,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             receiverId: args.userId,
                             createdAt: DateTime.now(),
                           );
-                          cubit.addRequest(request);
+                          await cubit.addRequest(request);
+                          Navigator.of(context).pop();
                         },
                         text: language.request_this_item,
                       ),

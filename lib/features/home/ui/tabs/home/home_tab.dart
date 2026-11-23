@@ -144,11 +144,10 @@ class _HomeTabState extends State<HomeTab> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("${data.length} items Available to day",
+                            Text("${data.length} ${language
+                                .items_available_today}",
                               style: theme.textTheme.displayMedium,),
-                            Text(
-                                language.see_all,
-                                style: theme.textTheme.headlineLarge),
+
                           ],
                         ),
                       ),

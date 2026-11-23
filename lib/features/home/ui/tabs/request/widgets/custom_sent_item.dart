@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eco_swap_app/core/di/di.dart';
 import 'package:eco_swap_app/features/add_item/domain/entity/item.dart';
+import 'package:eco_swap_app/features/common/widgets/custom_cahced_network.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_cubit.dart';
 import 'package:eco_swap_app/features/home/ui/tabs/request/cubit/request_states.dart';
 import 'package:eco_swap_app/features/network/model/app_model.dart';
@@ -137,19 +137,11 @@ class CustomSentItem extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadiusGeometry.circular(9),
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fill,
-                    height: height * 0.06,
-                    width: width * 0.13,
+                  child: CustomCahcedNetwork(
                     imageUrl: item.imageUrl,
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.greenColor,
-                      ),
-                    ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
-                ),
+                    imageHieght: height * 0.06,
+                    imageWidth: width * 0.13,
+                  )),
                 Expanded(
                   child: Column(
                     spacing: height * 0.01,
